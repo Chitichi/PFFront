@@ -1,4 +1,6 @@
-import Card from "@/components/Card";
+import Card from "./Card";
+import booksArray from "../books Array/books.json";
+//import BookCard from "../components/BookCard";
 
 function Landing() {
   return (
@@ -18,18 +20,18 @@ function Landing() {
         <div class="container px-4 px-lg-5 mt-5">
           <h2 class="fw-bolder mb-4">Popular books</h2>
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
+            {booksArray.books.map((book) => {
+              return (
+                <Card
+                  title={book.title}
+                  image={book.image}
+                  price={book.price}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
-      
     </>
   );
 }
