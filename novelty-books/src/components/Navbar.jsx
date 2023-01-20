@@ -21,7 +21,7 @@ const Navbar = () => (
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
-              <Link href="/">
+              <Link  href="/">
                 <p class="nav-link active" aria-current="page"  >
                   Home
                 </p>
@@ -48,6 +48,12 @@ const Navbar = () => (
               Cart
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </button>
+            <Link href="/login">
+              <button   style={{marginLeft: 10}}class="btn btn-outline-dark" type="submit">
+                Login
+              </button>
+            </Link>
+            
           </form>
         </div>
       </div>
