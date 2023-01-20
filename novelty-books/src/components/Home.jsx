@@ -1,6 +1,8 @@
 import Card from "./Card";
-import booksArray from "../books Array/books.json";
+//import booksArray from "../books Array/books.json";
 //import BookCard from "../components/BookCard";
+import books from "@/books Array/books1";
+import Link from "next/link";
 
 function Landing() {
   return (
@@ -20,13 +22,16 @@ function Landing() {
         <div class="container px-4 px-lg-5 mt-5">
           <h2 class="fw-bolder mb-4">Popular books</h2>
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {booksArray.books.map((book) => {
+            {books.map((book) => {
               return (
-                <Card
-                  title={book.title}
-                  image={book.image}
-                  price={book.price}
-                />
+                <Link href={`/detailBook/${book.isbn13}`}>
+                  <Card
+                    title={book.title}
+                    author={book.author}
+                    image={book.image}
+                    price={book.price}
+                  />
+                </Link>
               );
             })}
           </div>
