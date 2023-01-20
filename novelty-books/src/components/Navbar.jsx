@@ -22,7 +22,7 @@ const Navbar = () => (
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
               <Link href="/">
-                <p class="nav-link active" aria-current="page" >
+                <p class="nav-link active" aria-current="page"  >
                   Home
                 </p>
               </Link>
