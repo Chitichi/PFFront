@@ -21,7 +21,7 @@ const Navbar = () => (
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
-              <Link href="/">
+              <Link  href="/">
                 <p class="nav-link active" aria-current="page"  >
                   Home
                 </p>
@@ -43,11 +43,19 @@ const Navbar = () => (
             </li>
           </ul>
           <form class="d-flex">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"/>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             <button class="btn btn-outline-dark" type="submit">
               <i class="bi-cart-fill me-1"></i>
               Cart
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </button>
+            <Link href="/login">
+              <button   style={{marginLeft: 10}}class="btn btn-outline-dark" type="submit">
+                Login
+              </button>
+            </Link>
+            
           </form>
         </div>
       </div>
