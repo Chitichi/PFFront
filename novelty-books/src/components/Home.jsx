@@ -10,6 +10,7 @@ function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('');
+  const [arrayBooks, setArrayBooks] = useState(books)
 
   const changeType = (e) => {
     e.preventDefault();
@@ -55,7 +56,7 @@ function Landing() {
           </div>
 
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {books.map((book) => {
+            {arrayBooks.map((book) => {
               return (
                 <Link href={`/detailBook/${book.isbn13}`}>
                   <Card
