@@ -44,6 +44,11 @@ function Landing() {
     })
   }
 
+  const changeGenre = (e) => {
+    e.preventDefault()
+    setGenre(e.target.value)
+  }
+
   function orderBooks(type, sence) {
     let booksCopy = [...arrayBooks]
     if (type === "abc") {
@@ -81,7 +86,7 @@ function Landing() {
               <div class="container-fluid">
                 <form class="d-flex" role="search">
 
-                <select name="filter" onChange={(e) => {changeOrder(e)}}>
+                <select name="filter" onChange={(e) => {changeGenre(e)}}>
                     {
                       listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
                     }
