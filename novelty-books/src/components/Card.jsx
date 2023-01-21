@@ -1,5 +1,5 @@
 const Card = ({title, image, price,author}) => (
-    <>
+    <div>
         <div class="col mb-5">
                         <div class="card h-100">
                             
@@ -26,11 +26,11 @@ const Card = ({title, image, price,author}) => (
                             </div>
                             
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><button class="btn btn-outline-dark mt-auto" href="#">Add to cart</button></div>
                             </div>
                         </div>
                     </div>
-    </>
+    </div>
 )
 
 export default Card;
