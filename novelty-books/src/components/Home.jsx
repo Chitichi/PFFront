@@ -10,6 +10,8 @@ function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('');
+  const [typeOrder, setTypeOrder] = useState('abc');
+  const [typeSence, setTypeSence] = useState("asc");
   const [arrayBooks, setArrayBooks] = useState(books)
 
   const changeType = (e) => {
