@@ -29,7 +29,7 @@ const Card = ({title, image, price,author}) => (
                                 <div class="text-center"><button class="btn btn-outline-dark mt-auto" href="#">Add to cart</button></div>
                             </div>
                         </div>
-                    </div>
+            </div>
     </div>
 )
 

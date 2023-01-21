@@ -7,7 +7,7 @@ function Detail({params}) {
     const {title,author,pages,price,description,isbn,image} = book[0]
 
   return (
-    <>
+    <div>
       <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
           <div class="row gx-4 gx-lg-5 align-items-center">
@@ -67,7 +67,7 @@ function Detail({params}) {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
