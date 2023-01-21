@@ -16,7 +16,7 @@ function Landing() {
 
   const changeType = (e) => {
     e.preventDefault();
-    setType(e.target.value);
+    setTypeSearch(e.target.value);
   };
 
   const changeOrder = (e) => {
@@ -95,7 +95,7 @@ function Landing() {
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={(e) => setSearchInput(e.target.value)}
                   ></input>
 
                   <select name="filter" onChange={(e) => changeType(e)}>
