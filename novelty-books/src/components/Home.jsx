@@ -37,6 +37,20 @@ function Landing() {
     })
   }
 
+  function orderBooks(type, sence) {
+    let booksCopy = [...arrayBooks]
+    if (type === "abc") {
+      booksCopy.sort((a, b) => {
+        if (a.title > b.title) return 1
+        if (b.title > a.title) return -1
+        return 0
+      })
+      sence === "asc"? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
+    } else if (type === "price") {
+      booksCopy.sort((a, b) => a.price - b.price)
+      sence === "asc"? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
+    }
+  }
 
   return (
     <>
