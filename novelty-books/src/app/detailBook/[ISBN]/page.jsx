@@ -6,7 +6,6 @@ function Detail({params}) {
     //const book = books[0]
     const {title,author,pages,price,description,isbn,image} = book[0]
 
-    console.log(book)
   return (
     <>
       <section class="py-5">
