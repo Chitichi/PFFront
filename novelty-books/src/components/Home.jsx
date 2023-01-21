@@ -17,6 +17,13 @@ function Landing() {
     setType(e.target.value);
   };
 
+  const filterSearch = () => {
+    setArrayBooks(arrayBooks => {
+      return arrayBooks.filter(book => searchInput.toLowerCase() === ""? true: book[typeSearch].toLowerCase().includes(searchInput))
+    })
+  }
+
+
   return (
     <>
       <header class="bg-dark py-5">
