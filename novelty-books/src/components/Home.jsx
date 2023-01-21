@@ -6,13 +6,17 @@ import books from "@/books Array/books1";
 import Link from "next/link";
 import React from 'react'
 
-const filteredPosts = (genre) => {
-  return genre === "" ? books : books.filter(book => book.genre.includes(genre))
+const filteredPosts = (filterObj) => {
+  if(filterObj.genre.length){
+    return filterObj.genre === "All Genres" ? books : books.filter(book => book.genre.includes(filterObj.genre))
+  }else{
+    return filterObj.publisher === "All Publishers" ? books : books.filter(book => book.publisher.includes(filterObj.publisher))
+  }
 }
 
-export default function Landing({genre}) {
+export default function Landing({filterObj}) {
 
-  const booksArray = filteredPosts(genre)
+  const booksArray = filteredPosts(filterObj)
 
       return booksArray.map((book, idx) => (
           <Link 
