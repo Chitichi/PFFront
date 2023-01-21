@@ -12,6 +12,7 @@ function Landing() {
   const [typeSearch, setTypeSearch] = useState('title');
   const [typeOrder, setTypeOrder] = useState('abc');
   const [typeSence, setTypeSence] = useState("asc");
+  const [genre, setGenre] = useState("")
   const [arrayBooks, setArrayBooks] = useState(books)
 
   const changeType = (e) => {
