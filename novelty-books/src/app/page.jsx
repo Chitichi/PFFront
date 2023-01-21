@@ -5,12 +5,28 @@ import React from "react"
 
 export default function Home() {
 
-  const [genre, setGenre] = React.useState("")
+  const [filter, setFilter] = React.useState({
+    genre: "All Genres",
+    publisher: ""
+  })
 
   const handleFilters = (e) => {
-      const {value} = e.target
-      setGenre(value)
+      const {value, name} = e.target
+      if(name === 'genre'){
+        setFilter({
+          genre: value,
+          publisher: ""
+        })
+      }else{
+        setFilter({
+          genre: "",
+          publisher: value
+        })
+      }
   }
+
+  const genresArray = ["All Genres", "Horror", "Fantasy", "Sci-Fiction"]
+  const publisherArray = ["All Publishers", "Quirk Books", "Wiley", "OSU Press"]
 
   return (
     <div>
@@ -25,12 +41,22 @@ export default function Home() {
         </div>
       </header>
 
-      <div class="container mx-auto" style={{width: 'fit-content'}}>
-          <select class="text-center" onChange = {handleFilters}>
-            <option value="">All</option>
-            <option value="Horror">Horror</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Sci-Fiction">Sci-Fiction</option> 
+      <div class="container mx-auto" style={{width: 800, display: 'flex', justifyContent: 'space-around', padding: 15}}>
+          <select
+              value={filter.genre} 
+              name="genre" 
+              class="text-center" 
+              onChange = {handleFilters}
+          >
+              {genresArray.map(item => <option name="genre" value={item}>{item}</option>)}
+          </select>
+          <select 
+              value={filter.publisher} 
+              name="publisher" 
+              class="text-center" 
+              onChange = {handleFilters}
+          >
+              {publisherArray.map(item => <option name="publisher" value={item}>{item}</option>)} 
           </select>
       </div>
 
@@ -38,7 +64,7 @@ export default function Home() {
         <div class="container px-4 px-lg-5 mt-5">
           <h2 class="fw-bolder mb-4">Popular books</h2>
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <Landing genre={genre}/>
+            <Landing filterObj={filter}/>
           </div>
         </div>
       </section>
