@@ -1,3 +1,5 @@
+"use client"
+import React, {useState} from "react"
 import Card from "./Card";
 //import booksArray from "../books Array/books.json";
 //import BookCard from "../components/BookCard";
@@ -5,6 +7,11 @@ import books from "@/books Array/books1";
 import Link from "next/link";
 
 function Landing() {
+
+  const [searchInput, setSearchInput] = useState("");
+  const [typeSearch, setTypeSearch] = useState('');
+
+
   return (
     <>
       <header class="bg-dark py-5">
