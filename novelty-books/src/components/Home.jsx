@@ -47,6 +47,23 @@ function Landing() {
             <nav class="navbar bg-body-tertiary">
               <div class="container-fluid">
                 <form class="d-flex" role="search">
+
+                  <select name="filter" onChange={(e) => {
+                    changeOrder(e)
+                    }}>
+                    <option>Orden</option>
+                    <option value="abc">Alfabetico</option>
+                    <option value="price">Price</option>
+                  </select>
+
+                  <select name="filter" onChange={(e) => {
+                    changeSence(e)
+                    }}>
+                    <option>Sentido</option>
+                    <option value="asc">Ascendente</option>
+                    <option value="des">Descendente</option>
+                  </select>
+
                   <input
                     class="form-control me-2"
                     type="search"
