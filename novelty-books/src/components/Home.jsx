@@ -19,6 +19,18 @@ function Landing() {
     setType(e.target.value);
   };
 
+  const changeOrder = (e) => {
+    e.preventDefault();
+    setTypeOrder(e.target.value);
+    orderBooks(e.target.value, typeSence)
+  };
+
+  const changeSence = (e) => {
+    e.preventDefault();
+    setTypeSence(e.target.value);
+    orderBooks( typeOrder , e.target.value)
+  };
+
   const filterSearch = () => {
     setArrayBooks(arrayBooks => {
       return arrayBooks.filter(book => searchInput.toLowerCase() === ""? true: book[typeSearch].toLowerCase().includes(searchInput))
