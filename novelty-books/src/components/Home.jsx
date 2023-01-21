@@ -9,7 +9,7 @@ import Link from "next/link";
 function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
-  const [typeSearch, setTypeSearch] = useState('');
+  const [typeSearch, setTypeSearch] = useState('title');
   const [typeOrder, setTypeOrder] = useState('abc');
   const [typeSence, setTypeSence] = useState("asc");
   const [arrayBooks, setArrayBooks] = useState(books)
