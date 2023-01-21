@@ -15,6 +15,12 @@ function Landing() {
   const [genre, setGenre] = useState("")
   const [arrayBooks, setArrayBooks] = useState(books)
 
+  const listGenre =[
+    "Fantasy",
+    "Sci-Fiction",
+    "Horror",
+  ]
+
   const changeType = (e) => {
     e.preventDefault();
     setTypeSearch(e.target.value);
@@ -74,6 +80,12 @@ function Landing() {
             <nav class="navbar bg-body-tertiary">
               <div class="container-fluid">
                 <form class="d-flex" role="search">
+
+                <select name="filter" onChange={(e) => {changeOrder(e)}}>
+                    {
+                      listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
+                    }
+                </select>
 
                   <select name="filter" onChange={(e) => {
                     changeOrder(e)
