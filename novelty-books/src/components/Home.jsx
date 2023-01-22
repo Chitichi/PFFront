@@ -10,9 +10,10 @@ function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('title');
+  const [genre, setGenre] = useState("")
+  const [price, setPrice] = useState({min:-Infinity, max: Infinity})
   const [typeOrder, setTypeOrder] = useState('abc');
   const [typeSence, setTypeSence] = useState("asc");
-  const [genre, setGenre] = useState("")
   const [arrayBooks, setArrayBooks] = useState(books)
 
   const listGenre = [
@@ -70,6 +71,14 @@ function Landing() {
     genre === "" ? setArrayBooks(books) : setArrayBooks(books.filter(book => book.genre.includes(genre)))
   }
 
+  function changePrince(e) {
+    const name = e.target.name
+    const value = name === "min"? e.target.value || -Infinity: e.target.value || Infinity
+    console.log(price)
+    setPrice(price => ({...price, [name]: value}))
+    console.log({...price, [name]: value})
+  }
+
   return (
     <>
       <section class="py-5 bg-light">
@@ -85,16 +94,18 @@ function Landing() {
                   <input
                     class="form-control me-2"
                     type="search"
-                    placeholder="Min"
+                    name="min"
+                    placeholder="min"
                     aria-label="Search"
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    onChange={(e) => changePrince(e)}
                   ></input>
                   <input
                     class="form-control me-2"
                     type="search"
-                    placeholder="Max"
+                    name="max"
+                    placeholder="max"
                     aria-label="Search"
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    onChange={(e) => changePrince(e)}
                   ></input>
 
                   <label>Genero</label>
