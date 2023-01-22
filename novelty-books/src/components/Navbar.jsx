@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+const isLogged = false;
 const Navbar = () => (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
@@ -50,11 +51,27 @@ const Navbar = () => (
               Cart
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </button>
-            <Link href="/login">
-              <button   style={{marginLeft: 10}}class="btn btn-outline-dark" type="submit">
-                Login
-              </button>
-            </Link>
+            {
+              isLogged ?
+              <Link href="/">
+                  <button  
+                    style={{marginLeft: 10}}
+                    class="btn btn-outline-dark" 
+                    type="submit">
+               Logout
+             </button>
+              
+            </Link> :
+             <Link href="/login">
+             <button   
+                  style={{marginLeft: 10}}
+                  class="btn btn-outline-dark" 
+                  type="submit">
+               Login
+             </button>
+           </Link>
+            }
+           
             
           </form>
         </div>
