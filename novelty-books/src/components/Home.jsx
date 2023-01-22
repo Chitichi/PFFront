@@ -74,9 +74,13 @@ function Landing() {
   function changePrince(e) {
     const name = e.target.name
     const value = name === "min"? e.target.value || -Infinity: e.target.value || Infinity
-    console.log(price)
     setPrice(price => ({...price, [name]: value}))
-    console.log({...price, [name]: value})
+    filterPrice({...price, [name]: value})
+  }
+
+  function filterPrice(value) {
+    const booksFiltered = arrayBooks.filter((book) => book.price >= value.min && book.price <= value.max?true: false)
+    setArrayBooks(booksFiltered)
   }
 
   return (
