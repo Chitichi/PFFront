@@ -71,7 +71,7 @@ function Landing() {
     genre === "" ? setArrayBooks(books) : setArrayBooks(books.filter(book => book.genre.includes(genre)))
   }
 
-  function changePrince(e) {
+  function changePrice(e) {
     const name = e.target.name
     const value = name === "min"? e.target.value || -Infinity: e.target.value || Infinity
     setPrice(price => ({...price, [name]: value}))
@@ -81,6 +81,10 @@ function Landing() {
   function filterPrice(value) {
     const booksFiltered = arrayBooks.filter((book) => book.price >= value.min && book.price <= value.max?true: false)
     setArrayBooks(booksFiltered)
+  }
+
+  function filter() {
+    setArrayBooks(books.filterPrice(price).filterGenre(genre))
   }
 
   return (
@@ -101,7 +105,7 @@ function Landing() {
                     name="min"
                     placeholder="min"
                     aria-label="Search"
-                    onChange={(e) => changePrince(e)}
+                    onChange={(e) => changePrice(e)}
                   ></input>
                   <input
                     class="form-control me-2"
@@ -109,7 +113,7 @@ function Landing() {
                     name="max"
                     placeholder="max"
                     aria-label="Search"
-                    onChange={(e) => changePrince(e)}
+                    onChange={(e) => changePrice(e)}
                   ></input>
 
                   <label>Genero</label>
