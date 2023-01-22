@@ -1,6 +1,8 @@
+import Landing from "@/components/Home"
+
 function Profile() {
     return (
-        <h1>Estas en tu Perfil</h1>
+        <Landing/>
     )
 }
 

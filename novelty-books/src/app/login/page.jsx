@@ -2,10 +2,11 @@
 import { useState } from "react"
 import style from "./page.module.css"
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 //import { useLocation } from "react-router-dom"
 
 function Login() {
-    
+    const router = useRouter();
     const [emailUser, setEmailUser] = useState("");
     const [passUser, setPassUser ] = useState("");
     //const [, navigation] = useLocation();
@@ -18,18 +19,15 @@ function Login() {
             icon:'success',
             timer: 3000
         })
-
-
-      
+        router.push("/Giuliana");
        // navigation("/");
-
-
-        //alert ( `${emailUser}, ${passUser}`)
+         //alert ( `${emailUser}, ${passUser}`)
   
     };
 
 
     return (
+        <div>
         <form onSubmit={handleSubmit} className={style.formulario}>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -60,12 +58,19 @@ function Login() {
                        for="exampleCheck1">Check me out</label>
             </div>
             <div class="text-center">
-                <button 
-                        className={style.button} 
-                        type="submit">Submit</button>
+                
+                
             </div>
-
+        
+            <div class="text-center">
+                <button 
+                className={style.button} 
+                type="submit"
+                onClick={handleSubmit}>Submit</button>
+            </div>
         </form>
+            
+            </div>
     )
 }
 

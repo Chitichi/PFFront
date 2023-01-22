@@ -1,7 +1,14 @@
+"use client";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const isLogged = false;
-const Navbar = () => (
+
+const Navbar = () => {
+  const pathName = usePathname();
+ // const {profile} = params;
+   console.log(pathName, "soy tu profile puto");
+
+  return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
           <img  style={{height: 35 }} src="brand.png" alt=""/>
@@ -52,7 +59,8 @@ const Navbar = () => (
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </button>
             {
-              isLogged ?
+              pathName === "/login" ? null :
+              pathName !== "/" ?
               <Link href="/">
                   <button  
                     style={{marginLeft: 10}}
@@ -60,6 +68,7 @@ const Navbar = () => (
                     type="submit">
                Logout
              </button>
+          
               
             </Link> :
              <Link href="/login">
@@ -77,6 +86,7 @@ const Navbar = () => (
         </div>
       </div>
     </nav>
-  );
+  )
+};
   
   export default Navbar;
