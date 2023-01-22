@@ -47,6 +47,7 @@ function Landing() {
   const changeGenre = (e) => {
     e.preventDefault()
     setGenre(e.target.value)
+    filterGenre(e.target.value)
   }
 
   function orderBooks(type, sence) {
@@ -62,6 +63,10 @@ function Landing() {
       booksCopy.sort((a, b) => a.price - b.price)
       sence === "asc"? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
     }
+  }
+
+  function filterGenre(genre) {
+    setArrayBooks(books.filter(book => book.genre.includes(genre)))
   }
 
   return (
@@ -86,11 +91,11 @@ function Landing() {
               <div class="container-fluid">
                 <form class="d-flex" role="search">
 
-                <select name="filter" onChange={(e) => {changeGenre(e)}}>
-                    {
-                      listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
-                    }
-                </select>
+                  <select name="filter" onChange={(e) => {changeGenre(e)}}>
+                      {
+                        listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
+                      }
+                  </select>
 
                   <select name="filter" onChange={(e) => {
                     changeOrder(e)
