@@ -16,6 +16,7 @@ function Landing() {
   const [arrayBooks, setArrayBooks] = useState(books)
 
   const listGenre =[
+    "",
     "Fantasy",
     "Sci-Fiction",
     "Horror",
@@ -66,7 +67,7 @@ function Landing() {
   }
 
   function filterGenre(genre) {
-    setArrayBooks(books.filter(book => book.genre.includes(genre)))
+    genre === ""? setArrayBooks(books): setArrayBooks(books.filter(book => book.genre.includes(genre)))
   }
 
   return (
@@ -120,11 +121,10 @@ function Landing() {
           </div>
 
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {arrayBooks
-              .filter((item) => {
-                return searchInput.toLowerCase() === ""
-                  ? item
-                  : item[typeSearch].toLowerCase().includes(searchInput)
+            {
+              arrayBooks.filter((item) => {return searchInput.toLowerCase() === ""?
+                item:
+                item[typeSearch].toLowerCase().includes(searchInput)
               })
               .map((book) => {
               return (
