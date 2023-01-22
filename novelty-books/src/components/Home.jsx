@@ -10,8 +10,8 @@ function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('title');
-  const [genre, setGenre] = useState("")
-  const [price, setPrice] = useState({min:-Infinity, max: Infinity})
+  const [genreState, setGenre] = useState("")
+  const [priceState, setPrice] = useState({min:-Infinity, max: Infinity})
   const [typeOrder, setTypeOrder] = useState('abc');
   const [typeSence, setTypeSence] = useState("asc");
   const [arrayBooks, setArrayBooks] = useState(books)
@@ -46,12 +46,6 @@ function Landing() {
     })
   }
 
-  const changeGenre = (e) => {
-    e.preventDefault()
-    setGenre(e.target.value)
-    filterGenre(e.target.value)
-  }
-
   function orderBooks(type, sence) {
     let booksCopy = [...arrayBooks]
     if (type === "abc") {
@@ -67,24 +61,39 @@ function Landing() {
     }
   }
 
-  function filterGenre(genre) {
-    genre === "" ? setArrayBooks(books) : setArrayBooks(books.filter(book => book.genre.includes(genre)))
+  const changeGenre = (e) => {
+    e.preventDefault()
+    setGenre(e.target.value)
+    filterBooks(priceState, e.target.value)
+  }
+
+  function filterGenre(genre, books) {
+    if (genre === "") {
+      return books
+    }else {
+      return books.filter(book => book.genre.includes(genre))
+    }
   }
 
   function changePrice(e) {
     const name = e.target.name
     const value = name === "min"? e.target.value || -Infinity: e.target.value || Infinity
-    setPrice(price => ({...price, [name]: value}))
-    filterPrice({...price, [name]: value})
+    setPrice(priceState => ({...priceState, [name]: value}))
+    filterBooks({...priceState, [name]: value})
   }
 
-  function filterPrice(value) {
-    const booksFiltered = arrayBooks.filter((book) => book.price >= value.min && book.price <= value.max?true: false)
-    setArrayBooks(booksFiltered)
+  function filterPrice(value, books) {
+    const booksFiltered = books.filter((book) => book.price >= value.min && book.price <= value.max?true: false)
+    return booksFiltered
   }
 
-  function filter() {
-    setArrayBooks(books.filterPrice(price).filterGenre(genre))
+  function filterBooks(priceToFilter, genreToFilter) {
+    const price = priceToFilter || priceState
+    const genre = genreToFilter === undefined? genreState: genreToFilter
+    const filter1 = filterPrice(price, books)
+    const filter2 = filterGenre(genre, filter1)
+    setArrayBooks(filter2)
+    
   }
 
   return (
