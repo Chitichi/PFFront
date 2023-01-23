@@ -177,7 +177,7 @@ function Landing({books}) {
               })
                 .map((book) => {
                   return (
-                    <Link href={`/detailBook/${book.isbn13}`}>
+                    <Link href={`/detailBook/${book._id}`}>
                       <Card
                         title={book.title}
                         author={book.author}
