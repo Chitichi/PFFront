@@ -1,6 +1,14 @@
+"use client";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const Navbar = () => (
+
+const Navbar = () => {
+  const pathName = usePathname();
+ // const {profile} = params;
+   
+
+  return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
           <img  style={{height: 35 }} src="brand.png" alt=""/>
@@ -27,39 +35,43 @@ const Navbar = () => (
                 </p>
               </Link>
             </li>
-            <li class="nav-item">
-              <Link href="/about">
-                <p class="nav-link" >
-                  About
-                </p>
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link href="/allProducts">
-                <p class="nav-link" href="#!">
-                  All Products
-                </p>
-              </Link>
-            </li>
+           
           </ul>
           <form class="d-flex">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"/>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             <button class="btn btn-outline-dark" type="submit">
               <i class="bi-cart-fill me-1"></i>
               Cart
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </button>
-            <Link href="/login">
-              <button   style={{marginLeft: 10}}class="btn btn-outline-dark" type="submit">
-                Login
-              </button>
-            </Link>
+            {
+              pathName === "/login" ? null :
+              pathName !== "/" ?
+              <Link href="/">
+                  <button  
+                    style={{marginLeft: 10}}
+                    class="btn btn-outline-dark" 
+                    type="submit">
+               Logout
+             </button>
+          
+              
+            </Link> :
+             <Link href="/login">
+             <button   
+                  style={{marginLeft: 10}}
+                  class="btn btn-outline-dark" 
+                  type="submit">
+               Login
+             </button>
+           </Link>
+            }
+           
             
           </form>
         </div>
       </div>
     </nav>
-  );
+  )
+};
   
   export default Navbar;
