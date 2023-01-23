@@ -6,6 +6,12 @@ import Card from "./Card";
 import books from "@/books Array/books1";
 import Link from "next/link";
 
+const fetchBooks = () => {
+  return fetch("http://localhost:3001/books")
+    .then(res => res.json())
+    .catch(error => alert(error.message))
+}
+
 function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
