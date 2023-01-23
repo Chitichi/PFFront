@@ -4,8 +4,9 @@ function Detail({params}) {
     const {ISBN} = params
     const book = books.filter(b => b.isbn13 ==ISBN )
     //const book = books[0]
-    const {title,author,pages,price,description,isbn,image} = book[0]
+    const {title,author,pages,price,description,isbn,image, genre} = book[0]
 
+    const genreBook = genre[0];
     console.log(book)
   return (
     <>
@@ -56,7 +57,7 @@ function Detail({params}) {
         <div class="container px-4 px-lg-5 mt-5">
           <h2 class="fw-bolder mb-4">Related books</h2>
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" /* Aqui se mapean las cards*/>
-          {books.map((book) => {
+          {books.filter((b)=>  b.genre.includes(genreBook) && title!==b.title).map((book) => {
               return (
                 <Card
                   title={book.title}
