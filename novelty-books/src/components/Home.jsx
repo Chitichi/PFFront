@@ -18,7 +18,8 @@ function Landing({books}) {
   const [arrayBooks, setArrayBooks] = useState(books)
 
   const listGenre = [
-    "",
+    "Genero",
+    "Todos",
     "Fantasy",
     "Sci-Fiction",
     "Horror",
@@ -128,17 +129,16 @@ function Landing({books}) {
                     onChange={(e) => changePrice(e)}
                   ></input>
 
-                  <label>Genero</label>
                   <select name="filter" onChange={(e) => { changeGenre(e) }}>
                     {
-                      listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
+                      listGenre.map((genre, index) => genre !== "Genero"? <option key={index} value={genre}>{genre}</option>: <option key={index} value={genre} hidden>{genre}</option>)
                     }
                   </select>
 
                   <select name="filter" onChange={(e) => {
                     changeOrder(e)
                   }}>
-                    <option>Orden</option>
+                    <option hidden>Orden</option>
                     <option value="abc">Alfabetico</option>
                     <option value="price">Price</option>
                   </select>
@@ -146,7 +146,7 @@ function Landing({books}) {
                   <select name="filter" onChange={(e) => {
                     changeSence(e)
                   }}>
-                    <option>Sentido</option>
+                    <option hidden>Sentido</option>
                     <option value="asc">Ascendente</option>
                     <option value="des">Descendente</option>
                   </select>
