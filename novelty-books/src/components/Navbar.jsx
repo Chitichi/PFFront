@@ -6,7 +6,7 @@ import Link from "next/link";
 const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
-   console.log(pathName, "soy tu profile puto");
+   
 
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
