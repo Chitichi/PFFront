@@ -70,7 +70,7 @@ function Landing({books}) {
   }
 
   function filterGenre(genre, books) {
-    if (genre === "") {
+    if (genre === "Todos") {
       return books
     } else {
       return books.filter(book => book.genre.includes(genre))

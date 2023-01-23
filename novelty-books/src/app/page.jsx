@@ -3,7 +3,7 @@ import Landing from "@/components/Home"
 const fetchBooks = () => {
   return fetch("http://localhost:3001/books")
     .then(res => res.json())
-    .catch(error => alert(error.message))
+   // .catch(error => alert(error.message))
 }
 
 export default async function Home() {
