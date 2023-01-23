@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from "react"
+import React, { useState } from "react"
 import Card from "./Card";
 //import booksArray from "../books Array/books.json";
 //import BookCard from "../components/BookCard";
@@ -10,12 +10,13 @@ function Landing() {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('title');
+  const [genreState, setGenre] = useState("")
+  const [priceState, setPrice] = useState({ min: -Infinity, max: Infinity })
   const [typeOrder, setTypeOrder] = useState('abc');
   const [typeSence, setTypeSence] = useState("asc");
-  const [genre, setGenre] = useState("")
   const [arrayBooks, setArrayBooks] = useState(books)
 
-  const listGenre =[
+  const listGenre = [
     "",
     "Fantasy",
     "Sci-Fiction",
@@ -36,19 +37,13 @@ function Landing() {
   const changeSence = (e) => {
     e.preventDefault();
     setTypeSence(e.target.value);
-    orderBooks( typeOrder , e.target.value)
+    orderBooks(typeOrder, e.target.value)
   };
 
   const filterSearch = () => {
     setArrayBooks(arrayBooks => {
-      return arrayBooks.filter(book => searchInput.toLowerCase() === ""? true: book[typeSearch].toLowerCase().includes(searchInput))
+      return arrayBooks.filter(book => searchInput.toLowerCase() === "" ? true : book[typeSearch].toLowerCase().includes(searchInput))
     })
-  }
-
-  const changeGenre = (e) => {
-    e.preventDefault()
-    setGenre(e.target.value)
-    filterGenre(e.target.value)
   }
 
   function orderBooks(type, sence) {
@@ -59,15 +54,46 @@ function Landing() {
         if (b.title > a.title) return -1
         return 0
       })
-      sence === "asc"? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
+      sence === "asc" ? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
     } else if (type === "price") {
       booksCopy.sort((a, b) => a.price - b.price)
-      sence === "asc"? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
+      sence === "asc" ? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
     }
   }
 
-  function filterGenre(genre) {
-    genre === ""? setArrayBooks(books): setArrayBooks(books.filter(book => book.genre.includes(genre)))
+  const changeGenre = (e) => {
+    e.preventDefault()
+    setGenre(e.target.value)
+    filterBooks(priceState, e.target.value)
+  }
+
+  function filterGenre(genre, books) {
+    if (genre === "") {
+      return books
+    } else {
+      return books.filter(book => book.genre.includes(genre))
+    }
+  }
+
+  function changePrice(e) {
+    const name = e.target.name
+    const value = name === "min" ? e.target.value || -Infinity : e.target.value || Infinity
+    setPrice(priceState => ({ ...priceState, [name]: value }))
+    filterBooks({ ...priceState, [name]: value })
+  }
+
+  function filterPrice(value, books) {
+    const booksFiltered = books.filter((book) => book.price >= value.min && book.price <= value.max ? true : false)
+    return booksFiltered
+  }
+
+  function filterBooks(priceToFilter, genreToFilter) {
+    const price = priceToFilter || priceState
+    const genre = genreToFilter === undefined ? genreState : genreToFilter
+    const filter1 = filterPrice(price, books)
+    const filter2 = filterGenre(genre, filter1)
+    setArrayBooks(filter2)
+
   }
 
   return (
@@ -81,15 +107,36 @@ function Landing() {
               <div class="container-fluid">
                 <form class="d-flex" role="search">
 
-                  <select name="filter" onChange={(e) => {changeGenre(e)}}>
-                      {
-                        listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
-                      }
+                  <label>Precio: </label>
+
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    name="max"
+                    placeholder="max"
+                    aria-label="Search"
+                    onChange={(e) => changePrice(e)}
+                  ></input>
+                  
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    name="min"
+                    placeholder="min"
+                    aria-label="Search"
+                    onChange={(e) => changePrice(e)}
+                  ></input>
+
+                  <label>Genero</label>
+                  <select name="filter" onChange={(e) => { changeGenre(e) }}>
+                    {
+                      listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
+                    }
                   </select>
 
                   <select name="filter" onChange={(e) => {
                     changeOrder(e)
-                    }}>
+                  }}>
                     <option>Orden</option>
                     <option value="abc">Alfabetico</option>
                     <option value="price">Price</option>
@@ -97,7 +144,7 @@ function Landing() {
 
                   <select name="filter" onChange={(e) => {
                     changeSence(e)
-                    }}>
+                  }}>
                     <option>Sentido</option>
                     <option value="asc">Ascendente</option>
                     <option value="des">Descendente</option>
@@ -122,22 +169,23 @@ function Landing() {
 
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {
-              arrayBooks.filter((item) => {return searchInput.toLowerCase() === ""?
-                item:
-                item[typeSearch].toLowerCase().includes(searchInput)
+              arrayBooks.filter((item) => {
+                return searchInput.toLowerCase() === "" ?
+                  item :
+                  item[typeSearch].toLowerCase().includes(searchInput)
               })
-              .map((book) => {
-              return (
-                <Link href={`/detailBook/${book.isbn13}`}>
-                  <Card
-                    title={book.title}
-                    author={book.author}
-                    image={book.image}
-                    price={book.price}
-                  />
-                </Link>
-              );
-            })}
+                .map((book) => {
+                  return (
+                    <Link href={`/detailBook/${book.isbn13}`}>
+                      <Card
+                        title={book.title}
+                        author={book.author}
+                        image={book.image}
+                        price={book.price}
+                      />
+                    </Link>
+                  );
+                })}
           </div>
         </div>
       </section>
