@@ -3,16 +3,11 @@ import React, { useState } from "react"
 import Card from "./Card";
 //import booksArray from "../books Array/books.json";
 //import BookCard from "../components/BookCard";
-import books from "@/books Array/books1";
+// import books from "@/books Array/books1";
 import Link from "next/link";
 
-const fetchBooks = () => {
-  return fetch("http://localhost:3001/books")
-    .then(res => res.json())
-    .catch(error => alert(error.message))
-}
 
-function Landing() {
+function Landing({books}) {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('title');
