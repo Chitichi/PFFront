@@ -19,7 +19,7 @@ function Login() {
             icon:'success',
             timer: 3000
         })
-        router.push("/Giuliana");
+        router.push("/profile/Giuliana");
        // navigation("/");
          //alert ( `${emailUser}, ${passUser}`)
   

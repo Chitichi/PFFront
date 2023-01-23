@@ -2,7 +2,7 @@ import Landing from "@/components/Home"
 
 function Profile() {
     return (
-        <Landing/>
+        <></>
     )
 }
 

@@ -35,20 +35,7 @@ const Navbar = () => {
                 </p>
               </Link>
             </li>
-            <li class="nav-item">
-              <Link href="/about">
-                <p class="nav-link" >
-                  About
-                </p>
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link href="/allProducts">
-                <p class="nav-link" href="#!">
-                  All Products
-                </p>
-              </Link>
-            </li>
+           
           </ul>
           <form class="d-flex">
             <button class="btn btn-outline-dark" type="submit">
