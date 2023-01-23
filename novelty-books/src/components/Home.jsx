@@ -3,10 +3,11 @@ import React, { useState } from "react"
 import Card from "./Card";
 //import booksArray from "../books Array/books.json";
 //import BookCard from "../components/BookCard";
-import books from "@/books Array/books1";
+// import books from "@/books Array/books1";
 import Link from "next/link";
 
-function Landing() {
+
+function Landing({books}) {
 
   const [searchInput, setSearchInput] = useState("");
   const [typeSearch, setTypeSearch] = useState('title');
@@ -17,7 +18,8 @@ function Landing() {
   const [arrayBooks, setArrayBooks] = useState(books)
 
   const listGenre = [
-    "",
+    "Genero",
+    "Todos",
     "Fantasy",
     "Sci-Fiction",
     "Horror",
@@ -127,17 +129,16 @@ function Landing() {
                     onChange={(e) => changePrice(e)}
                   ></input>
 
-                  <label>Genero</label>
                   <select name="filter" onChange={(e) => { changeGenre(e) }}>
                     {
-                      listGenre.map((genre, index) => <option key={index} value={genre}>{genre}</option>)
+                      listGenre.map((genre, index) => genre !== "Genero"? <option key={index} value={genre}>{genre}</option>: <option key={index} value={genre} hidden>{genre}</option>)
                     }
                   </select>
 
                   <select name="filter" onChange={(e) => {
                     changeOrder(e)
                   }}>
-                    <option>Orden</option>
+                    <option hidden>Orden</option>
                     <option value="abc">Alfabetico</option>
                     <option value="price">Price</option>
                   </select>
@@ -145,7 +146,7 @@ function Landing() {
                   <select name="filter" onChange={(e) => {
                     changeSence(e)
                   }}>
-                    <option>Sentido</option>
+                    <option hidden>Sentido</option>
                     <option value="asc">Ascendente</option>
                     <option value="des">Descendente</option>
                   </select>
@@ -176,7 +177,7 @@ function Landing() {
               })
                 .map((book) => {
                   return (
-                    <Link href={`/detailBook/${book.isbn13}`}>
+                    <Link href={`/detailBook/${book._id}`}>
                       <Card
                         title={book.title}
                         author={book.author}
