@@ -6,6 +6,8 @@ import Link from "next/link";
 const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
+ const user = pathName.includes("profile") ? pathName.slice(9) : null
+ 
    
 
   return (
@@ -37,6 +39,13 @@ const Navbar = () => {
             </li>
            
           </ul>
+          {
+            user &&
+          <label style={{paddingRight:20}}>
+            Welcome {user}
+          </label> 
+            }
+
           <form class="d-flex">
             <button class="btn btn-outline-dark" type="submit">
               <i class="bi-cart-fill me-1"></i>
