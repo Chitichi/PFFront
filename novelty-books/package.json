@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@next/font": "13.1.2",
+    "axios": "^1.2.4",
     "bootstrap": "^5.2.3",
+    "cloudinary": "^1.33.0",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "next": "13.1.2",
