@@ -40,6 +40,21 @@ const Navbar = () => {
            
           </ul>
           {
+            !user && // si no estamos logueados mostramos el boton para crear cuenta.
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
+              <Link  href="/SignUp">
+                <p class="nav-link active" aria-current="page"  >
+                  SignUp
+                </p>
+              </Link>
+            </li>
+           
+          </ul>
+          </div>
+          }
+          {
             user &&
           <label style={{paddingRight:20}}>
             Welcome {user}
