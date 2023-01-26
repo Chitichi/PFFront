@@ -13,7 +13,7 @@ async function Detail({params}) {
   const {ISBN} = params
   // console.log(ISBN)
   const book = await fetchBook(ISBN)
-
+  
   return (
     <> 
       <DetailBook book = {book}/>
