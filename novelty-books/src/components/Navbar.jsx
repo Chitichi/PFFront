@@ -1,12 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
+import { useStateContext } from "context/StateContext";
 
 const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
-   
+  const { totalQuantities} = useStateContext();
 
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,11 +38,13 @@ const Navbar = () => {
            
           </ul>
           <form class="d-flex">
-            <button class="btn btn-outline-dark" type="submit">
-              <i class="bi-cart-fill me-1"></i>
-              Cart
-              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
+            <Link href="/cart">
+              <button class="btn btn-outline-dark" type="submit">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill">{totalQuantities}</span>
+              </button>
+            </Link>
             {
               pathName === "/login" ? null :
               pathName !== "/" ?
