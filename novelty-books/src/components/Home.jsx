@@ -9,13 +9,19 @@ import Link from "next/link";
 
 function Landing({books}) {
 
-  const [searchInput, setSearchInput] = useState("");
-  const [typeSearch, setTypeSearch] = useState('title');
-  const [genreState, setGenre] = useState("")
-  const [priceState, setPrice] = useState({ min: -Infinity, max: Infinity })
-  const [typeOrder, setTypeOrder] = useState('abc');
-  const [typeSence, setTypeSence] = useState("asc");
-  const [arrayBooks, setArrayBooks] = useState(books)
+  const [home, setHome] = useState({
+      searchInput: '',
+      typeSearch: 'title',
+      genreState: 'Todos',
+      typeOrder: 'abc',
+      typeSence: 'asc',
+      arrayBooks: books
+  })
+
+  const [prices, setPrices] = useState({
+    min: -Infinity,
+    max: Infinity
+  })
 
   const listGenre = [
     "Genero",
@@ -25,48 +31,51 @@ function Landing({books}) {
     "Horror",
   ]
 
-  const changeType = (e) => {
-    e.preventDefault();
-    setTypeSearch(e.target.value);
-  };
-
-  const changeOrder = (e) => {
-    e.preventDefault();
-    setTypeOrder(e.target.value);
-    orderBooks(e.target.value, typeSence)
-  };
-
-  const changeSence = (e) => {
-    e.preventDefault();
-    setTypeSence(e.target.value);
-    orderBooks(typeOrder, e.target.value)
-  };
-
-  const filterSearch = () => {
-    setArrayBooks(arrayBooks => {
-      return arrayBooks.filter(book => searchInput.toLowerCase() === "" ? true : book[typeSearch].toLowerCase().includes(searchInput))
-    })
+  function changePrice(e) {
+    const name = e.target.name
+    const value = name === "min" ? e.target.value || -Infinity : e.target.value || Infinity
+    setPrices(priceState => ({ ...priceState, [name]: value }))
+    filterBooks({ ...prices, [name]: value })
   }
 
+  const handleChanges = (e) => {
+    const {value, name} = e.target
+    
+      switch(name){
+        case 'genreState':
+          setHome(prev => ({...prev, [name] : value}))
+          filterBooks(prices, value)
+        case 'typeOrder':
+          setHome(prev => ({...prev, [name] : value}))
+          orderBooks(value, home.typeSence);
+        case 'typeSence' :
+          setHome(prev => ({...prev, [name] : value}))
+          orderBooks(home.typeOrder, value);
+        default:
+          setHome(prev => ({...prev, [name] : value}));
+      }
+  }
+
+ /*  const filterSearch = () => {
+    setHome(arrayBooks => {
+      return arrayBooks.filter(book => home.searchInput.toLowerCase() === "" ? true : book[home.typeSearch].toLowerCase().includes(home.searchInput))
+    })
+  } */
+
   function orderBooks(type, sence) {
-    let booksCopy = [...arrayBooks]
+    
+    let booksCopy = [...home.arrayBooks]
     if (type === "abc") {
       booksCopy.sort((a, b) => {
         if (a.title > b.title) return 1
         if (b.title > a.title) return -1
         return 0
       })
-      sence === "asc" ? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
+      sence === "asc" ? setHome({...home, arrayBooks: booksCopy}) : setHome({...home, arrayBooks: booksCopy.reverse()})
     } else if (type === "price") {
       booksCopy.sort((a, b) => a.price - b.price)
-      sence === "asc" ? setArrayBooks(booksCopy) : setArrayBooks(booksCopy.reverse())
+      sence === "asc" ? setHome({...home, arrayBooks: booksCopy}) : setHome({...home, arrayBooks: booksCopy.reverse()})
     }
-  }
-
-  const changeGenre = (e) => {
-    e.preventDefault()
-    setGenre(e.target.value)
-    filterBooks(priceState, e.target.value)
   }
 
   function filterGenre(genre, books) {
@@ -75,13 +84,7 @@ function Landing({books}) {
     } else {
       return books.filter(book => book.genre.includes(genre))
     }
-  }
-
-  function changePrice(e) {
-    const name = e.target.name
-    const value = name === "min" ? e.target.value || -Infinity : e.target.value || Infinity
-    setPrice(priceState => ({ ...priceState, [name]: value }))
-    filterBooks({ ...priceState, [name]: value })
+    
   }
 
   function filterPrice(value, books) {
@@ -89,77 +92,79 @@ function Landing({books}) {
     return booksFiltered
   }
 
-  function filterBooks(priceToFilter, genreToFilter) {
-    const price = priceToFilter || priceState
-    const genre = genreToFilter === undefined ? genreState : genreToFilter
+ function filterBooks(priceToFilter, genreToFilter) {
+    const price = priceToFilter || prices
+    const genre = genreToFilter === undefined ? home.genreState : genreToFilter
     const filter1 = filterPrice(price, books)
     const filter2 = filterGenre(genre, filter1)
-    setArrayBooks(filter2)
-
+    setHome({...home, arrayBooks: filter2})
   }
+
+  React.useEffect(() => {
+      filterBooks(prices, home.genreState)
+  }, [prices, home.genreState])
 
   return (
     <>
-      <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-          <h2 class="fw-bolder mb-4">Popular books</h2>
-
-          <div style={{ margin: 5 }} class="d-flex flex-row-reverse">
-            <nav class="navbar bg-body-tertiary">
-              <div class="container-fluid">
-                <form class="d-flex" role="search">
+      <section className="py-5 bg-light">
+        <div className="container px-4 px-lg-5 mt-5">
+          <h2 className="fw-bolder mb-4">Popular books</h2>
+          
+          <div style={{ margin: 5 }} className="d-flex flex-row-reverse">
+            <nav className="navbar bg-body-tertiary">
+              <div className="container-fluid">
+                <form className="d-flex" role="search">
 
                   <label>Precio: </label>
 
                   <input
-                    class="form-control me-2"
+                    className="form-control me-2"
                     type="search"
                     name="max"
                     placeholder="max"
                     aria-label="Search"
-                    onChange={(e) => changePrice(e)}
+                    onChange={changePrice}
                   ></input>
                   
                   <input
-                    class="form-control me-2"
+                    className="form-control me-2"
                     type="search"
                     name="min"
                     placeholder="min"
                     aria-label="Search"
-                    onChange={(e) => changePrice(e)}
+                    onChange={changePrice}
                   ></input>
 
-                  <select name="filter" onChange={(e) => { changeGenre(e) }}>
+                  <select name="genreState" onChange={handleChanges}>
                     {
-                      listGenre.map((genre, index) => genre !== "Genero"? <option key={index} value={genre}>{genre}</option>: <option key={index} value={genre} hidden>{genre}</option>)
+                      listGenre.map((genre, index) => genre !== "Genero" ? 
+                      <option key={index} value={genre}>{genre}</option> :
+                      <option key={index} value={genre} hidden>{genre}</option>)
                     }
                   </select>
 
-                  <select name="filter" onChange={(e) => {
-                    changeOrder(e)
-                  }}>
+                  <select name="typeOrder" onChange={handleChanges}>
                     <option hidden>Orden</option>
                     <option value="abc">Alfabetico</option>
                     <option value="price">Price</option>
                   </select>
 
-                  <select name="filter" onChange={(e) => {
-                    changeSence(e)
-                  }}>
+                  <select name="typeSence" onChange={handleChanges}>
                     <option hidden>Sentido</option>
                     <option value="asc">Ascendente</option>
                     <option value="des">Descendente</option>
                   </select>
 
                   <input
-                    class="form-control me-2"
+                    className="form-control me-2"
                     type="search"
+                    name="searchInput"
                     placeholder="Search"
                     aria-label="Search"
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    onChange={handleChanges}
                   ></input>
 
-                  <select name="filter" onChange={(e) => changeType(e)}>
+                  <select name="typeSearch" onChange={handleChanges}>
                     <option value="title">Title</option>
                     <option value="author">Author</option>
                   </select>
@@ -168,17 +173,18 @@ function Landing({books}) {
             </nav>
           </div>
 
-          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {
-              arrayBooks.filter((item) => {
-                return searchInput.toLowerCase() === "" ?
+              home.arrayBooks.filter((item) => {
+                return home.searchInput.toLowerCase() === "" ?
                   item :
-                  item[typeSearch].toLowerCase().includes(searchInput)
+                  item[home.typeSearch].toLowerCase().includes(home.searchInput)
               })
-                .map((book) => {
+                .map((book, key) => {
                   return (
-                    <Link href={`/detailBook/${book._id}`}>
+                    <Link href={`/detailBook/${book._id}`} key={key}>
                       <Card
+                        key={key}
                         title={book.title}
                         author={book.author}
                         image={book.image}
