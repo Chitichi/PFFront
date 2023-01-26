@@ -45,11 +45,11 @@ const Navbar = () => {
           </ul>
           {
             !user && // si no estamos logueados mostramos el boton para crear cuenta.
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <li class="nav-item">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li className="nav-item">
               <Link  href="/SignUp">
-                <p class="nav-link active" aria-current="page"  >
+                <p className="nav-link active" aria-current="page"  >
                   SignUp
                 </p>
               </Link>
@@ -65,12 +65,12 @@ const Navbar = () => {
           </label> 
             }
 
-          <form class="d-flex">
+          <form className="d-flex">
             <Link href="/cart">
-              <button class="btn btn-outline-dark" type="submit">
-                <i class="bi-cart-fill me-1"></i>
+              <button className="btn btn-outline-dark" type="submit">
+                <i className="bi-cart-fill me-1"></i>
                 Cart
-                <span class="badge bg-dark text-white ms-1 rounded-pill">{totalQuantities}</span>
+                <span className="badge bg-dark text-white ms-1 rounded-pill">{totalQuantities}</span>
               </button>
             </Link>
             {
