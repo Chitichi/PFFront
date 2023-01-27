@@ -13,12 +13,6 @@ function Login() {
 
     const handleSubmit = (e) => { 
         e.preventDefault();
-        Swal.fire({
-            title:"User created",
-            text:'Your user was created successfully!',
-            icon:'success',
-            timer: 3000
-        })
         router.push("/profile/Giuliana");
        // navigation("/");
          //alert ( `${emailUser}, ${passUser}`)
