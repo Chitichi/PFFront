@@ -2,15 +2,24 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useStateContext } from "context/StateContext";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
 
   const { totalQuantities , user, setUser } = useStateContext();
-
+  const router = useRouter();
  //const user = pathName.includes("profile") ? pathName.slice(9) : null
- 
+  function redirectHome(){
+   if (user.name){
+    router.push(`/profile/${user.name}`);
+   } else {
+    router.push("/");
+   }
+  }
+
+
   function logout(){
     setUser({});
   } 
@@ -37,11 +46,12 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
-              <Link  href="/">
+              <button 
+              onClick={redirectHome}>
                 <p class="nav-link active" aria-current="page"  >
                   Home
                 </p>
-              </Link>
+              </button>
             </li>
            
           </ul>
