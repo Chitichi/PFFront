@@ -3,9 +3,11 @@ import { useState } from "react"
 import style from "./page.module.css"
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { useStateContext } from "context/StateContext";
 //import { useLocation } from "react-router-dom"
 
 function Login() {
+    const {user, setUser} =useStateContext();
     const router = useRouter();
     const [emailUser, setEmailUser] = useState("");
     const [passUser, setPassUser ] = useState("");
@@ -33,8 +35,8 @@ function Login() {
                   timer: 3000
               })
             } else if (typeof(data) === "object"){
-  
-              
+                setUser(data);
+                console.log(data, "hola soy tu data");
                 router.push(`/profile/${data.name}`);
             }
           } catch (err) { 
