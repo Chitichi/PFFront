@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2"
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 
 const validacion=(input)=> {
@@ -20,7 +20,7 @@ const validacion=(input)=> {
 }
 
  function SignUpForm () {
-  
+    const router = useRouter();
     const [botonOff, setBotonOff] = useState(true)
     const [errores, setErrores] = useState({name:""});
     const [input, setInput] = useState({
@@ -53,7 +53,6 @@ const validacion=(input)=> {
         }));
     }
     const handleSubmit = async (e) => {
-        
         e.preventDefault();
         try {
           // Send a request to the server to create a new book using the form data
@@ -83,7 +82,7 @@ const validacion=(input)=> {
             address:"",
             phoneNumber: 0,
         })
-       
+        router.push("/")
 
       };
    
