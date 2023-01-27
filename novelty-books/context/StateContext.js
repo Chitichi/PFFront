@@ -9,6 +9,7 @@ export const StateContext = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [qty, setQty] = useState(1);
+  const [user, setUser] = useState({});
 
   let foundProduct;
   let index;
@@ -97,6 +98,8 @@ export const StateContext = ({ children }) => {
         totalPrice,
         totalQuantities,
         qty,
+        user,
+        setUser,
         incQty,
         decQty,
         onAdd,
