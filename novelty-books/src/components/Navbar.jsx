@@ -68,7 +68,7 @@ const Navbar = () => {
               <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </button>
             {
-              pathName === "/login" ? null :
+              pathName === "/login" || pathName === "/SignUp" ? null :
               pathName !== "/" ?
               <Link href="/">
                   <button  

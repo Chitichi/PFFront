@@ -2,18 +2,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2"
+import { useHistory } from "react-router-dom";
+
 
 const validacion=(input)=> {
     let errores={};
     if(!input.name) errores.name = 'Name required';
     if(input.name.length < 3 || input.name.length > 50) errores.name = 'The name must contain 3 to 50 characters';
     if(!/^[a-zA-Z\s]+$/.test(input.name)) errores.name = 'Invalid name, only characters allowed';
-    
-
+    if(!/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/.test(input.email)) errores.email = 'Invalid email format';
+    if(!input.password) errores.password = 'Password required';
+    if(input.password.length < 6 || input.password.length > 10) errores.password = 'The password must contain 6 to 10 characters';
+    if(!/^[a-zA-Z\s]+$/.test(input.address)) errores.address = 'Invalid address, only characters allowed';
+    if(!input.phoneNumber) errores.phoneNumber = 'Phone Number required';
+    if(input.phoneNumber.length < 11 || input.phoneNumber.length > 25 ) errores.phoneNumber = 'The phone number must contain 11 to 25 characters';
     return errores
 }
 
 export default function SignUpForm () {
+  
     const [botonOff, setBotonOff] = useState(true)
     const [errores, setErrores] = useState({name:""});
     const [input, setInput] = useState({
@@ -46,6 +53,7 @@ export default function SignUpForm () {
         }));
     }
     const handleSubmit = async (e) => {
+        
         e.preventDefault();
         try {
           // Send a request to the server to create a new book using the form data
@@ -59,15 +67,24 @@ export default function SignUpForm () {
             //console.log(res, "hola soy tu res")
           const data = await res.json();
           console.log(data);
-        } catch (err) {
+        } catch (err) { 
           console.log(err);   
         }
-        Swal.fire({
+         Swal.fire({
             title:"User created",
             text:'Your user was created successfully!',
             icon:'success',
             timer: 3000
         })
+         setInput ({
+            name: "",
+            email: "",
+            password:"",
+            address:"",
+            phoneNumber: 0,
+        })
+       
+
       };
    
     return (
@@ -83,7 +100,7 @@ export default function SignUpForm () {
             name = "name"
             />
               {errores.name && (//pregunto si está errors.name y si está hago un parrafo con ese error(errors.name) 
-                    <p >{errores.name}</p>
+                    <p>{errores.name}</p>
                 )}
         </div>
         <div>
@@ -103,7 +120,7 @@ export default function SignUpForm () {
             <label>Password:</label>
             <input
             onChange={(e) => handleChange(e)}
-            type= "text"
+            type= "password"
             placeholder='password...'
             value = {input.password}
             name = "password"
