@@ -74,7 +74,7 @@ const Navbar = () => {
               </button>
             </Link>
             {
-              pathName === "/login" ? null :
+              pathName === "/login" || pathName === "/SignUp" ? null :
               pathName !== "/" ?
               <Link href="/">
                   <button  

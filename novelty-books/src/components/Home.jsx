@@ -175,6 +175,7 @@ function Landing({ books }) {
                       .toLowerCase()
                       .includes(home.searchInput);
               })
+
               .map((book, key) => {
                 return (
                   <Link href={`/detailBook/${book._id}`} key={key}>
@@ -188,6 +189,7 @@ function Landing({ books }) {
                   </Link>
                 );
               })}
+
           </div>
         </div>
       </section>
