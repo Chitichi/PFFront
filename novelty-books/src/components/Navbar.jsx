@@ -7,11 +7,13 @@ const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
 
-  const { totalQuantities} = useStateContext();
+  const { totalQuantities , user, setUser } = useStateContext();
 
- const user = pathName.includes("profile") ? pathName.slice(9) : null
+ //const user = pathName.includes("profile") ? pathName.slice(9) : null
  
-   
+  function logout(){
+    setUser({});
+  } 
 
 
   return (
@@ -44,7 +46,7 @@ const Navbar = () => {
            
           </ul>
           {
-            !user && // si no estamos logueados mostramos el boton para crear cuenta.
+             Object.keys(user).length === 0 ? // si no estamos logueados mostramos el boton para crear cuenta.
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
@@ -56,13 +58,13 @@ const Navbar = () => {
             </li>
            
           </ul>
-          </div>
+          </div> : null
           }
           {
-            user &&
+             Object.keys(user).length ?
           <label style={{paddingRight:20}}>
-            Welcome {user}
-          </label> 
+            Welcome {user.name}
+          </label> : null
             }
 
           <form class="d-flex">
@@ -78,13 +80,12 @@ const Navbar = () => {
               pathName !== "/" ?
               <Link href="/">
                   <button  
+                    onClick={logout}
                     style={{marginLeft: 10}}
                     class="btn btn-outline-dark" 
                     type="submit">
-               Logout
-             </button>
-          
-              
+                     Logout
+                  </button>
             </Link> :
              <Link href="/login">
              <button   
@@ -95,6 +96,7 @@ const Navbar = () => {
              </button>
            </Link>
             }
+          
            
             
           </form>
