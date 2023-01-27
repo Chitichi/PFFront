@@ -19,7 +19,7 @@ const validacion=(input)=> {
     return errores
 }
 
-export default function SignUpForm () {
+ function SignUpForm () {
   
     const [botonOff, setBotonOff] = useState(true)
     const [errores, setErrores] = useState({name:""});
@@ -168,3 +168,4 @@ export default function SignUpForm () {
         </form>
     )
 }
+export default SignUpForm;

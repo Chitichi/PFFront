@@ -1,6 +1,6 @@
 import SignUpForm from "@/components/SignUpForm";
 
-export default function SignUp() {
+ function SignUp() {
     return  (
             
                <SignUpForm/>
@@ -8,3 +8,4 @@ export default function SignUp() {
             ) 
     
 }
+export default SignUp;
