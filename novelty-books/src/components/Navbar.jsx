@@ -47,7 +47,9 @@ const Navbar = () => {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
               <button 
-              onClick={redirectHome}>
+              onClick={redirectHome}
+              class="btn btn-outline-dark"
+              >
                 <p class="nav-link active" aria-current="page"  >
                   Home
                 </p>
@@ -70,12 +72,7 @@ const Navbar = () => {
           </ul>
           </div> : null
           }
-          {
-             Object.keys(user).length ?
-          <label style={{paddingRight:20}}>
-            Welcome {user.name}
-          </label> : null
-            }
+       
 
           <form class="d-flex">
             <Link href="/cart">
