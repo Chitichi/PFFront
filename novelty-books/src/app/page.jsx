@@ -10,7 +10,6 @@ const fetchBooks = async () => {
 async function HomePage() {
 
 const books = await fetchBooks();
-console.log(books ,"somos los liros");
 return (
     <>
       <Landing books={books}/>

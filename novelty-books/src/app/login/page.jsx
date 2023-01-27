@@ -26,7 +26,7 @@ function Login() {
               });
               //console.log(res, "hola soy tu res")
             const data = await res.json();
-            console.log(data);
+           
             if(data === "User not found"){
               Swal.fire({
                   title:"Email not found!",
