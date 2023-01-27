@@ -1,4 +1,4 @@
-import Home from "@/components/Home"
+
 import Landing from "@/components/Landing";
 
 const fetchBooks = async () => {
