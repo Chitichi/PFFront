@@ -181,7 +181,7 @@ function Landing({books}) {
                       <Card
                         title={book.title}
                         author={book.author}
-                        image={book.image}
+                        image={book.image.secure_url || book.image}
                         price={book.price}
                       />
                     </Link>
