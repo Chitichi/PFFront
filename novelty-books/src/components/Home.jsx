@@ -11,8 +11,6 @@ function Landing({ books }) {
     searchInput: "",
     typeSearch: "title",
     genreState: "Todos",
-    typeOrder: "abc",
-    typeSence: "asc",
     arrayBooks: books,
   });
 
@@ -20,6 +18,8 @@ function Landing({ books }) {
     min: -Infinity,
     max: Infinity,
   });
+
+  const [orderSence, setOrderSence] = useState(['abc', 'as'])
 
   const listGenre = ["Genero", "Todos", "Fantasy", "Sci-Fiction", "Horror"];
 
@@ -38,18 +38,20 @@ function Landing({ books }) {
       case "genreState":
         setHome((prev) => ({ ...prev, [name]: value }));
         filterBooks(prices, value);
-      case "typeOrder":
-        setHome((prev) => ({ ...prev, [name]: value }));
-        orderBooks(value, home.typeSence);
-      case "typeSence":
-        setHome((prev) => ({ ...prev, [name]: value }));
-        orderBooks(home.typeOrder, value);
       default:
         setHome((prev) => ({ ...prev, [name]: value }));
     }
   };
 
+  const handleOrder = (e) => {
+    const { id, className } = e.target;
+    const [valueOrder, valueSence] = id.split(",")
+        setOrderSence([valueOrder, valueSence]);
+        orderBooks(orderSence[0], valueSence);
+  };
+
   function orderBooks(type, sence) {
+    console.log(type, sence)
     let booksCopy = [...home.arrayBooks];
     if (type === "abc") {
       booksCopy.sort((a, b) => {
@@ -57,12 +59,12 @@ function Landing({ books }) {
         if (b.title > a.title) return -1;
         return 0;
       });
-      sence === "asc"
+      sence === "as"
         ? setHome({ ...home, arrayBooks: booksCopy })
         : setHome({ ...home, arrayBooks: booksCopy.reverse() });
     } else if (type === "price") {
       booksCopy.sort((a, b) => a.price - b.price);
-      sence === "asc"
+      sence === "as"
         ? setHome({ ...home, arrayBooks: booksCopy })
         : setHome({ ...home, arrayBooks: booksCopy.reverse() });
     }
@@ -95,13 +97,12 @@ function Landing({ books }) {
     filterBooks(prices, home.genreState);
   }, [prices, home.genreState]);
 
-  //className="container px-4 px-lg-5 mt-5" // styles.gridWrapper
-  //className="d-flex flex-row-reverse" // styles.gridFilters
 
+  // fw-bolder mb-4
   return (
     <>
       <section className="py-5 bg-light">
-        <h2 className="fw-bolder mb-4">Popular books</h2>
+        <h2 className={`fw-bolder mb-4 ${styles.popularBooks}`}> Popular books</h2>
         <div  className={`container px-lg-5 mt-5 ${styles.gridWrapper}`}>
 
           <div className={`d-flex flex-row-reverse ${styles.gridFilters}`}>
@@ -145,17 +146,34 @@ function Landing({ books }) {
                       )}
                     </select>
 
-                      <select name="typeOrder" onChange={handleChanges}>
-                        <option hidden>Orden</option>
-                        <option value="abc">Alfabetico</option>
-                        <option value="price">Price</option>
-                      </select>
+                      <ul className={`${styles["nested-dropdowns"]}`}>
+                          <li>
+                              <div style={{width: 230}}>
+                                  Order: {orderSence[1]}cendant {orderSence[0]} <i className="bi bi-caret-down-square-fill"></i>
+                              </div>
+                              <ul>
+                                  <li>
+                                      <div>
+                                          Alphabethical <i className="bi bi-caret-down-square-fill"></i>
+                                      </div>
+                                      <ul>
+                                          <li onClick={handleOrder} id="abc,as" className="typeSence">Ascendant</li>
+                                          <li onClick={handleOrder} id="abc,des" className="typeSence">Descendant</li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <div>
+                                          Prices <i className="bi bi-caret-down-square-fill"></i>
+                                      </div>
+                                      <ul>
+                                          <li onClick={handleOrder} id="price,as" className="typeSence">Ascendant</li>
+                                          <li onClick={handleOrder} id="price,des" className="typeSence">Descendant</li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
 
-                      <select name="typeSence" onChange={handleChanges}>
-                        <option hidden>Sentido</option>
-                        <option value="asc">Ascendente</option>
-                        <option value="des">Descendente</option>
-                      </select>
                     </div>
 
                     <div className={styles.searchDiv}>
