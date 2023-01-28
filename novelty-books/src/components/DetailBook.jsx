@@ -73,14 +73,6 @@ return (
             </p>
           </div>
               <div class="d-flex">
-                {/* <input
-                  class="form-control text-center me-3"
-                  id="inputQuantity"
-                  type="num"
-                  value="1"
-                  style={{width: 45}}
-                /> */}
-                
                 <button
                   class="btn btn-outline-dark flex-shrink-0"
                   type="button"
