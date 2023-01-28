@@ -128,7 +128,26 @@ function Landing({ books }) {
             <nav className="navbar bg-body-tertiary">
               <div className="container-fluid">
                 <form className="d-flex" role="search">
-                  <label>Precio: 
+
+                    <div className={styles.searchDiv}>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="searchInput"
+                        placeholder="Search"
+                        aria-label="Search"
+                        onChange={handleChanges}
+                      ></input>
+
+                      <select name="typeSearch" onChange={handleChanges}>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                      </select>
+                    </div>
+                  
+                  <hr/>
+
+                  <label className={styles.labelPrices}>Precio:
 
                   <div className={styles.pricesDiv}>
                     <input
@@ -150,6 +169,9 @@ function Landing({ books }) {
                     ></input>
                   </div>
                   </label>
+
+                  <hr/>
+
                   <div className={styles.genreOrderSence}>
                     <select name="genreState" onChange={handleChanges}>
                       {listGenre.map((genre, index) =>
@@ -165,9 +187,9 @@ function Landing({ books }) {
                       )}
                     </select>
 
-                      <ul className={`${styles["nested-dropdowns"]}`}>
+                    <ul className={`${styles["nested-dropdowns"]}`}>
                           <li>
-                              <div style={{width: 230}}>
+                              <div style={{width: 230, textAlign: 'center'}}>
                                   Order: {orderSence[1]}cendant {orderSence[0]} <i className="bi bi-caret-down-square-fill"></i>
                               </div>
                               <ul>
@@ -191,25 +213,12 @@ function Landing({ books }) {
                                   </li>
                               </ul>
                           </li>
-                      </ul>
+                    </ul>
+
+                    <hr/>
 
                     </div>
 
-                    <div className={styles.searchDiv}>
-                      <input
-                        className="form-control me-2"
-                        type="search"
-                        name="searchInput"
-                        placeholder="Search"
-                        aria-label="Search"
-                        onChange={handleChanges}
-                      ></input>
-
-                      <select name="typeSearch" onChange={handleChanges}>
-                        <option value="title">Title</option>
-                        <option value="author">Author</option>
-                      </select>
-                    </div>
                 </form>
               </div>
             </nav>
