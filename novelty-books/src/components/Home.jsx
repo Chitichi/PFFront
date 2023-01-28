@@ -44,7 +44,7 @@ function Landing({ books }) {
   };
 
   const handleOrder = (e) => {
-    const { id, className } = e.target;
+    const { id } = e.target;
     const [valueOrder, valueSence] = id.split(",")
         setOrderSence([valueOrder, valueSence]);
         orderBooks(orderSence[0], valueSence);
