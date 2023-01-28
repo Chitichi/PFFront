@@ -65,11 +65,10 @@
 .genreOrderSence{
     display: flex;
     flex-direction: column;
-    height: 350px;
+    height: 160px;
 }
 
 .genreOrderSence > select {
-    margin-bottom: 120px;
     border: 1px solid #d1d5db;
     background-color: #212529;
     color: #d1d5db;
@@ -113,8 +112,8 @@
 
     /* Reset list styles */
     list-style-type: none;
-    margin-bottom: 180px;
     padding: 0;
+    text-align: center;
 }
 
 .nested-dropdowns li {
