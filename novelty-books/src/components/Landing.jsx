@@ -55,8 +55,8 @@ function Landing({ books }) {
   const handleOrder = (e) => {
     const { id } = e.target;
     const [valueOrder, valueSence] = id.split(",")
-        setOrderSence([valueOrder, valueSence]);
-        orderBooks(orderSence[0], valueSence);
+    setOrderSence([valueOrder, valueSence]);
+    orderBooks(orderSence[0], valueSence);
   };
 
   function orderBooks(type, sence) {
@@ -122,33 +122,33 @@ function Landing({ books }) {
 
       <section className="py-5 bg-light">
         <h2 className={`fw-bolder mb-4 ${styles.popularBooks}`}> Popular books</h2>
-        <div  className={`container px-lg-5 mt-5 ${styles.gridWrapper}`}>
+        <div className={`container px-lg-5 mt-5 ${styles.gridWrapper}`}>
 
           <div className={`d-flex flex-row-reverse ${styles.gridFilters}`}>
             <nav className="navbar bg-body-tertiary">
               <div className="container-fluid">
                 <form className="d-flex" role="search">
-                  <label>Precio: 
+                  <label>Precio:
 
-                  <div className={styles.pricesDiv}>
-                    <input
-                      className="form-control me-2"
-                      type="search"
-                      name="max"
-                      placeholder="max"
-                      aria-label="Search"
-                      onChange={changePrice}
-                    ></input>
+                    <div className={styles.pricesDiv}>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="max"
+                        placeholder="max"
+                        aria-label="Search"
+                        onChange={changePrice}
+                      ></input>
 
-                    <input
-                      className="form-control me-2"
-                      type="search"
-                      name="min"
-                      placeholder="min"
-                      aria-label="Search"
-                      onChange={changePrice}
-                    ></input>
-                  </div>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="min"
+                        placeholder="min"
+                        aria-label="Search"
+                        onChange={changePrice}
+                      ></input>
+                    </div>
                   </label>
                   <div className={styles.genreOrderSence}>
                     <select name="genreState" onChange={handleChanges}>
@@ -165,58 +165,50 @@ function Landing({ books }) {
                       )}
                     </select>
 
-                      <ul className={`${styles["nested-dropdowns"]}`}>
-                          <li>
-                              <div style={{width: 230}}>
-                                  Order: {orderSence[1]}cendant {orderSence[0]} <i className="bi bi-caret-down-square-fill"></i>
-                              </div>
-                              <ul>
-                                  <li>
-                                      <div>
-                                          Alphabethical <i className="bi bi-caret-down-square-fill"></i>
-                                      </div>
-                                      <ul>
-                                          <li onClick={handleOrder} id="abc,as" className="typeSence">Ascendant</li>
-                                          <li onClick={handleOrder} id="abc,des" className="typeSence">Descendant</li>
-                                      </ul>
-                                  </li>
-                                  <li>
-                                      <div>
-                                          Prices <i className="bi bi-caret-down-square-fill"></i>
-                                      </div>
-                                      <ul>
-                                          <li onClick={handleOrder} id="price,as" className="typeSence">Ascendant</li>
-                                          <li onClick={handleOrder} id="price,des" className="typeSence">Descendant</li>
-                                      </ul>
-                                  </li>
-                              </ul>
-                          </li>
-                      </ul>
+                    <ul className={`${styles["nested-dropdowns"]}`}>
+                      <li>
+                        <div >
+                          Ordenar por: 
+                          {orderSence[0]==="abc" && orderSence[1]==="as"?" A-Z":null}
+                          {orderSence[0]==="abc" && orderSence[1]==="des"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="as"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="des"?" Z-A":null}
+                          <i className="bi bi-caret-down-square-fill" style={{position:"absolute",right: 5}}></i>
+                        </div>
+                        <ul>
+                          <li onClick={handleOrder} id="abc,as" className="typeSence">A-Z</li>
+                          <li onClick={handleOrder} id="abc,des" className="typeSence">Z-A</li>
 
-                    </div>
+                          <li onClick={handleOrder} id="price,as" className="typeSence">Menor precio</li>
+                          <li onClick={handleOrder} id="price,des" className="typeSence">Mayor precio</li>
+                        </ul>
+                      </li>
+                    </ul>
 
-                    <div className={styles.searchDiv}>
-                      <input
-                        className="form-control me-2"
-                        type="search"
-                        name="searchInput"
-                        placeholder="Search"
-                        aria-label="Search"
-                        onChange={handleChanges}
-                      ></input>
+                  </div>
 
-                      <select name="typeSearch" onChange={handleChanges}>
-                        <option value="title">Title</option>
-                        <option value="author">Author</option>
-                      </select>
-                    </div>
+                  <div className={styles.searchDiv}>
+                    <input
+                      className="form-control me-2"
+                      type="search"
+                      name="searchInput"
+                      placeholder="Search"
+                      aria-label="Search"
+                      onChange={handleChanges}
+                    ></input>
+
+                    <select name="typeSearch" onChange={handleChanges}>
+                      <option value="title">Title</option>
+                      <option value="author">Author</option>
+                    </select>
+                  </div>
                 </form>
               </div>
             </nav>
           </div>
 
-          <div 
-              className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
+          <div
+            className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
           >
             {home.arrayBooks
               .filter((item) => {
