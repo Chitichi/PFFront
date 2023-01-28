@@ -1,0 +1,154 @@
+.gridWrapper{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.gridFilters {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #212529;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+.gridFilters > *{
+    height: 100%;
+    width: fit-content;
+}
+
+.gridFilters > nav > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100%
+}
+
+.gridFilters > nav > div > form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0;
+    color: white
+}
+
+.gridCards{
+    margin: 0;
+    padding-top: 30px;
+    border: 1px solid #212529;
+    border-radius: 0 5px 5px 0;
+}
+
+.pricesDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100px;
+    padding-left: 5px;
+}
+
+.pricesDiv > input {
+    text-align: center;
+}
+
+.genreOrderSence{
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+}
+
+.genreOrderSence > select {
+    margin-bottom: 100px;
+}
+
+.popularBooks {
+    text-align: center;
+}
+
+.searchDiv{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 3fr 1fr;
+    height: 30px;
+    margin-bottom: 60px;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit
+}
+
+.nested-dropdowns {
+    /* Border */
+    border: 1px solid #d1d5db;
+    display: flex;
+
+    /* Reset list styles */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nested-dropdowns li {
+    cursor: pointer;
+
+    /* Spacing */
+    padding: 0.25rem;
+
+    /* Used to position the sub nested-dropdowns */
+    position: relative;
+}
+
+/* The sub nested-dropdowns */
+.nested-dropdowns ul {
+    /* Border */
+    border: 1px solid #d1d5db;
+
+    /* Hidden by default */
+    display: none;
+
+    /* Absolute position */
+    left: 0;
+    position: absolute;
+    top: 100%;
+
+    /* Reset styles */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 236px;
+    height: 180px;
+}
+
+.nested-dropdowns ul li {
+    height: 90px;
+}
+
+/* The second level sub nested-dropdowns */
+.nested-dropdowns ul ul {
+    left: 0;
+    position: absolute;
+    top: 30px;
+    width: 235px;
+    height: 60px;
+    background-color: #212529;
+}
+
+.nested-dropdowns ul ul li {
+    height: 30px;
+    padding-left: 25px;
+}
+
+/* Change background color of list item when being hovered */
+.nested-dropdowns li:hover {
+    background-color: rgba(0, 0, 0, 0.442);
+}
+
+/* Show the direct sub nested-dropdowns when hovering the list item */
+.nested-dropdowns li:hover > ul {
+    display: block;
+}

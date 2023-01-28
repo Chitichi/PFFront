@@ -1,4 +1,4 @@
-
+"use client";
 // import Card from "@/components/Card";
 // import { usePathname } from "next/navigation";
 
@@ -8,13 +8,13 @@
 //     .then(res => res.json())
 //     // .catch(error => alert(error.message))
 // }
-
+import { useStateContext } from "context/StateContext";
 export default function DetailBook({book}) {
     // const {ISBN} = params
     // const book = books.filter(b => b._id ==ISBN )
     //const book = books[0]
     // const pathname = usePathname().slice(12)
-    console.log(book.title)
+    
     
     // const book = await fetchBook(pathname)
 
@@ -35,6 +35,11 @@ export default function DetailBook({book}) {
 //     // const {title,author,pageCount,price,description,image} = book
 
 //     console.log(book)
+const { decQty, incQty, qty, onAdd } = useStateContext()
+const handleBuyNow = () => {
+  onAdd(book, qty);
+
+}
 return (
     <>
       <section class="py-5">
@@ -43,7 +48,7 @@ return (
             <div class="col-md-6">
               <img
                 class="card-img-top mb-5 mb-md-0"
-                src={book.image}
+                src={book.image.secure_url || book.image}
                 alt="..."
                 style={{height: 500 , width: 400 }}
               />
@@ -59,6 +64,14 @@ return (
               <p class="lead">
                 {book.description}
               </p>
+              <div className="quantity">
+            <h3>Quantity:</h3>
+            <p className="quantity-desc">
+              <span  onClick={decQty}><i class="bi bi-dash"></i></span>
+              <span >{qty}</span>
+              <span  onClick={incQty}><i class="bi bi-plus"></i></span>
+            </p>
+          </div>
               <div class="d-flex">
                 {/* <input
                   class="form-control text-center me-3"
@@ -67,9 +80,11 @@ return (
                   value="1"
                   style={{width: 45}}
                 /> */}
+                
                 <button
                   class="btn btn-outline-dark flex-shrink-0"
                   type="button"
+                  onClick={() => onAdd(book, qty)}
                 >
                   <i class="bi-cart-fill me-1"></i>
                   Add to cart
