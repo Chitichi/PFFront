@@ -55,8 +55,8 @@ function Landing({ books }) {
   const handleOrder = (e) => {
     const { id } = e.target;
     const [valueOrder, valueSence] = id.split(",")
-        setOrderSence([valueOrder, valueSence]);
-        orderBooks(orderSence[0], valueSence);
+    setOrderSence([valueOrder, valueSence]);
+    orderBooks(orderSence[0], valueSence);
   };
 
   function orderBooks(type, sence) {
@@ -110,10 +110,10 @@ function Landing({ books }) {
   // fw-bolder mb-4
   return (
     <>
-      <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-          <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">{
+      <header className="bg-dark py-5">
+        <div className="container px-4 px-lg-5 my-5">
+          <div className="text-center text-white">
+            <h1 className="display-4 fw-bolder">{
               user.name ? `Welcome ${user.name}` : "Novelty Books"
             }</h1>
           </div>
@@ -122,7 +122,7 @@ function Landing({ books }) {
 
       <section className="py-5 bg-light">
         <h2 className={`fw-bolder mb-4 ${styles.popularBooks}`}> Popular books</h2>
-        <div  className={`container px-lg-5 mt-5 ${styles.gridWrapper}`}>
+        <div className={`container px-lg-5 mt-5 ${styles.gridWrapper}`}>
 
           <div className={`d-flex flex-row-reverse ${styles.gridFilters}`}>
             <nav className="navbar bg-body-tertiary">
@@ -147,27 +147,27 @@ function Landing({ books }) {
                   
                   <hr/>
 
-                  <label className={styles.labelPrices}>Precio:
+                  <label className={styles.labelPrices}>Rango de precios:
 
-                  <div className={styles.pricesDiv}>
-                    <input
-                      className="form-control me-2"
-                      type="search"
-                      name="max"
-                      placeholder="max"
-                      aria-label="Search"
-                      onChange={changePrice}
-                    ></input>
+                    <div className={styles.pricesDiv}>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="max"
+                        placeholder="max"
+                        aria-label="Search"
+                        onChange={changePrice}
+                      ></input>
 
-                    <input
-                      className="form-control me-2"
-                      type="search"
-                      name="min"
-                      placeholder="min"
-                      aria-label="Search"
-                      onChange={changePrice}
-                    ></input>
-                  </div>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="min"
+                        placeholder="min"
+                        aria-label="Search"
+                        onChange={changePrice}
+                      ></input>
+                    </div>
                   </label>
 
                   <hr/>
@@ -186,46 +186,34 @@ function Landing({ books }) {
                         )
                       )}
                     </select>
-
+                  </div>
                     <ul className={`${styles["nested-dropdowns"]}`}>
-                          <li>
-                              <div style={{width: 230, textAlign: 'center'}}>
-                                  Order: {orderSence[1]}cendant {orderSence[0]} <i className="bi bi-caret-down-square-fill"></i>
-                              </div>
-                              <ul>
-                                  <li>
-                                      <div>
-                                          Alphabethical <i className="bi bi-caret-down-square-fill"></i>
-                                      </div>
-                                      <ul>
-                                          <li onClick={handleOrder} id="abc,as" className="typeSence">Ascendant</li>
-                                          <li onClick={handleOrder} id="abc,des" className="typeSence">Descendant</li>
-                                      </ul>
-                                  </li>
-                                  <li>
-                                      <div>
-                                          Prices <i className="bi bi-caret-down-square-fill"></i>
-                                      </div>
-                                      <ul>
-                                          <li onClick={handleOrder} id="price,as" className="typeSence">Ascendant</li>
-                                          <li onClick={handleOrder} id="price,des" className="typeSence">Descendant</li>
-                                      </ul>
-                                  </li>
-                              </ul>
-                          </li>
+                      <li>
+                        <div >
+                          Ordenar por: 
+                          {orderSence[0]==="abc" && orderSence[1]==="as"?" A-Z":null}
+                          {orderSence[0]==="abc" && orderSence[1]==="des"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="as"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="des"?" Z-A":null}
+                          <i className="bi bi-caret-down-square-fill" style={{position:"absolute",right: 5}}></i>
+                        </div>
+                        <ul>
+                          <li onClick={handleOrder} id="abc,as" className="typeSence">A-Z</li>
+                          <li onClick={handleOrder} id="abc,des" className="typeSence">Z-A</li>
+
+                          <li onClick={handleOrder} id="price,as" className="typeSence">Menor precio</li>
+                          <li onClick={handleOrder} id="price,des" className="typeSence">Mayor precio</li>
+                        </ul>
+                      </li>
                     </ul>
-
-                    <hr/>
-
-                    </div>
 
                 </form>
               </div>
             </nav>
           </div>
 
-          <div 
-              className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
+          <div
+            className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
           >
             {home.arrayBooks
               .filter((item) => {

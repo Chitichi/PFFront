@@ -125,6 +125,7 @@
 
     /* Used to position the sub nested-dropdowns */
     position: relative;
+    width: 100%;
 }
 
 /* The sub nested-dropdowns */
@@ -137,13 +138,13 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 236px;
+    width: 100%;
     height: 180px;
     text-align: center;
 }
 
 .nested-dropdowns ul li {
-    height: 90px;
+    height: 45px;
 }
 
 /* The second level sub nested-dropdowns */
