@@ -2,8 +2,19 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import Link from "next/link";
+import { useStateContext } from "../../context/StateContext";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function Landing({ books }) {
+  const { user } = useStateContext();
+  const router = useRouter();
+  const pathName = usePathname();
+
+  if (user.name && !pathName.includes("profile")) {
+    router.push(`/profile/${user.name}`)
+  }
+
   const [home, setHome] = useState({
     searchInput: "",
     typeSearch: "title",
@@ -94,6 +105,16 @@ function Landing({ books }) {
 
   return (
     <>
+      <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+          <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">{
+              user.name ? `Welcome ${user.name}` : "Novelty Books"
+            }</h1>
+          </div>
+        </div>
+      </header>
+
       <section className="py-5 bg-light">
         <div className="container px-4 px-lg-5 mt-5">
           <h2 className="fw-bolder mb-4">Popular books</h2>
@@ -172,8 +193,8 @@ function Landing({ books }) {
                 return home.searchInput.toLowerCase() === ""
                   ? item
                   : item[home.typeSearch]
-                      .toLowerCase()
-                      .includes(home.searchInput);
+                    .toLowerCase()
+                    .includes(home.searchInput);
               })
 
               .map((book, key) => {
@@ -183,7 +204,7 @@ function Landing({ books }) {
                       key={key}
                       title={book.title}
                       author={book.author}
-                      image={book.image}
+                      image={book.image.secure_url || book.image}
                       price={book.price}
                     />
                   </Link>

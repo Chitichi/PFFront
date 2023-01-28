@@ -1,27 +1,19 @@
-import Landing from "@/components/Home"
 
-const fetchBooks = () => {
-  return fetch("http://localhost:3001/books")
-    .then(res => res.json())
+import Landing from "@/components/Landing";
+
+const fetchBooks = async () => {
+  const res = await fetch("http://localhost:3001/books");
+    return await res.json();
    // .catch(error => alert(error.message))
 }
 
-export default async function Home() {
-  
-  const books = await fetchBooks()
+async function HomePage() {
 
-  return (
+const books = await fetchBooks();
+return (
     <>
-      <header className="bg-dark py-5">
-        <div className="container px-4 px-lg-5 my-5">
-          <div className="text-center text-white">
-            <h1 className="display-4 fw-bolder">Novelty Books</h1>
-          </div>
-        </div>
-      </header>
-
       <Landing books={books}/>
     </>
   )
 }
-
+export default HomePage;

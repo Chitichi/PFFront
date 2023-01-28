@@ -2,16 +2,27 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useStateContext } from "context/StateContext";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
 
-  const { totalQuantities} = useStateContext();
+  const { totalQuantities , user, setUser } = useStateContext();
+  const router = useRouter();
+ //const user = pathName.includes("profile") ? pathName.slice(9) : null
+  function redirectHome(){
+   if (user.name){
+    router.push(`/profile/${user.name}`);
+   } else {
+    router.push("/");
+   }
+  }
 
- const user = pathName.includes("profile") ? pathName.slice(9) : null
- 
-   
+
+  function logout(){
+    setUser({});
+  } 
 
 
   return (
@@ -32,22 +43,25 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <li className="nav-item">
-              <Link  href="/">
-                <p className="nav-link active" aria-current="page"  >
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
+              <button 
+              onClick={redirectHome}
+              class="btn btn-outline-dark"
+              >
+                <p class="nav-link active" aria-current="page"  >
                   Home
                 </p>
-              </Link>
+              </button>
             </li>
            
           </ul>
           {
-            !user && // si no estamos logueados mostramos el boton para crear cuenta.
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <li className="nav-item">
+             Object.keys(user).length === 0 ? // si no estamos logueados mostramos el boton para crear cuenta.
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
               <Link  href="/SignUp">
                 <p className="nav-link active" aria-current="page"  >
                   SignUp
@@ -56,14 +70,9 @@ const Navbar = () => {
             </li>
            
           </ul>
-          </div>
+          </div> : null
           }
-          {
-            user &&
-          <label style={{paddingRight:20}}>
-            Welcome {user}
-          </label> 
-            }
+       
 
           <form className="d-flex">
             <Link href="/cart">
@@ -78,13 +87,12 @@ const Navbar = () => {
               pathName !== "/" ?
               <Link href="/">
                   <button  
+                    onClick={logout}
                     style={{marginLeft: 10}}
                     className="btn btn-outline-dark" 
                     type="submit">
-               Logout
-             </button>
-          
-              
+                     Logout
+                  </button>
             </Link> :
              <Link href="/login">
              <button   
@@ -95,6 +103,17 @@ const Navbar = () => {
              </button>
            </Link>
             }
+          {
+          pathName === `/profile/${user.name}`? 
+          <Link href="/miPerfil">
+            <button>
+              Mi Perfil
+            </button>
+          </Link> : null
+          
+
+
+          }
            
             
           </form>
