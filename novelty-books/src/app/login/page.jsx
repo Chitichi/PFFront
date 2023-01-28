@@ -36,7 +36,7 @@ function Login() {
               })
             } else if (typeof(data) === "object"){
                 setUser(data);
-                console.log(data, "hola soy tu data");
+                
                 router.push(`/profile/${data.name}`);
             }
           } catch (err) { 
