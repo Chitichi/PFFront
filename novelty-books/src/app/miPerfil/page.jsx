@@ -2,7 +2,7 @@
 import React from "react";
 import { useStateContext } from "../../../context/StateContext";
 
-    function MiPerfil() {
+    function miPerfil() {
     const {user} = useStateContext();
   
             return(
@@ -22,4 +22,4 @@ import { useStateContext } from "../../../context/StateContext";
 }
     
 
-export default MiPerfil;
+export default miPerfil;
