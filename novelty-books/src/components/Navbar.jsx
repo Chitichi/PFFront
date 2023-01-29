@@ -9,12 +9,12 @@ const Navbar = () => {
   const pathName = usePathname();
   let { totalQuantities, user, setUser } = useStateContext();
   const router = useRouter();
-  const userLocalStorage = JSON.parse(localStorage.getItem("user"))
+  // const userLocalStorage = JSON.parse(localStorage.getItem("user"))
 
-  if (!user.name && userLocalStorage) {
-    user = userLocalStorage
-    setUser(user)
-  }
+  // if (!user.name && userLocalStorage) {
+  //   user = userLocalStorage
+  //   setUser(user)
+  // }
   
   function redirectHome() {
     if (user.name) {
@@ -27,7 +27,7 @@ const Navbar = () => {
 
   function logout() {
     setUser({});
-    localStorage.removeItem("user")
+    // localStorage.removeItem("user")
   }
 
   React.useEffect(() => {
@@ -53,14 +53,14 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <li class="nav-item">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li className="nav-item">
               <button
                 onClick={redirectHome}
-                class="btn btn-outline-dark"
+                className="btn btn-outline-dark"
               >
-                <p class="nav-link active" aria-current="page"  >
+                <p className="nav-link active" aria-current="page"  >
                   Home
                 </p>
               </button>
@@ -69,9 +69,9 @@ const Navbar = () => {
           </ul>
           {
             Object.keys(user).length === 0 ? // si no estamos logueados mostramos el boton para crear cuenta.
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                  <li class="nav-item">
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                  <li className="nav-item">
                     <Link href="/SignUp">
                       <p className="nav-link active" aria-current="page"  >
                         SignUp
