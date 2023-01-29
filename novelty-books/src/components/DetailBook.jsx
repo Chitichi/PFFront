@@ -65,6 +65,7 @@ export default function DetailBook({ book }) {
                 {book.description}
               </p>
               <div className="quantity">
+
                 <h3>Quantity:</h3>
                 <p className="quantity-desc">
                   <span onClick={decQty}><i className="bi bi-dash"></i></span>

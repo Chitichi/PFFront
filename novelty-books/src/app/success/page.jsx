@@ -1,16 +1,8 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-
-
-
-
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Success = () => {
-
-  
-
-
   return (
     <div className="success-wrapper">
       <div className="success">
@@ -26,7 +18,7 @@ const Success = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Success
+export default Success;

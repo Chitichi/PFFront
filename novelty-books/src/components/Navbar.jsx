@@ -120,7 +120,6 @@ const Navbar = () => {
 
             }
 
-
           </form>
         </div>
       </div>
