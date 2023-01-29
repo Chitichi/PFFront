@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@next/font": "13.1.2",
-    "axios": "^1.2.4",
+
+    "@stripe/stripe-js": "^1.46.0",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
+    "axios": "^1.2.4", 
     "cloudinary": "^1.33.0",
     "cloudinary-react": "^1.8.1",
     "eslint": "8.32.0",
@@ -21,6 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^5.2.0",
+    "stripe": "^11.7.0",
     "sweetalert2": "^11.7.0"
   }
 }

@@ -3,23 +3,46 @@ import { useState } from "react"
 import style from "./page.module.css"
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { useStateContext } from "context/StateContext";
 //import { useLocation } from "react-router-dom"
 
 function Login() {
+    const {user, setUser} =useStateContext();
     const router = useRouter();
     const [emailUser, setEmailUser] = useState("");
     const [passUser, setPassUser ] = useState("");
     //const [, navigation] = useLocation();
 
-    const handleSubmit = (e) => { 
+    const handleSubmit = async (e) => { 
         e.preventDefault();
-        Swal.fire({
-            title:"User created",
-            text:'Your user was created successfully!',
-            icon:'success',
-            timer: 3000
-        })
-        router.push("/profile/Giuliana");
+        try {
+            // Send a request to the server to create a new book using the form data
+            const res = await fetch("http://localhost:3001/users/login", {
+                method: "POST",
+                body: JSON.stringify({email:emailUser, password:passUser}),
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+              });
+              //console.log(res, "hola soy tu res")
+            const data = await res.json();
+           
+            if(data === "User not found"){
+              Swal.fire({
+                  title:"Email not found!",
+                  text:'Enter a valid e-mail',
+                  icon:'error',
+                  timer: 3000
+              })
+            } else if (typeof(data) === "object"){
+                setUser(data);
+                
+                router.push(`/profile/${data.name}`);
+            }
+          } catch (err) { 
+            console.log(err);   
+          }
+
        // navigation("/");
          //alert ( `${emailUser}, ${passUser}`)
   
