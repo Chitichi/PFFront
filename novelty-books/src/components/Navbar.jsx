@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useStateContext } from "context/StateContext";
@@ -6,11 +7,15 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathName = usePathname();
-  // const {profile} = params;
-
-  const { totalQuantities, user, setUser } = useStateContext();
+  let { totalQuantities, user, setUser } = useStateContext();
   const router = useRouter();
-  //const user = pathName.includes("profile") ? pathName.slice(9) : null
+  const userLocalStorage = JSON.parse(localStorage.getItem("user"))
+
+  if (!user.name && userLocalStorage) {
+    user = userLocalStorage
+    setUser(user)
+  }
+  
   function redirectHome() {
     if (user.name) {
       router.push(`/profile/${user.name}`);
@@ -24,6 +29,10 @@ const Navbar = () => {
     setUser({});
     localStorage.removeItem("user")
   }
+
+  React.useEffect(() => {
+    redirectHome()
+  }, [redirectHome])
 
 
   return (
