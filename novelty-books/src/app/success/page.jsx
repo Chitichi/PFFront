@@ -4,25 +4,18 @@ import Link from "next/link";
 
 const Success = () => {
   return (
-    <div class="row  " style={{margin: 150 }}>
-      <div class="col-lg-4 offset-lg-4">
-        <div class="card border-secondary mb-3">
-          <div class="card-body">
-            <h2 class="card-title text-center">Thank you for your order!</h2>
-            <p class="card-text text-center">
-              Check your email inbox for the receipt.
-            </p>
-            <div class="row">
-              <div class="col-lg-4 offset-lg-4">
-                <Link href="/">
-                  <button type="button" class="btn btn-outline-dark" >
-                    Continue Shopping <i class="bi bi-bag-fill "></i>
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="success-wrapper">
+      <div className="success">
+        <p className="icon">
+        <i className="bi bi-bag-fill"></i>
+        </p>
+        <h2>Thank you for your order!</h2>
+        <p className="email-msg">Check your email inbox for the receipt.</p>
+        <Link href="/">
+          <button type="button"className="btn btn-outline-dark">
+            Continue Shopping
+          </button>
+        </Link>
       </div>
     </div>
   );
