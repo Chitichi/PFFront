@@ -48,7 +48,7 @@ return (
             <div class="col-md-6">
               <img
                 class="card-img-top mb-5 mb-md-0"
-                src={book.image}
+                src={book.image.secure_url || book.image}
                 alt="..."
                 style={{height: 500 , width: 400 }}
               />
