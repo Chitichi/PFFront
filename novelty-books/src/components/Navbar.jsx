@@ -10,11 +10,11 @@ const Navbar = () => {
   let { totalQuantities, user, setUser } = useStateContext();
   const router = useRouter();
 
-  if (typeof window !== "undefined" && !user.name) {
-    const userLocalStorage = localStorage.getItem("user")
-    const userLocalStorageObject = JSON.parse(userLocalStorage)
-    setUser(userLocalStorageObject)
-  }
+  // if (typeof window !== "undefined" && !user.name) {
+  //   const userLocalStorage = localStorage.getItem("user")
+  //   const userLocalStorageObject = JSON.parse(userLocalStorage)
+  //   setUser(userLocalStorageObject)
+  // }
   
   function redirectHome() {
     if (user.name) {
