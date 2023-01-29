@@ -9,12 +9,12 @@ const Navbar = () => {
   const pathName = usePathname();
   let { totalQuantities, user, setUser } = useStateContext();
   const router = useRouter();
-  // const userLocalStorage = JSON.parse(localStorage.getItem("user"))
 
-  // if (!user.name && userLocalStorage) {
-  //   user = userLocalStorage
-  //   setUser(user)
-  // }
+  if (typeof window !== "undefined" && !user.name) {
+    const userLocalStorage = localStorage.getItem("user")
+    const userLocalStorageObject = JSON.parse(userLocalStorage)
+    setUser(userLocalStorageObject)
+  }
   
   function redirectHome() {
     if (user.name) {
@@ -27,13 +27,8 @@ const Navbar = () => {
 
   function logout() {
     setUser({});
-    // localStorage.removeItem("user")
+    localStorage.removeItem("user")
   }
-
-  React.useEffect(() => {
-    redirectHome()
-  }, [redirectHome])
-
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
