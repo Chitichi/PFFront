@@ -13,6 +13,10 @@ function Login() {
     const [passUser, setPassUser ] = useState("");
     //const [, navigation] = useLocation();
 
+    function saveLocalStorage(user) {
+        localStorage.setItem("user", JSON.stringify(user))
+      }
+
     const handleSubmit = async (e) => { 
         e.preventDefault();
         try {
@@ -35,8 +39,9 @@ function Login() {
                   timer: 3000
               })
             } else if (typeof(data) === "object"){
+                console.log(data)
                 setUser(data);
-                
+                saveLocalStorage(data)
                 router.push(`/profile/${data.name}`);
             }
           } catch (err) { 
