@@ -42,39 +42,39 @@ const handleBuyNow = () => {
 }
 return (
     <>
-      <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-          <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
+      <section className="py-5">
+        <div className="container px-4 px-lg-5 my-5">
+          <div className="row gx-4 gx-lg-5 align-items-center">
+            <div className="col-md-6">
               <img
-                class="card-img-top mb-5 mb-md-0"
+                className="card-img-top mb-5 mb-md-0"
                 src={book.image.secure_url || book.image}
                 alt="..."
                 style={{height: 500 , width: 400 }}
               />
             </div>
-            <div class="col-md-6">
+            <div className="col-md-6">
               
-              <h1 class="display-5 fw-bolder">{book.title}</h1>
+              <h1 className="display-5 fw-bolder">{book.title}</h1>
               <h3>{book.author}</h3>
               <p>{book.pageCount} pages</p>
-              <div class="fs-5 mb-5">
+              <div className="fs-5 mb-5">
                 <span>$ {book.price}</span>
               </div>
-              <p class="lead">
+              <p className="lead">
                 {book.description}
               </p>
-              <div className="quantity">
+              <div classNameName="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
-              <span  onClick={decQty}><i class="bi bi-dash"></i></span>
+              <span  onClick={decQty}><i className="bi bi-dash"></i></span>
               <span >{qty}</span>
-              <span  onClick={incQty}><i class="bi bi-plus"></i></span>
+              <span  onClick={incQty}><i className="bi bi-plus"></i></span>
             </p>
           </div>
-              <div class="d-flex">
+              <div className="d-flex">
                 {/* <input
-                  class="form-control text-center me-3"
+                  className="form-control text-center me-3"
                   id="inputQuantity"
                   type="num"
                   value="1"
@@ -82,11 +82,11 @@ return (
                 /> */}
                 
                 <button
-                  class="btn btn-outline-dark flex-shrink-0"
+                  className="btn btn-outline-dark flex-shrink-0"
                   type="button"
                   onClick={() => onAdd(book, qty)}
                 >
-                  <i class="bi-cart-fill me-1"></i>
+                  <i className="bi-cart-fill me-1"></i>
                   Add to cart
                 </button>
               </div>
