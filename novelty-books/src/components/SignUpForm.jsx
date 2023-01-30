@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation";
 import { useStateContext } from "../../context/StateContext";
-
+import styles from './SignUpForm.module.css'
 
 const validacion=(input)=> {
   
@@ -96,10 +96,11 @@ const validacion=(input)=> {
    
     return (
         
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
         <div>
-            <label>Name:</label>
+            <label className={styles.formControl}>Name:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "text"
             placeholder='name...'
@@ -111,8 +112,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Email:</label>
+            <label className={styles.formControl}>Email:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "text"
             placeholder='email...'
@@ -124,8 +126,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Password:</label>
+            <label className={styles.formControl}>Password:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "password"
             placeholder='password...'
@@ -137,8 +140,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Address:</label>
+            <label className={styles.formControl}>Address:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "text"
             placeholder='address...'
@@ -150,8 +154,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Phone Number:</label>
+            <label className={styles.formControl}>Phone Number:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "number"
             placeholder='phoneNumber...'
@@ -164,6 +169,7 @@ const validacion=(input)=> {
         </div>
         <div>
         <button
+           className= {styles.buttonControl}
               type='submit'
               disabled={botonOff}>
                 Create User
