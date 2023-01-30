@@ -55,9 +55,9 @@ const Navbar = () => {
                 onClick={redirectHome}
                 className="btn btn-outline-dark"
               >
-                <p className="nav-link active" aria-current="page"  >
+              
                   Home
-                </p>
+                
               </button>
             </li>
 
@@ -68,9 +68,12 @@ const Navbar = () => {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                   <li className="nav-item">
                     <Link href="/SignUp">
-                      <p className="nav-link active" aria-current="page"  >
+                      <button 
+                      className="btn btn-outline-dark" 
+                      type="submit" 
+                     >
                         SignUp
-                      </p>
+                      </button>
                     </Link>
                   </li>
 
@@ -111,7 +114,10 @@ const Navbar = () => {
             {
               pathName.replace("%20", " ") === `/profile/${user.name}` ?
                 <Link href="/miPerfil">
-                  <button>
+                  <button  
+                  className="btn btn-outline-dark" 
+                  type="submit"
+                  style={{ marginLeft: 10 }}>
                     Mi Perfil
                   </button>
                 </Link> : null
@@ -119,7 +125,10 @@ const Navbar = () => {
             {
               pathName.replace("%20", " ") === `/profile/${user.name}` ?
                 <Link href="/myPurchases">
-                  <button>
+                  <button  
+                  className="btn btn-outline-dark" 
+                  type="submit"
+                  style={{ marginLeft: 10 }}>
                     Mi Purchases
                   </button>
                 </Link> : null
@@ -127,7 +136,7 @@ const Navbar = () => {
             {
               user.rolAdmin ?
               <Link href= "/createBookForm">
-                <button>
+                <button  className="btn btn-outline-dark" type="submit">
                   Create Book
                 </button>
               </Link> : null
