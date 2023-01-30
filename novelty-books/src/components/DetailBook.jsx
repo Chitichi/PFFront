@@ -9,6 +9,9 @@
 //     // .catch(error => alert(error.message))
 // }
 import { useStateContext } from "context/StateContext";
+import Review from "./Review.jsx";
+import styles from "./DetailBook.module.css"
+
 export default function DetailBook({book}) {
     // const {ISBN} = params
     // const book = books.filter(b => b._id ==ISBN )
@@ -35,7 +38,7 @@ export default function DetailBook({book}) {
 //     // const {title,author,pageCount,price,description,image} = book
 
 //     console.log(book)
-const { decQty, incQty, qty, onAdd } = useStateContext()
+const { decQty, incQty, qty, onAdd, user } = useStateContext()
 const handleBuyNow = () => {
   onAdd(book, qty);
 
@@ -44,16 +47,15 @@ return (
     <>
       <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
-          <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
+          <div class={styles.innerWrapper}>
+            <div class={styles.a}>
               <img
                 class="card-img-top mb-5 mb-md-0"
                 src={book.image.secure_url || book.image}
                 alt="..."
-                style={{height: 500 , width: 400 }}
               />
             </div>
-            <div class="col-md-6">
+            <div class={styles.b}>
               
               <h1 class="display-5 fw-bolder">{book.title}</h1>
               <h3>{book.author}</h3>
@@ -65,13 +67,13 @@ return (
                 {book.description}
               </p>
               <div className="quantity">
-            <h3>Quantity:</h3>
-            <p className="quantity-desc">
-              <span  onClick={decQty}><i class="bi bi-dash"></i></span>
-              <span >{qty}</span>
-              <span  onClick={incQty}><i class="bi bi-plus"></i></span>
-            </p>
-          </div>
+                  <h3>Quantity:</h3>
+                  <p className="quantity-desc">
+                    <span  onClick={decQty}><i class="bi bi-dash"></i></span>
+                    <span >{qty}</span>
+                    <span  onClick={incQty}><i class="bi bi-plus"></i></span>
+                  </p>
+              </div>
               <div class="d-flex">
                 <button
                   class="btn btn-outline-dark flex-shrink-0"
@@ -82,6 +84,9 @@ return (
                   Add to cart
                 </button>
               </div>
+            </div>
+            <div class={styles.c}>
+                {user.name && <Review userName={user.name}/>}
             </div>
           </div>
         </div>
