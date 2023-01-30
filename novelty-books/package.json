@@ -14,9 +14,7 @@
     "@stripe/stripe-js": "^1.46.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
-
-    "axios": "^1.2.4",
-    
+    "axios": "^1.2.4", 
     "cloudinary": "^1.33.0",
 <<<<<<< HEAD
     "cloudinary-react": "^1.8.1",
