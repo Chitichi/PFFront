@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import DetailBook from "../../../components/DetailBook"
 
 const fetchBook = (id) => {
-  return fetch(`http://localhost:3001/books/${id}`)
+  return fetch(process.env.RUTA_BACK+`/books/${id}`)
     .then(res => res.json())
     // .catch(error => alert(error.message))
 }

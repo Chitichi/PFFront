@@ -1,0 +1,26 @@
+.userForm {
+    margin: 20px auto;
+    padding: 20px;
+    width: 40%;
+    background-color: #f2f2f2;
+    border-radius: 20px;
+    justify-content: center;
+
+  }
+  
+  .formControl {
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 5px;
+    font-size: larger;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  } 
+  .buttonControl {
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 5px;
+    font-size: larger;
+    margin: 20px auto;;
+    
+  } 
+  
