@@ -88,8 +88,8 @@ const Navbar = () => {
               </button>
             </Link>
             {
-              pathName === "/login" || pathName === "/SignUp" ? null :
-                pathName !== "/" ?
+              pathName.replace("%20", " ") === "/login" || pathName.replace("%20", " ") === "/SignUp" ? null :
+                pathName.replace("%20", " ") !== "/" ?
                   <Link href="/">
                     <button
                       onClick={logout}
@@ -109,7 +109,7 @@ const Navbar = () => {
                   </Link>
             }
             {
-              pathName === `/profile/${user.name}` ?
+              pathName.replace("%20", " ") === `/profile/${user.name}` ?
                 <Link href="/miPerfil">
                   <button>
                     Mi Perfil
@@ -117,7 +117,7 @@ const Navbar = () => {
                 </Link> : null
             }
             {
-              pathName === `/profile/${user.name}` ?
+              pathName.replace("%20", " ") === `/profile/${user.name}` ?
                 <Link href="/myPurchases">
                   <button>
                     Mi Purchases
