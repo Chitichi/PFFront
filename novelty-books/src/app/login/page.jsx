@@ -41,7 +41,8 @@ function Login() {
               })
             } else if (typeof(data) === "object"){
                 setUser(data);
-                // saveLocalStorage(data);
+                saveLocalStorage(data);
+                router.push(`/`);
             }
           } catch (err) { 
             console.log(err);   
