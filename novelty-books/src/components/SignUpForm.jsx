@@ -3,9 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation";
-
+import { useStateContext } from "../../context/StateContext";
+import styles from './SignUpForm.module.css'
 
 const validacion=(input)=> {
+  
     let errores={};
     if(!input.name) errores.name = 'Name required';
     if(input.name.length < 3 || input.name.length > 50) errores.name = 'The name must contain 3 to 50 characters';
@@ -30,10 +32,10 @@ const validacion=(input)=> {
         address:"",
         phoneNumber: 0,
     });
-
+        
     useEffect(()=>{
         if(Object.keys(errores).length === 0){
-            setBotonOff(false)
+            setBotonOff(false)  
         }
         else {
             setBotonOff(true)
@@ -56,7 +58,7 @@ const validacion=(input)=> {
         e.preventDefault();
         try {
           // Send a request to the server to create a new book using the form data
-          const res = await fetch("http://localhost:3001/users/signup", {
+          const res = await fetch(process.env.RUTA_BACK+"/users/signup", {
               method: "POST",
               body: JSON.stringify(input),
               headers: {
@@ -66,15 +68,21 @@ const validacion=(input)=> {
             //console.log(res, "hola soy tu res")
           const data = await res.json();
           console.log(data);
-        } catch (err) { 
-          console.log(err);   
-        }
-         Swal.fire({
+          Swal.fire({
             title:"User created",
             text:'Your user was created successfully!',
             icon:'success',
             timer: 3000
         })
+        } catch (err) { 
+            Swal.fire({
+                title:"Oops! error",
+                text:'Error user register already with that email.',
+                icon:'error',
+                timer: 3000
+            })
+            return 
+        }
          setInput ({
             name: "",
             email: "",
@@ -88,10 +96,11 @@ const validacion=(input)=> {
    
     return (
         
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
         <div>
-            <label>Name:</label>
+            <label className={styles.formControl}>Name:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "text"
             placeholder='name...'
@@ -103,8 +112,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Email:</label>
+            <label className={styles.formControl}>Email:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "text"
             placeholder='email...'
@@ -116,8 +126,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Password:</label>
+            <label className={styles.formControl}>Password:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "password"
             placeholder='password...'
@@ -129,8 +140,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Address:</label>
+            <label className={styles.formControl}>Address:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "text"
             placeholder='address...'
@@ -142,8 +154,9 @@ const validacion=(input)=> {
                 )}
         </div>
         <div>
-            <label>Phone Number:</label>
+            <label className={styles.formControl}>Phone Number:</label>
             <input
+            className={styles.formControl}
             onChange={(e) => handleChange(e)}
             type= "number"
             placeholder='phoneNumber...'
@@ -156,6 +169,7 @@ const validacion=(input)=> {
         </div>
         <div>
         <button
+           className= {styles.buttonControl}
               type='submit'
               disabled={botonOff}>
                 Create User

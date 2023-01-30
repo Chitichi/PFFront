@@ -12,10 +12,6 @@ function Landing({ books }) {
   const router = useRouter();
   const pathName = usePathname();
 
-  if (user.name && !pathName.includes("profile")) {
-    router.push(`/profile/${user.name}`)
-  }
-
   const [home, setHome] = useState({
     searchInput: "",
     typeSearch: "title",
@@ -106,15 +102,14 @@ function Landing({ books }) {
     filterBooks(prices, home.genreState);
   }, [prices, home.genreState]);
 
-
-  // fw-bolder mb-4
   return (
     <>
       <header className="bg-dark py-5">
         <div className="container px-4 px-lg-5 my-5">
           <div className="text-center text-white">
             <h1 className="display-4 fw-bolder">{
-              user.name ? `Welcome ${user.name}` : "Novelty Books"
+              // user.name ? `Welcome ${user.name}` : "Novelty Books"
+              "Novelty Books"
             }</h1>
           </div>
         </div>
