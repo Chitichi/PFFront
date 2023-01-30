@@ -124,7 +124,14 @@ const Navbar = () => {
                   </button>
                 </Link> : null
             }
-
+            {
+              user.rolAdmin ?
+              <Link href= "/createBookForm">
+                <button>
+                  Create Book
+                </button>
+              </Link> : null
+            }
 
 
           </form>
