@@ -56,7 +56,7 @@ export default function CreateBookForm() {
     formData.append("image", formImage);
 
     try {
-      const response = await fetch("https://backendnoveltybooks.onrender.com/books", {
+      const response = await fetch(process.env.RUTA_BACK+"/books", {
         method: "POST",
         body: formData,
       });
