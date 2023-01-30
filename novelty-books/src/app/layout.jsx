@@ -8,16 +8,14 @@ export default function RootLayout({ children }) {
 
   return (
     <StateContext>
-
-    
-    <html lang="en">
-      <head />
-      <body>
-        <Navbar />
-        {children}
-        <Footer/>
+      <html lang="en">
+        <head />
+        <body>
+          <Navbar />
+          {children}
+          <Footer />
         </body>
-    </html>
+      </html>
     </StateContext>
   )
 }

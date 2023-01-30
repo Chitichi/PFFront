@@ -25,12 +25,12 @@ function Cart () {
   }
     return(
         <>
-            <section class="h-100">
-        <div class="container h-100 py-5">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
-              <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+            <section className="h-100">
+        <div className="container h-100 py-5">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-10">
+              <div className="d-flex justify-content-between align-items-center mb-4">
+                <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
               </div>
 
               
@@ -42,40 +42,40 @@ function Cart () {
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
                           src={item.image}
-                          class="img-fluid rounded-3"
+                          className="img-fluid rounded-3"
                           alt="Cotton T-shirt"
                         />
                       </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <p class="lead fw-normal mb-2">{item.title}</p>
+                      <div className="col-md-3 col-lg-3 col-xl-3">
+                        <p className="lead fw-normal mb-2">{item.title}</p>
 
                       </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                      <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                         <button
-                          class="btn btn-link px-2"
+                          className="btn btn-link px-2"
                           onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                         >
-                          <i class="fas fa-minus"></i>
+                          <i className="fas fa-minus"></i>
                         </button>
 
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                           
-                         <h5 class="mb-0">x {item.quantity}</h5>
+                         <h5 className="mb-0">x {item.quantity}</h5>
                         </div>
 
                         <button
-                          class="btn btn-link px-2"
+                          className="btn btn-link px-2"
                           onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                         >
-                          <i class="fas fa-plus"></i>
+                          <i className="fas fa-plus"></i>
                         </button>
                       </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h5 class="mb-0">$ {item.price}</h5>
+                      <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h5 className="mb-0">$ {item.price}</h5>
                       </div>
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-danger">
-                          <i class="fas fa-trash fa-lg"></i>
+                      <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a href="#!" className="text-danger">
+                          <i className="fas fa-trash fa-lg"></i>
                         </a>
                       </div>
                     </div>
@@ -91,11 +91,11 @@ function Cart () {
           </div>
         )}
 
-              <div class="card">
-                <div class="card-body">
+              <div className="card">
+                <div className="card-body">
                   <button
                     type="button"
-                    class="btn btn-warning btn-block btn-lg"
+                    className="btn btn-warning btn-block btn-lg"
                     onClick={handleCheckout}
                   >
                     Proceed to Pay
