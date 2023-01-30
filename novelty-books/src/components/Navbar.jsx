@@ -115,10 +115,17 @@ const Navbar = () => {
                     Mi Perfil
                   </button>
                 </Link> : null
-
-
-
             }
+            {
+              pathName === `/profile/${user.name}` ?
+                <Link href="/myPurchases">
+                  <button>
+                    Mi Purchases
+                  </button>
+                </Link> : null
+            }
+
+
 
           </form>
         </div>

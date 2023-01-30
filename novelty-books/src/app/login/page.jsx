@@ -21,7 +21,7 @@ function Login() {
         e.preventDefault();
         try {
             // Send a request to the server to create a new book using the form data
-            const res = await fetch("http://localhost:3001/users/login", {
+            const res = await fetch("https://backendnoveltybooks.onrender.com/users/login", {
                 method: "POST",
                 body: JSON.stringify({email:emailUser, password:passUser}),
                 headers: {
@@ -93,7 +93,7 @@ function Login() {
                 <button 
                 className={style.button} 
                 type="submit"
-                onClick={handleSubmit}>Submit</button>
+                onClick={handleSubmit}>Login</button>
             </div>
         </form>
             
