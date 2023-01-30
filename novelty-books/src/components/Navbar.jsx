@@ -47,13 +47,11 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li className="nav-item">
+
               <Link href={"/"}>
                 <button
-                  className="btn btn-outline-dark"
-                >
-                  <p className="nav-link active" aria-current="page"  >
-                    Home
-                  </p>
+                  className="btn btn-outline-dark">
+                  Home
                 </button>
               </Link>
 
@@ -66,9 +64,12 @@ const Navbar = () => {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                   <li className="nav-item">
                     <Link href="/SignUp">
-                      <p className="nav-link active" aria-current="page"  >
+                      <button 
+                      className="btn btn-outline-dark" 
+                      type="submit" 
+                     >
                         SignUp
-                      </p>
+                      </button>
                     </Link>
                   </li>
                 </ul>
@@ -107,7 +108,10 @@ const Navbar = () => {
             {
               user.name ?
                 <Link href="/miPerfil">
-                  <button>
+                  <button  
+                  className="btn btn-outline-dark" 
+                  type="submit"
+                  style={{ marginLeft: 10 }}>
                     Mi Perfil
                   </button>
                 </Link> : null
@@ -115,18 +119,21 @@ const Navbar = () => {
             {
               user.name ?
                 <Link href="/myPurchases">
-                  <button>
+                  <button  
+                  className="btn btn-outline-dark" 
+                  type="submit"
+                  style={{ marginLeft: 10 }}>
                     Mi Purchases
                   </button>
                 </Link> : null
             }
             {
               user.rolAdmin ?
-                <Link href="/createBookForm">
-                  <button>
-                    Create Book
-                  </button>
-                </Link> : null
+              <Link href= "/createBookForm">
+                <button  className="btn btn-outline-dark" type="submit">
+                  Create Book
+                </button>
+              </Link> : null
             }
           </form>
         </div>
