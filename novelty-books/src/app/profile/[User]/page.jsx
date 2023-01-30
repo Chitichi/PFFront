@@ -2,7 +2,7 @@ import Landing from "@/components/Landing"
 
 
 const fetchBooks = () => {
-    return fetch("https://backendnoveltybooks.onrender.com/books")
+    return fetch(process.env.RUTA_BACK+"/books")
       .then(res => res.json())
      // .catch(error => alert(error.message))
   }

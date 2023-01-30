@@ -59,7 +59,7 @@ const validacion=(input)=> {
         e.preventDefault();
         try {
           // Send a request to the server to create a new book using the form data
-          const res = await fetch("https://backendnoveltybooks.onrender.com/users/signup", {
+          const res = await fetch(process.env.RUTA_BACK+"/users/signup", {
               method: "POST",
               body: JSON.stringify(input),
               headers: {
