@@ -1,0 +1,12 @@
+ .bookForm {
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.formControl {
+  margin: 10px 0;
+  font-size: 18px;
+} 

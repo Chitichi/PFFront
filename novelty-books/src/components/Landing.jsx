@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import Link from "next/link";
+import styles from './Home.module.css'
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
@@ -11,16 +12,14 @@ function Landing({ books }) {
   const router = useRouter();
   const pathName = usePathname();
 
-  if (user.name && !pathName.includes("profile")) {
-    router.push(`/profile/${user.name}`)
-  }
+  // if (user.name && !pathName.includes("profile")) {
+  //   router.push(`/profile/${user.name}`)
+  // }
 
   const [home, setHome] = useState({
     searchInput: "",
     typeSearch: "title",
     genreState: "Todos",
-    typeOrder: "abc",
-    typeSence: "asc",
     arrayBooks: books,
   });
 
@@ -28,6 +27,8 @@ function Landing({ books }) {
     min: -Infinity,
     max: Infinity,
   });
+
+  const [orderSence, setOrderSence] = useState(['abc', 'as'])
 
   const listGenre = ["Genero", "Todos", "Fantasy", "Sci-Fiction", "Horror"];
 
@@ -46,18 +47,20 @@ function Landing({ books }) {
       case "genreState":
         setHome((prev) => ({ ...prev, [name]: value }));
         filterBooks(prices, value);
-      case "typeOrder":
-        setHome((prev) => ({ ...prev, [name]: value }));
-        orderBooks(value, home.typeSence);
-      case "typeSence":
-        setHome((prev) => ({ ...prev, [name]: value }));
-        orderBooks(home.typeOrder, value);
       default:
         setHome((prev) => ({ ...prev, [name]: value }));
     }
   };
 
+  const handleOrder = (e) => {
+    const { id } = e.target;
+    const [valueOrder, valueSence] = id.split(",")
+    setOrderSence([valueOrder, valueSence]);
+    orderBooks(orderSence[0], valueSence);
+  };
+
   function orderBooks(type, sence) {
+    console.log(type, sence)
     let booksCopy = [...home.arrayBooks];
     if (type === "abc") {
       booksCopy.sort((a, b) => {
@@ -65,12 +68,12 @@ function Landing({ books }) {
         if (b.title > a.title) return -1;
         return 0;
       });
-      sence === "asc"
+      sence === "as"
         ? setHome({ ...home, arrayBooks: booksCopy })
         : setHome({ ...home, arrayBooks: booksCopy.reverse() });
     } else if (type === "price") {
       booksCopy.sort((a, b) => a.price - b.price);
-      sence === "asc"
+      sence === "as"
         ? setHome({ ...home, arrayBooks: booksCopy })
         : setHome({ ...home, arrayBooks: booksCopy.reverse() });
     }
@@ -103,91 +106,116 @@ function Landing({ books }) {
     filterBooks(prices, home.genreState);
   }, [prices, home.genreState]);
 
+
+  // fw-bolder mb-4
   return (
     <>
-      <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-          <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">{
-              user.name ? `Welcome ${user.name}` : "Novelty Books"
+      <header className="bg-dark py-5">
+        <div className="container px-4 px-lg-5 my-5">
+          <div className="text-center text-white">
+            <h1 className="display-4 fw-bolder">{
+              // user.name ? `Welcome ${user.name}` : "Novelty Books"
+              "Novelty Books"
             }</h1>
           </div>
         </div>
       </header>
 
       <section className="py-5 bg-light">
-        <div className="container px-4 px-lg-5 mt-5">
-          <h2 className="fw-bolder mb-4">Popular books</h2>
+        <h2 className={`fw-bolder mb-4 ${styles.popularBooks}`}> Popular books</h2>
+        <div className={`container px-lg-5 mt-5 ${styles.gridWrapper}`}>
 
-          <div style={{ margin: 5 }} className="d-flex flex-row-reverse">
+          <div className={`d-flex flex-row-reverse ${styles.gridFilters}`}>
             <nav className="navbar bg-body-tertiary">
               <div className="container-fluid">
                 <form className="d-flex" role="search">
-                  <label>Precio: </label>
 
-                  <input
-                    className="form-control me-2"
-                    type="search"
-                    name="max"
-                    placeholder="max"
-                    aria-label="Search"
-                    onChange={changePrice}
-                  ></input>
+                    <div className={styles.searchDiv}>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="searchInput"
+                        placeholder="Search"
+                        aria-label="Search"
+                        onChange={handleChanges}
+                      ></input>
 
-                  <input
-                    className="form-control me-2"
-                    type="search"
-                    name="min"
-                    placeholder="min"
-                    aria-label="Search"
-                    onChange={changePrice}
-                  ></input>
+                      <select name="typeSearch" onChange={handleChanges}>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                      </select>
+                    </div>
+                  
+                  <hr/>
 
-                  <select name="genreState" onChange={handleChanges}>
-                    {listGenre.map((genre, index) =>
-                      genre !== "Genero" ? (
-                        <option key={index} value={genre}>
-                          {genre}
-                        </option>
-                      ) : (
-                        <option key={index} value={genre} hidden>
-                          {genre}
-                        </option>
-                      )
-                    )}
-                  </select>
+                  <label className={styles.labelPrices}>Rango de precios:
 
-                  <select name="typeOrder" onChange={handleChanges}>
-                    <option hidden>Orden</option>
-                    <option value="abc">Alfabetico</option>
-                    <option value="price">Price</option>
-                  </select>
+                    <div className={styles.pricesDiv}>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="max"
+                        placeholder="max"
+                        aria-label="Search"
+                        onChange={changePrice}
+                      ></input>
 
-                  <select name="typeSence" onChange={handleChanges}>
-                    <option hidden>Sentido</option>
-                    <option value="asc">Ascendente</option>
-                    <option value="des">Descendente</option>
-                  </select>
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        name="min"
+                        placeholder="min"
+                        aria-label="Search"
+                        onChange={changePrice}
+                      ></input>
+                    </div>
+                  </label>
 
-                  <input
-                    className="form-control me-2"
-                    type="search"
-                    name="searchInput"
-                    placeholder="Search"
-                    aria-label="Search"
-                    onChange={handleChanges}
-                  ></input>
+                  <hr/>
 
-                  <select name="typeSearch" onChange={handleChanges}>
-                    <option value="title">Title</option>
-                    <option value="author">Author</option>
-                  </select>
+                  <div className={styles.genreOrderSence}>
+                    <select name="genreState" onChange={handleChanges}>
+                      {listGenre.map((genre, index) =>
+                        genre !== "Genero" ? (
+                          <option key={index} value={genre}>
+                            {genre}
+                          </option>
+                        ) : (
+                          <option key={index} value={genre} hidden>
+                            {genre}
+                          </option>
+                        )
+                      )}
+                    </select>
+                  </div>
+                    <ul className={`${styles["nested-dropdowns"]}`}>
+                      <li>
+                        <div >
+                          Ordenar por: 
+                          {orderSence[0]==="abc" && orderSence[1]==="as"?" A-Z":null}
+                          {orderSence[0]==="abc" && orderSence[1]==="des"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="as"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="des"?" Z-A":null}
+                          <i className="bi bi-caret-down-square-fill" style={{position:"absolute",right: 5}}></i>
+                        </div>
+                        <ul>
+                          <li onClick={handleOrder} id="abc,as" className="typeSence">A-Z</li>
+                          <li onClick={handleOrder} id="abc,des" className="typeSence">Z-A</li>
+
+                          <li onClick={handleOrder} id="price,as" className="typeSence">Menor precio</li>
+                          <li onClick={handleOrder} id="price,des" className="typeSence">Mayor precio</li>
+                        </ul>
+                      </li>
+                    </ul>
+
                 </form>
               </div>
             </nav>
           </div>
 
-          <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div
+            className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
+          >
             {home.arrayBooks
               .filter((item) => {
                 return home.searchInput.toLowerCase() === ""
@@ -199,7 +227,7 @@ function Landing({ books }) {
 
               .map((book, key) => {
                 return (
-                  <Link href={`/detailBook/${book._id}`} key={key}>
+                  <Link href={`/detailBook/${book._id}`} key={key} className={styles.link}>
                     <Card
                       key={key}
                       title={book.title}
