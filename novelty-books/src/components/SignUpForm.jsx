@@ -13,7 +13,6 @@ const validacion=(input)=> {
     if(input.name.length < 3 || input.name.length > 50) errores.name = 'The name must contain 3 to 50 characters';
     if(!/^[a-zA-Z\s]+$/.test(input.name)) errores.name = 'Invalid name, only characters allowed';
     if(!/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/.test(input.email)) errores.email = 'Invalid email format';
-   //* if(input.email === user.email) errores.email = 'Existing email, please choose another';
     if(!input.password) errores.password = 'Password required';
     if(input.password.length < 6 || input.password.length > 10) errores.password = 'The password must contain 6 to 10 characters';
     if(!/^[a-zA-Z\s]+$/.test(input.address)) errores.address = 'Invalid address, only characters allowed';
