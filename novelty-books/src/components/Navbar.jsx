@@ -1,14 +1,18 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
+import { useStateContext } from "context/StateContext";
 
 const Navbar = () => {
   const pathName = usePathname();
  // const {profile} = params;
+
+  const { totalQuantities} = useStateContext();
+
  const user = pathName.includes("profile") ? pathName.slice(9) : null
  
    
+
 
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,6 +44,21 @@ const Navbar = () => {
            
           </ul>
           {
+            !user && // si no estamos logueados mostramos el boton para crear cuenta.
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
+              <Link  href="/SignUp">
+                <p class="nav-link active" aria-current="page"  >
+                  SignUp
+                </p>
+              </Link>
+            </li>
+           
+          </ul>
+          </div>
+          }
+          {
             user &&
           <label style={{paddingRight:20}}>
             Welcome {user}
@@ -47,11 +66,13 @@ const Navbar = () => {
             }
 
           <form class="d-flex">
-            <button class="btn btn-outline-dark" type="submit">
-              <i class="bi-cart-fill me-1"></i>
-              Cart
-              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
+            <Link href="/cart">
+              <button class="btn btn-outline-dark" type="submit">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill">{totalQuantities}</span>
+              </button>
+            </Link>
             {
               pathName === "/login" ? null :
               pathName !== "/" ?
