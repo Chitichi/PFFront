@@ -34,10 +34,12 @@ function Cart () {
               </div>
 
               
-            {cartItems.map((item) => (<div className="card rounded-3 mb-4">
-                  <div className="card-body p-4">
-                    <div className="row d-flex justify-content-between align-items-center">
-                      <div className="col-md-2 col-lg-2 col-xl-2">
+            {cartItems.map((item, idx) => (<div 
+            key={idx}
+             class="card rounded-3 mb-4">
+                  <div class="card-body p-4">
+                    <div class="row d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
                           src={item.image}
                           className="img-fluid rounded-3"
