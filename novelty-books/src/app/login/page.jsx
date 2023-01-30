@@ -21,6 +21,7 @@ function Login() {
         e.preventDefault();
         try {
             // Send a request to the server to create a new book using the form data
+
             const res = await fetch(process.env.RUTA_BACK+"/users/login", {
                 method: "POST",
                 body: JSON.stringify({email:emailUser, password:passUser}),
@@ -40,8 +41,8 @@ function Login() {
               })
             } else if (typeof(data) === "object"){
                 setUser(data);
-                saveLocalStorage(data)
-                router.push(`/profile/${data.name}`);
+                saveLocalStorage(data);
+                router.push(`/`);
             }
           } catch (err) { 
             console.log(err);   
@@ -93,7 +94,7 @@ function Login() {
                 <button 
                 className={style.button} 
                 type="submit"
-                onClick={handleSubmit}>Submit</button>
+                onClick={handleSubmit}>Login</button>
             </div>
         </form>
             

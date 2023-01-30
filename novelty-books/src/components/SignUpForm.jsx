@@ -3,9 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation";
+import { useStateContext } from "../../context/StateContext";
 
 
 const validacion=(input)=> {
+  
     let errores={};
     if(!input.name) errores.name = 'Name required';
     if(input.name.length < 3 || input.name.length > 50) errores.name = 'The name must contain 3 to 50 characters';
@@ -30,10 +32,10 @@ const validacion=(input)=> {
         address:"",
         phoneNumber: 0,
     });
-
+        
     useEffect(()=>{
         if(Object.keys(errores).length === 0){
-            setBotonOff(false)
+            setBotonOff(false)  
         }
         else {
             setBotonOff(true)
@@ -66,15 +68,21 @@ const validacion=(input)=> {
             //console.log(res, "hola soy tu res")
           const data = await res.json();
           console.log(data);
-        } catch (err) { 
-          console.log(err);   
-        }
-         Swal.fire({
+          Swal.fire({
             title:"User created",
             text:'Your user was created successfully!',
             icon:'success',
             timer: 3000
         })
+        } catch (err) { 
+            Swal.fire({
+                title:"Oops! error",
+                text:'Error user register already with that email.',
+                icon:'error',
+                timer: 3000
+            })
+            return 
+        }
          setInput ({
             name: "",
             email: "",
