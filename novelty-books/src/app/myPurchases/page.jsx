@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 
 
-function myPurchases() {
+function MyPurchases() {
     const router = useRouter();
     const {user} = useStateContext();
     const myBooks = user.myPurchases;
@@ -33,4 +33,4 @@ function myPurchases() {
     }
     
 
-export default myPurchases;
+export default MyPurchases;
