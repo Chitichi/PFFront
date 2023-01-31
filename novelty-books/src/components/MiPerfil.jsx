@@ -3,7 +3,7 @@ import React from "react";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 
-    function miPerfil() {
+    function MyProfile() {
     const {user} = useStateContext();
     const router = useRouter(); 
     function back(){
@@ -35,4 +35,4 @@ import { useRouter } from "next/navigation";
 }
     
 
-export default miPerfil;
+export default MyProfile;

@@ -1,10 +1,10 @@
 import MiPerfil from "@/components/MiPerfil";
     
-function perfil() {
+function MyProfile() {
             return(
                     <MiPerfil/>
             )
 }
     
 
-export default perfil;
+export default MyProfile;
