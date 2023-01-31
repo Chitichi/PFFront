@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 function Landing({ books }) {
-  const { user } = useStateContext();
+  const { user, setUser } = useStateContext();
   const router = useRouter();
   const pathName = usePathname();
 
@@ -24,9 +24,16 @@ function Landing({ books }) {
     max: Infinity,
   });
 
-  const [orderSence, setOrderSence] = useState(['abc', 'as'])
+  const [orderSence, setOrderSence] = useState("")
 
   const listGenre = ["Genero", "Todos", "Fantasy", "Sci-Fiction", "Horror"];
+
+  function updateUser() {
+    if (typeof window !== "undefined" && !user.name) {
+      const userLocalStorage = JSON.parse(localStorage.getItem("user"))
+      userLocalStorage ? setUser(userLocalStorage) : null
+    }
+  }
 
   function changePrice(e) {
     const name = e.target.name;
@@ -52,7 +59,7 @@ function Landing({ books }) {
     const { id } = e.target;
     const [valueOrder, valueSence] = id.split(",")
     setOrderSence([valueOrder, valueSence]);
-    orderBooks(orderSence[0], valueSence);
+    orderBooks(valueOrder, valueSence);
   };
 
   function orderBooks(type, sence) {
@@ -100,6 +107,7 @@ function Landing({ books }) {
 
   React.useEffect(() => {
     filterBooks(prices, home.genreState);
+    updateUser()
   }, [prices, home.genreState]);
 
   return (
@@ -108,8 +116,9 @@ function Landing({ books }) {
         <div className="container px-4 px-lg-5 my-5">
           <div className="text-center text-white">
             <h1 className="display-4 fw-bolder">{
-              // user.name ? `Welcome ${user.name}` : "Novelty Books"
-              "Novelty Books"
+              user.name?
+                `Welcome ${user.name[0].toUpperCase()+user.name.slice(1).toLowerCase()}`:
+                "Novelty Books"
             }</h1>
           </div>
         </div>
@@ -188,8 +197,8 @@ function Landing({ books }) {
                           Ordenar por: 
                           {orderSence[0]==="abc" && orderSence[1]==="as"?" A-Z":null}
                           {orderSence[0]==="abc" && orderSence[1]==="des"?" Z-A":null}
-                          {orderSence[0]==="price" && orderSence[1]==="as"?" Z-A":null}
-                          {orderSence[0]==="price" && orderSence[1]==="des"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="as"?" Menor precio":null}
+                          {orderSence[0]==="price" && orderSence[1]==="des"?" Mayor precio":null}
                           <i className="bi bi-caret-down-square-fill" style={{position:"absolute",right: 5}}></i>
                         </div>
                         <ul>
