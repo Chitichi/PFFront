@@ -66,8 +66,8 @@ function Login() {
                        placeholder="Enter email"
                        value={emailUser}
                        onChange= {(e)=> setEmailUser(e.target.value)}/>
-                <small id="emailHelp" 
-                       className="form-text text-muted">We'll never share your email with anyone else.</small>
+               {/* <small id="emailHelp" 
+                       className="form-text text-muted">We'll never share your email with anyone else.</small>*/}
             </div>
             <div className="form-group">
                 <label for="exampleInputPassword1">Password</label>
