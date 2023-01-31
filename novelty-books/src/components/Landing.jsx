@@ -188,8 +188,8 @@ function Landing({ books }) {
                           Ordenar por: 
                           {orderSence[0]==="abc" && orderSence[1]==="as"?" A-Z":null}
                           {orderSence[0]==="abc" && orderSence[1]==="des"?" Z-A":null}
-                          {orderSence[0]==="price" && orderSence[1]==="as"?" Z-A":null}
-                          {orderSence[0]==="price" && orderSence[1]==="des"?" Z-A":null}
+                          {orderSence[0]==="price" && orderSence[1]==="as"?" Menor precio":null}
+                          {orderSence[0]==="price" && orderSence[1]==="des"?" Mayor precio":null}
                           <i className="bi bi-caret-down-square-fill" style={{position:"absolute",right: 5}}></i>
                         </div>
                         <ul>
