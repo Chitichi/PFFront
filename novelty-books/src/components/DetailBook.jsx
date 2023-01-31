@@ -23,7 +23,7 @@ export default function DetailBook({book}) {
 
 
 //     console.log(book)
-const { decQty, incQty, qty, onAdd, user } = useStateContext()
+const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useStateContext()
 const handleBuyNow = () => {
   onAdd(book, qty);
 }
@@ -87,7 +87,7 @@ const handleBuyNow = () => {
               </div>
             </div>
             <div class={styles.c}>
-                {user.name && <Review userName={user.name}/>}
+                {user.name && <Review user={user} setTotalBooks={setTotalBooks}/>}
             </div>
           </div>
         </div>
