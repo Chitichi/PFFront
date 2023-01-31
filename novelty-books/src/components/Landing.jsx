@@ -24,7 +24,7 @@ function Landing({ books }) {
     max: Infinity,
   });
 
-  const [orderSence, setOrderSence] = useState(['abc', 'as'])
+  const [orderSence, setOrderSence] = useState("")
 
   const listGenre = ["Genero", "Todos", "Fantasy", "Sci-Fiction", "Horror"];
 
@@ -59,7 +59,7 @@ function Landing({ books }) {
     const { id } = e.target;
     const [valueOrder, valueSence] = id.split(",")
     setOrderSence([valueOrder, valueSence]);
-    orderBooks(orderSence[0], valueSence);
+    orderBooks(valueOrder, valueSence);
   };
 
   function orderBooks(type, sence) {
