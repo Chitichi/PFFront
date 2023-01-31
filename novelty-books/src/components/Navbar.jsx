@@ -107,12 +107,12 @@ const Navbar = () => {
             }
             {
               user.name ?
-                <Link href="/miPerfil">
+                <Link href="/MyProfile">
                   <button  
                   className="btn btn-outline-dark" 
                   type="submit"
                   style={{ marginLeft: 10 }}>
-                    Mi Perfil
+                    My Profile
                   </button>
                 </Link> : null
             }
