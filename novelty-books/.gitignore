@@ -27,10 +27,7 @@ yarn-error.log*
 
 # local env files
 .env
-<<<<<<< HEAD
-=======
 package-lock.json
->>>>>>> d45ff0314b067535be5847ed3b1fee21f198060d
 
 # vercel
 .vercel
