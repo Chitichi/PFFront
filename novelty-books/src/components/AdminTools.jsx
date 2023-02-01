@@ -49,7 +49,6 @@ function AdminTools() {
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
             {tool==="users"?<ListUsers listUsers={data}/>:null}
-            <button onClick={showData} >Show Data</button>
             
         </>
     )
