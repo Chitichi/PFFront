@@ -68,19 +68,12 @@ export default function DetailBook({ book }) {
 
                 <h3>Quantity:</h3>
                 <p className="quantity-desc">
-                  <span onClick={decQty}><i className="bi bi-dash"></i></span>
-                  <span >{qty}</span>
-                  <span onClick={incQty}><i className="bi bi-plus"></i></span>
+                  <span onClick={decQty}><i className="bi bi-dash m-3"></i></span>
+                  <span ><strong>{qty}</strong> </span>
+                  <span onClick={incQty}><i className="bi bi-plus m-3"></i></span>
                 </p>
               </div>
               <div className="d-flex">
-                {/* <input
-                  className="form-control text-center me-3"
-                  id="inputQuantity"
-                  type="num"
-                  value="1"
-                  style={{width: 45}}
-                /> */}
 
                 <button
                   className="btn btn-outline-dark flex-shrink-0"
