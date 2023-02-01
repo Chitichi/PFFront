@@ -3,7 +3,8 @@ import React from "react";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 
-    function MyProfile() {
+    function MyProfile({userDB}) {
+    
     const {user} = useStateContext();
     const router = useRouter(); 
     function back(){
