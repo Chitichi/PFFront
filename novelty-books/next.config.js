@@ -5,6 +5,7 @@ const nextConfig = {
   },
   env: {
     RUTA_BACK: "https://backendnoveltybooks.onrender.com"
+    // RUTA_BACK: "https://localhost:3001"
   }
 }
 
