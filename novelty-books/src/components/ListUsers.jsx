@@ -1,10 +1,16 @@
 "use client"
 import React from "react"
-import ShowList from "./ShowList"
+import ShowListUsers from "./ShowListUsers"
+import {useRouter} from "next/navigation"
 
 function ListUsers({listUsers}) {
 
     const [list, setList] = React.useState(listUsers)
+    const router = useRouter()
+
+    function goDetailUser(id) {
+        router.push(`/admin/${id}`)
+    }
 
     return (
         <>
@@ -22,7 +28,7 @@ function ListUsers({listUsers}) {
                 <option>False</option>
             </select>
            
-            <ShowList listUsers={listUsers}/>
+            <ShowListUsers listUsers={listUsers} goDetailUser={goDetailUser}/>
         </>
     )
 }
