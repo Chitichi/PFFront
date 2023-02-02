@@ -1,4 +1,9 @@
 .wrapper {
-    min-height: 580px;
+    min-height: 470px;
+    transition: transform .3s;
 }
 
+.wrapper:hover{
+    transform: translateY(5px);
+    box-shadow: 2px 2px 26px 0px rgba(0, 0, 0, 0.3);
+  }
