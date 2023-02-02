@@ -32,60 +32,63 @@ function ListUsers({ listUsers }) {
     function handleSearch(event) {
         const input = event.target.value
         setInputSearch(input)
-        filterList(input)
+        filterUsers(input, typeFilterAdmin, typeFilter)
     }
 
     function handleTypeFilter(event) {
         const { value } = event.target
         setTypeFilter(value)
+        filterUsers(inputSearch, typeFilterAdmin, value)
     }
 
-    function filterList(input) {
-        switch (typeFilter) {
-            case "todos": {
-                const newList = list.filter((user) => {
-                    const arrayTrue = propertiesToShow.map(prop => user[prop].includes(input) ? true : false)
-                    return arrayTrue.includes(true) ? true : false
-                })
-                setListToShow(newList)
-                break
-            }
-            case "id": {
-                const newList = list.filter(user => user._id.includes(input))
-                setListToShow(newList)
-                break
-            }
-            case "nombre": {
-                const newList = list.filter(user => user.name.includes(input))
-                setListToShow(newList)
-                break
-            }
-            case "correo": {
-                const newList = list.filter(user => user.email.includes(input))
-                setListToShow(newList)
-                break
+    function filterList(list, input , value) {
+        if (list.length) {
+            switch (value) {
+                case "todos": {
+                    const newList = list.filter((user) => {
+                        const arrayTrue = propertiesToShow.map(prop => user[prop].includes(input) ? true : false)
+                        return arrayTrue.includes(true) ? true : false
+                    })
+                    return newList
+                }
+                case "id": {
+                    const newList = list.filter(user => user._id.includes(input))
+                    return newList
+                }
+                case "nombre": {
+                    const newList = list.filter(user => user.name.includes(input))
+                    return newList
+                }
+                case "correo": {
+                    const newList = list.filter(user => user.email.includes(input))
+                    return newList
+                }
             }
         }
+        return list
+
     }
 
-    function filterAdmin(type) {
+    function filterAdmin(list, type) {
         if (type !== "all") {
             const newList = list.filter(user => user.rolAdmin.toString() === type)
-            setListToShow(newList)
+            return newList
         } else {
-            setListToShow(list)
+            return list
         }
 
     }
 
-    function filter() {
-
+    function filterUsers(input, type, value) {
+        let newList = filterAdmin(list, type)
+        newList = filterList(newList, input, value)
+        setListToShow(newList)
     }
 
     function handleFilterAdmin(event) {
         const { value } = event.target
         setTypeFilterAdmin(value)
-        filterAdmin(value)
+        filterUsers(inputSearch, value, typeFilter)
     }
 
     return (
