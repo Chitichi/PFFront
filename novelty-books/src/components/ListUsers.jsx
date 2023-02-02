@@ -10,7 +10,7 @@ function ListUsers({ listUsers }) {
     const [list, setList] = React.useState(listUsers)
     const [listToShow, setListToShow] = React.useState(list)
     const [typeFilter, setTypeFilter] = React.useState("todos")
-    const [typeFilterAdmin, setTypeFilterAdmin] = React.useState()
+    const [typeFilterAdmin, setTypeFilterAdmin] = React.useState("all")
     const [userSelected, setUserSelected] = React.useState({})
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
@@ -76,6 +76,11 @@ function ListUsers({ listUsers }) {
 
     }
 
+    function handleFilterAdmin(event) {
+        const {value} = event.target
+        setTypeFilterAdmin(value)
+    }
+
     return (
         <>
             <div className="container px-4 px-lg-5 my-5">
@@ -88,10 +93,10 @@ function ListUsers({ listUsers }) {
                     <option value={"correo"}>correo</option>
                 </select>
                 <label>Admin: </label>
-                <select>
-                  <option>All</option>
-                    <option>True</option>
-                    <option>False</option>
+                <select onChange={handleFilterAdmin}>
+                  <option value={"all"}>All</option>
+                    <option value={"true"}>True</option>
+                    <option value={"false"}>False</option>
                 </select>
 
                 <button onClick={goDetailUser}>Ver Detalle</button>
