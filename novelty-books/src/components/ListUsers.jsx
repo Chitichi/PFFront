@@ -10,6 +10,7 @@ function ListUsers({ listUsers }) {
     const [list, setList] = React.useState(listUsers)
     const [listToShow, setListToShow] = React.useState(list)
     const [typeFilter, setTypeFilter] = React.useState("todos")
+    const [typeFilterAdmin, setTypeFilterAdmin] = React.useState()
     const [userSelected, setUserSelected] = React.useState({})
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
@@ -68,6 +69,10 @@ function ListUsers({ listUsers }) {
     }
 
     function filterAdmin() {
+        const newlist = list.filter(user => user.rolAdmin === input)
+    }
+
+    function filter() {
 
     }
 
@@ -84,6 +89,7 @@ function ListUsers({ listUsers }) {
                 </select>
                 <label>Admin: </label>
                 <select>
+                  <option>All</option>
                     <option>True</option>
                     <option>False</option>
                 </select>
