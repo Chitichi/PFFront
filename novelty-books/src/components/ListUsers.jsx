@@ -68,8 +68,14 @@ function ListUsers({ listUsers }) {
         }
     }
 
-    function filterAdmin() {
-        const newlist = list.filter(user => user.rolAdmin === input)
+    function filterAdmin(type) {
+        if (type !== "all") {
+            const newList = list.filter(user => user.rolAdmin.toString() === type)
+            setListToShow(newList)
+        } else {
+            setListToShow(list)
+        }
+
     }
 
     function filter() {
@@ -77,8 +83,9 @@ function ListUsers({ listUsers }) {
     }
 
     function handleFilterAdmin(event) {
-        const {value} = event.target
+        const { value } = event.target
         setTypeFilterAdmin(value)
+        filterAdmin(value)
     }
 
     return (
@@ -94,7 +101,7 @@ function ListUsers({ listUsers }) {
                 </select>
                 <label>Admin: </label>
                 <select onChange={handleFilterAdmin}>
-                  <option value={"all"}>All</option>
+                    <option value={"all"}>All</option>
                     <option value={"true"}>True</option>
                     <option value={"false"}>False</option>
                 </select>
