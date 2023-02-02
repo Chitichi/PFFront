@@ -55,7 +55,8 @@ function ListUsers({ listUsers }) {
                 break
             }
             case "nombre": {
-                console.log("nombre")
+                const newList = list.filter(user => user.name.includes(input))
+                setListToShow(newList)
                 break
             }
             case "correo": {
