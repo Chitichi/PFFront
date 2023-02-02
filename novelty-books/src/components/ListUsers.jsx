@@ -60,7 +60,8 @@ function ListUsers({ listUsers }) {
                 break
             }
             case "correo": {
-                console.log("correo")
+                const newList = list.filter(user => user.email.includes(input))
+                setListToShow(newList)
                 break
             }
         }
