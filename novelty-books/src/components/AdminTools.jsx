@@ -24,7 +24,9 @@ function AdminTools() {
         //     })))
         fetch(process.env.RUTA_BACK+"/users")
             .then(response => response.json())
-            .then(data => setData(data))
+            .then(data => {
+                setData(data)})
+            .catch(error => console.log(error))
     }
 
     function usersManager() {
@@ -48,7 +50,7 @@ function AdminTools() {
             <button onClick={handleTool} name="books">Libros</button>
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
-            {tool==="users"?<ListUsers listUsers={data}/>:null}
+            {tool==="users" && data.length? <ListUsers listUsers={data}/>:null}
             
         </>
     )
