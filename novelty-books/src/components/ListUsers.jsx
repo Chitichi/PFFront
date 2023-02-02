@@ -3,6 +3,8 @@ import React from "react"
 import ShowListUsers from "./ShowListUsers"
 import { useRouter } from "next/navigation"
 
+const propertiesToShow = ["email", "name", "_id"]
+
 function ListUsers({ listUsers }) {
 
     const [list, setList] = React.useState(listUsers)
@@ -16,11 +18,15 @@ function ListUsers({ listUsers }) {
     function handleSearch(event){
         const input = event.target.value
         setInputSearch(input)
-        filter(input)
+        filterList(input)
     }
 
-    function filter(input){
-        
+    function filterList(input){
+        const newList = list.filter((user) => {
+            const arrayTrue = propertiesToShow.map(prop => user[prop].includes(input)? true: false)
+            return arrayTrue.includes(true)? true: false
+        })
+        setList(newList)
     }
 
     return (
