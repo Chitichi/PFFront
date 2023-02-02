@@ -40,12 +40,28 @@ function ListUsers({ listUsers }) {
     }
 
     function filterList(input) {
-        if (typeFilter === "todos") {
-            const newList = list.filter((user) => {
-                const arrayTrue = propertiesToShow.map(prop => user[prop].includes(input) ? true : false)
-                return arrayTrue.includes(true) ? true : false
-            })
-            setListToShow(newList)
+        switch (typeFilter) {
+            case "todos": {
+                const newList = list.filter((user) => {
+                    const arrayTrue = propertiesToShow.map(prop => user[prop].includes(input) ? true : false)
+                    return arrayTrue.includes(true) ? true : false
+                })
+                setListToShow(newList)
+                break
+            }
+            case "id": {
+                const newList = list.filter(user => user._id.includes(input))
+                setListToShow(newList)
+                break
+            }
+            case "nombre": {
+                console.log("nombre")
+                break
+            }
+            case "correo": {
+                console.log("correo")
+                break
+            }
         }
     }
 
@@ -62,7 +78,7 @@ function ListUsers({ listUsers }) {
                     <option value={"todos"}>todos</option>
                     <option value={"id"}>id</option>
                     <option value={"nombre"}>nombre</option>
-                    <option value={"corre"}>correo</option>
+                    <option value={"correo"}>correo</option>
                 </select>
                 <label>Admin: </label>
                 <select>
