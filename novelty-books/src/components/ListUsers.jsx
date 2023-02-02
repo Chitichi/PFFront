@@ -8,11 +8,23 @@ const propertiesToShow = ["email", "name", "_id"]
 function ListUsers({ listUsers }) {
 
     const [list, setList] = React.useState(listUsers)
+    const [listToShow, setListToShow] = React.useState(list)
+    const [userSelected, setUserSelected] = React.useState({})
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
 
-    function goDetailUser(id) {
-        router.push(`/admin/${id}`)
+    function goDetailUser() {
+        router.push(`/admin/${userSelected.user._id}`)
+    }
+
+    function selectUser(id, user) {
+        setUserSelected({id, user})
+        if (userSelected.id) {
+            const rowBefore = document.getElementById(userSelected.id)
+            rowBefore.className=""
+        }
+        const rowCurrent = document.getElementById(id)
+        rowCurrent.className="bg-warning"
     }
 
     function handleSearch(event){
@@ -26,7 +38,11 @@ function ListUsers({ listUsers }) {
             const arrayTrue = propertiesToShow.map(prop => user[prop].includes(input)? true: false)
             return arrayTrue.includes(true)? true: false
         })
-        setList(newList)
+        setListToShow(newList)
+    }
+
+    function filterAdmin() {
+
     }
 
     return (
@@ -46,7 +62,9 @@ function ListUsers({ listUsers }) {
                     <option>False</option>
                 </select>
 
-                <ShowListUsers listUsers={list} goDetailUser={goDetailUser} />
+                <button onClick={goDetailUser}>Ver Detalle</button>
+
+                <ShowListUsers listUsers={listToShow} goDetailUser={goDetailUser} selectUser={selectUser} />
             </div>
         </>
     )
