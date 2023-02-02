@@ -1,4 +1,4 @@
-function ShowListUsers({ listUsers, goDetailUser }) {
+function ShowListUsers({ listUsers, selectUser }) {
     return (
         <>
             <div className="container px-4 px-lg-5 my-5">
@@ -15,7 +15,7 @@ function ShowListUsers({ listUsers, goDetailUser }) {
                     </thead>
                     <tbody className="table-group-divider">
                         {listUsers.map((user, index) => (
-                            <tr key={index} onClick={(e) => { goDetailUser(user._id) }} scope="row">
+                            <tr key={index} id={index+1} onClick={(e) => { selectUser(index+1, user) }} scope="row" className={""}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user._id}</td>
                                 <td>{user.name}</td>
