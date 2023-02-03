@@ -1,14 +1,18 @@
 "use client"
 import React from "react"
 import ListUsers from "./ListUsers"
+import AdminBooks from "./AdminBooks"
 
-function AdminTools() {
+
+
+
+function AdminTools({books, updateBooks}) {
 
     const [tool, setTool] = React.useState("")
 
     function handleTool(e) {
-        console.log(e.target.name)
-        setTool(e.target.name)
+        const {name} = e.target
+        setTool(name)
     }
 
     function bringData() {
@@ -32,7 +36,10 @@ function AdminTools() {
             <button onClick={handleTool} name="books">Libros</button>
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
-            {tool==="users"?<ListUsers/>:null}
+            {
+                tool==="users" ? <ListUsers/> :
+                tool==="books" && <AdminBooks books={books} updateBooks={updateBooks}/>
+            }
             
         </>
     )
