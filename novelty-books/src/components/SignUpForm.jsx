@@ -82,7 +82,6 @@ function SignUpForm() {
         [e.target.name]: e.target.value,
       })
     );
-    
   }
 
   const handleSubmit = async (e) => {
@@ -158,94 +157,108 @@ function SignUpForm() {
   };
   useEffect(() => {
     overSubmit();
-  },[]);
+  }, []);
 
   return (
     <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
-      <div>
-        <label className={styles.formControl}>Name:</label>
-        <input
-          className={styles.formControl}
-          onChange={(e) => handleChange(e)}
-          type="text"
-          placeholder="name..."
-          value={input.name}
-          name="name"
-        />
-        {errores.name && ( //pregunto si está errors.name y si está hago un parrafo con ese error(errors.name)
-          <p>{errores.name}</p>
-        )}
-      </div>
-      <div>
-        <label className={styles.formControl}>Email:</label>
-        <input
-          className={styles.formControl}
-          onChange={(e) => handleChange(e)}
-          type="text"
-          placeholder="email..."
-          value={input.email}
-          name="email"
-        />
-        {errores.email && <p>{errores.email}</p>}
-      </div>
-      <div>
-        <label className={styles.formControl}>Password:</label>
-        <input
-          className={styles.formControl}
-          onChange={(e) => handleChange(e)}
-          type="password"
-          placeholder="password..."
-          value={input.password}
-          name="password"
-        />
-        {errores.password && <p>{errores.password}</p>}
-      </div>
-      <div>
-        <label className={styles.formControl}>Address:</label>
-        <input
-          className={styles.formControl}
-          onChange={(e) => handleChange(e)}
-          type="text"
-          placeholder="address..."
-          value={input.address}
-          name="address"
-        />
-        {errores.address && <p>{errores.address}</p>}
-      </div>
-      <div>
-        <label className={styles.formControl}>Phone Number:</label>
-        <input
-          className={styles.formControl}
-          onChange={(e) => handleChange(e)}
-          type="number"
-          placeholder="phoneNumber..."
-          value={input.phoneNumber}
-          name="phoneNumber"
-        />
-        {errores.phoneNumber && <p>{errores.phoneNumber}</p>}
-      </div>
-      <div>
-        <button
-          className={styles.buttonControl}
-          onClick={handleSubmit}
-          //   type="submit"
-
-          //   disabled={botonOff}
-        >
-          Create User
-        </button>
-      </div>
       {session ? (
         <div className="text-center">
-          Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
+          <h4>You will create your account as</h4>
+          <img src={session.user.image} />
+          <h2>{session.user.name}</h2>
+          <h3>{session.user.email}</h3>
         </div>
       ) : (
-        <div className="text-center">
-          Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </div>
+        <>
+          <div>
+            <label className={styles.formControl}>Name:</label>
+            <input
+              className={styles.formControl}
+              onChange={(e) => handleChange(e)}
+              type="text"
+              placeholder="name..."
+              value={input.name}
+              name="name"
+            />
+            {errores.name && ( //pregunto si está errors.name y si está hago un parrafo con ese error(errors.name)
+              <p>{errores.name}</p>
+            )}
+          </div>
+          <div>
+            <label className={styles.formControl}>Email:</label>
+            <input
+              className={styles.formControl}
+              onChange={(e) => handleChange(e)}
+              type="text"
+              placeholder="email..."
+              value={input.email}
+              name="email"
+            />
+            {errores.email && <p>{errores.email}</p>}
+          </div>
+          <div>
+            <label className={styles.formControl}>Password:</label>
+            <input
+              className={styles.formControl}
+              onChange={(e) => handleChange(e)}
+              type="password"
+              placeholder="password..."
+              value={input.password}
+              name="password"
+            />
+            {errores.password && <p>{errores.password}</p>}
+          </div>
+          <div>
+            <label className={styles.formControl}>Address:</label>
+            <input
+              className={styles.formControl}
+              onChange={(e) => handleChange(e)}
+              type="text"
+              placeholder="address..."
+              value={input.address}
+              name="address"
+            />
+            {errores.address && <p>{errores.address}</p>}
+          </div>
+          <div>
+            <label className={styles.formControl}>Phone Number:</label>
+            <input
+              className={styles.formControl}
+              onChange={(e) => handleChange(e)}
+              type="number"
+              placeholder="phoneNumber..."
+              value={input.phoneNumber}
+              name="phoneNumber"
+            />
+            {errores.phoneNumber && <p>{errores.phoneNumber}</p>}
+          </div>
+        </>
       )}
+
+      <div>
+        {session ? (
+          <div className="text-center">
+            Signed in as {session.user.email} <br />
+            <button onClick={() => signOut()}>Sign out</button>
+          </div>
+        ) : (
+          <div className="text-center">
+            Not signed in <br />
+            <button onClick={() => signIn()}>Sign in With Google/GitHub</button>
+          </div>
+        )}
+        <div className="text-center">
+          <button
+            className={styles.buttonControl}
+            onClick={handleSubmit}
+            //   type="submit"
+
+            //   disabled={botonOff}
+          >
+            Create User
+          </button>
+        </div>
+      </div>
     </form>
   );
 }
