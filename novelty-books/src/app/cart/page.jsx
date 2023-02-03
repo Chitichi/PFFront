@@ -41,7 +41,7 @@ function Cart () {
                     <div class="row d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
-                          src={item.image}
+                          src={item.image.secure_url}
                           className="img-fluid rounded-3"
                           alt="Cotton T-shirt"
                         />
