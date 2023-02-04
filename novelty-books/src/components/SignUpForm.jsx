@@ -146,7 +146,13 @@ function SignUpForm() {
       {session ? (
         <div className="text-center">
           <h4>You will create your account as</h4>
-          <img src={session.user.image} height="100px" />
+          <img
+            src={
+              session.user.image ||
+              "https://res.cloudinary.com/dzpp8s5po/image/upload/v1675519456/Images/rp8g2tcqxmx0kcmjhtfk.webp"
+            }
+            height="100px"
+          />
           <h2>{session.user.name}</h2>
         </div>
       ) : (
