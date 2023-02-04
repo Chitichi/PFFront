@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import style from "./page.module.css";
+import { useState } from "react";
+import style from "./page.module.css";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { useStateContext } from "context/StateContext";
@@ -82,7 +84,7 @@ function Login() {
     });
   }
   return (
-    <div>
+    <div className={style.container}>
       <form onSubmit={handleSubmit} className={style.formulario}>
         {session ? (
           <div className="text-center">

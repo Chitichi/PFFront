@@ -1,0 +1,33 @@
+.innerWrapper{
+    border: 1px solid black;
+    display: grid;
+    grid-template-areas: "a b"
+                         "c b";
+    border-radius: 10px;
+}
+
+.a {
+    grid-area: a;
+    width: 400px;
+    padding: 40px;
+}
+
+.a > img {
+    height: 100%;
+}
+
+.b {
+    grid-area: b;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.c {
+    grid-area: c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
