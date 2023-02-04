@@ -1,11 +1,12 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
+import { useLocalstorage } from "./useLocalStorage";
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useLocalstorage("cartItems", []);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [qty, setQty] = useState(1);
@@ -17,7 +18,7 @@ export const StateContext = ({ children }) => {
 
   const onAdd = (product, quantity) => {
     const checkProductInCart = cartItems.find(
-      (item) => item._id === product._id
+      (item) => item?._id === product?._id
     );
 
     setTotalPrice(
@@ -27,7 +28,7 @@ export const StateContext = ({ children }) => {
 
     if (checkProductInCart) {
       const updateCartItems = cartItems.map((cartProduct) => {
-        if (cartProduct._id === product._id)
+        if (cartProduct?._id === product?._id)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
