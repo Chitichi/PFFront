@@ -3,30 +3,13 @@ import React from "react"
 import ListUsers from "./ListUsers"
 import AdminBooks from "./AdminBooks"
 
-
-
-
-function AdminTools({books, updateBooks}) {
+function AdminTools({users, books, updateBooks}) {
 
     const [tool, setTool] = React.useState("")
-
+    
     function handleTool(e) {
         const {name} = e.target
         setTool(name)
-    }
-
-    function bringData() {
-        fetch(process.env.RUTA_BACK+"/users")
-            .then(response => response.json())
-            .then(data => data.map(user => ({
-                id: user._id,
-                name: user.name,
-                rol: user.rolAdmin
-            })))
-    }
-
-    function usersManager() {
-        
     }
 
     return (
@@ -37,8 +20,9 @@ function AdminTools({books, updateBooks}) {
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
             {
-                tool==="users" ? <ListUsers/> :
-                tool==="books" && <AdminBooks books={books} updateBooks={updateBooks}/>
+                tool==="users" ? <ListUsers listUsers={users}/> :
+                tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks}/> :
+                null
             }
             
         </>
