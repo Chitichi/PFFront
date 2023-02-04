@@ -27,7 +27,7 @@ function ShowListOrders({ listOrders, selectOrder }) {
 
                                             <div>Books <i className="bi bi-caret-down-square-fill"></i></div>
                                             <ul className='bg-secondary'>
-                                                {order.booksBought.map((book, i) => <li className="text-light">{book.title} x {book.quantity}</li>)}
+                                                {order.booksBought.map((book, i) => <li key={i} className="text-light">{book.title} x {book.quantity}</li>)}
                                             </ul>
                                         </li>
                                     </ul>
