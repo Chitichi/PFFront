@@ -51,6 +51,13 @@
     padding-left: 5px;
 }
 
+.labelPrices{
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .pricesDiv > input {
     text-align: center;
 }
@@ -58,11 +65,14 @@
 .genreOrderSence{
     display: flex;
     flex-direction: column;
-    height: 350px;
+    height: 160px;
 }
 
 .genreOrderSence > select {
-    margin-bottom: 100px;
+    border: 1px solid #d1d5db;
+    background-color: #212529;
+    color: #d1d5db;
+    text-align: center;
 }
 
 .popularBooks {
@@ -74,8 +84,21 @@
     grid-auto-flow: row;
     grid-template-columns: 3fr 1fr;
     height: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
+
+.searchDiv > input {
+    border-radius: 5px 0 0 5px;
+}
+
+.searchDiv > select {
+    border: 1px solid #d1d5db;
+    background-color: #212529;
+    color: #d1d5db;
+    border-radius: 0 5px 5px 0;
+}
+
+
 
 .link {
     text-decoration: none;
@@ -89,8 +112,8 @@
 
     /* Reset list styles */
     list-style-type: none;
-    margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .nested-dropdowns li {
@@ -101,31 +124,26 @@
 
     /* Used to position the sub nested-dropdowns */
     position: relative;
+    width: 100%;
 }
 
 /* The sub nested-dropdowns */
 .nested-dropdowns ul {
-    /* Border */
     border: 1px solid #d1d5db;
-
-    /* Hidden by default */
     display: none;
-
-    /* Absolute position */
     left: 0;
     position: absolute;
     top: 100%;
-
-    /* Reset styles */
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 236px;
+    width: 100%;
     height: 180px;
+    text-align: center;
 }
 
 .nested-dropdowns ul li {
-    height: 90px;
+    height: 45px;
 }
 
 /* The second level sub nested-dropdowns */
@@ -140,7 +158,7 @@
 
 .nested-dropdowns ul ul li {
     height: 30px;
-    padding-left: 25px;
+    text-align: center;
 }
 
 /* Change background color of list item when being hovered */
