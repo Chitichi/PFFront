@@ -1,17 +1,6 @@
 "use client"
-
-
 import React from "react";
 import styles from "./AdminBooks.module.css"
-
-const fetchBooksUpdate = async (id, requestOptions) => {
-    try{
-        const res = await fetch(process.env.RUTA_BACK+"/books/"+id, requestOptions);
-          return await res.json();
-    }catch(error){
-         return error.message
-    }
-}
 
 export default function AdminBooks({books, updateBooks}){
 
