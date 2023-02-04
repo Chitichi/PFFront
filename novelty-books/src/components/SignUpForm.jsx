@@ -164,9 +164,8 @@ function SignUpForm() {
       {session ? (
         <div className="text-center">
           <h4>You will create your account as</h4>
-          <img src={session.user.image} />
+          <img src={session.user.image} height="100px"/>
           <h2>{session.user.name}</h2>
-          <h3>{session.user.email}</h3>
         </div>
       ) : (
         <>
