@@ -96,89 +96,93 @@ const validacion=(input)=> {
    
     return (
         
-        <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
-        <div>
-            <label className={styles.formControl}>Name:</label>
-            <input
-            className={styles.formControl}
-            onChange={(e) => handleChange(e)}
-            type= "text"
-            placeholder='name...'
-            value = {input.name}
-            name = "name"
-            />
-              {errores.name && (//pregunto si está errors.name y si está hago un parrafo con ese error(errors.name) 
-                    <p>{errores.name}</p>
-                )}
-        </div>
-        <div>
-            <label className={styles.formControl}>Email:</label>
-            <input
-            className={styles.formControl}
-            onChange={(e) => handleChange(e)}
-            type= "text"
-            placeholder='email...'
-            value = {input.email}
-            name = "email"
-            />
-              {errores.email && (
-                    <p>{errores.email}</p>
-                )}
-        </div>
-        <div>
-            <label className={styles.formControl}>Password:</label>
-            <input
-            className={styles.formControl}
-            onChange={(e) => handleChange(e)}
-            type= "password"
-            placeholder='password...'
-            value = {input.password}
-            name = "password"
-            />
-              {errores.password && (
-                    <p>{errores.password}</p>
-                )}
-        </div>
-        <div>
-            <label className={styles.formControl}>Address:</label>
-            <input
-            className={styles.formControl}
-            onChange={(e) => handleChange(e)}
-            type= "text"
-            placeholder='address...'
-            value = {input.address}
-            name = "address"
-            />
-              {errores.address && (
-                    <p>{errores.address}</p>
-                )}
-        </div>
-        <div>
-            <label className={styles.formControl}>Phone Number:</label>
-            <input
-            className={styles.formControl}
-            onChange={(e) => handleChange(e)}
-            type= "number"
-            placeholder='phoneNumber...'
-            value = {input.phoneNumber}
-            name = "phoneNumber"
-            />
-              {errores.phoneNumber && (
-                    <p>{errores.phoneNumber}</p>
-                )}
-        </div>
-        <div>
-        <button
-           className= {styles.buttonControl}
-              type='submit'
-              disabled={botonOff}>
-                Create User
-            </button>
-        </div>
-        
+        <div className={styles.container}>
+            
+                <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
+                    <h2 class="card-text text-center">Sign Up</h2>
+            <div>
+                <label ><strong>Name:</strong></label>
+                <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type= "text"
+                placeholder='name...'
+                value = {input.name}
+                name = "name"
+                />
+                {errores.name && (//pregunto si está errors.name y si está hago un parrafo con ese error(errors.name) 
+                        <p>{errores.name}</p>
+                    )}
+            </div>
+            <div>
+                <label ><strong>Email</strong></label>
+                <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type= "text"
+                placeholder='email...'
+                value = {input.email}
+                name = "email"
+                />
+                {errores.email && (
+                        <p>{errores.email}</p>
+                    )}
+            </div>
+            <div>
+                <label > <strong>Password:</strong></label>
+                <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type= "password"
+                placeholder='password...'
+                value = {input.password}
+                name = "password"
+                />
+                {errores.password && (
+                        <p>{errores.password}</p>
+                    )}
+            </div>
+            <div>
+                <label > <strong>Address:</strong></label>
+                <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type= "text"
+                placeholder='address...'
+                value = {input.address}
+                name = "address"
+                />
+                {errores.address && (
+                        <p>{errores.address}</p>
+                    )}
+            </div>
+            <div>
+                <label ><strong>Phone Number:</strong></label>
+                <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type= "number"
+                placeholder='phoneNumber...'
+                value = {input.phoneNumber}
+                name = "phoneNumber"
+                />
+                {errores.phoneNumber && (
+                        <p>{errores.phoneNumber}</p>
+                    )}
+            </div>
+            <div className="text-center">
+            <button
+            className= {styles.buttonControl}
+                type='submit'
+                disabled={botonOff}>
+                    Create User
+                </button>
+            </div>
+            
 
-        
-        </form>
+            
+            </form>
+        </div>
     )
 }
 export default SignUpForm;

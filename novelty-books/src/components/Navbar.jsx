@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const pathName = usePathname();
   const { totalQuantities, user, setUser } = useStateContext();
-  const router = useRouter();
+  //const router = useRouter();
 
   function updateUser() {
     if (typeof window !== "undefined" && !user.name) {
@@ -30,9 +30,9 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container px-4 px-lg-5">
         <img style={{ height: 35 }} src="brand.png" alt="" />
-        <a className="navbar-brand" href="#!">
+         
           Novelty Books
-        </a>
+      
         <button
           className="navbar-toggler"
           type="button"
@@ -75,9 +75,26 @@ const Navbar = () => {
                 </ul>
               </div> : null
           }
+          {
+            user.rolAdmin ? // si somos administrador mostramos la ruta para el administrador.
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                  <li className="nav-item">
+                    <Link href="/admin">
+                      <button 
+                      className="btn btn-outline-dark" 
+                      type="submit" 
+                     >
+                        Admin 
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              </div> : null
+          }
 
-
-          <form className="d-flex">
+          
+          <div className="d-flex">
             <Link href="/cart">
               <button className="btn btn-outline-dark" type="submit">
                 <i className="bi-cart-fill me-1"></i>
@@ -135,7 +152,7 @@ const Navbar = () => {
                 </button>
               </Link> : null
             }
-          </form>
+          </div>
         </div>
       </div>
     </nav>
