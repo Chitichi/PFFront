@@ -75,6 +75,23 @@ const Navbar = () => {
                 </ul>
               </div> : null
           }
+          {
+            user.rolAdmin ? // si somos administrador mostramos la ruta para el administrador.
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                  <li className="nav-item">
+                    <Link href="/admin">
+                      <button 
+                      className="btn btn-outline-dark" 
+                      type="submit" 
+                     >
+                        Admin 
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              </div> : null
+          }
 
           
           <div className="d-flex">
