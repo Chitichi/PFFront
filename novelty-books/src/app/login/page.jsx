@@ -94,24 +94,23 @@ function Login() {
           </label>
         </div>
         <div className="text-center"></div>
-
+        {session ? (
+          <div className="text-center">
+            Signed in as {session.user.email} <br />
+            <button onClick={() => signOut()}>Sign out</button>
+          </div>
+        ) : (
+          <div className="text-center">
+            Not signed in <br />
+            <button onClick={() => signIn()}>Sign in with Google/GitHub</button>
+          </div>
+        )}
         <div className="text-center">
           <button className={style.button} type="submit" onClick={handleSubmit}>
             Login
           </button>
         </div>
       </form>
-      {session ? (
-        <div className="text-center">
-          Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-        </div>
-      ) : (
-        <div className="text-center">
-          Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </div>
-      )}
     </div>
   );
 }

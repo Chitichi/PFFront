@@ -3,19 +3,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import { useStateContext } from "../../context/StateContext";
 import styles from "./SignUpForm.module.css";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { SHA256 } from "crypto-js";
-import FormData from "form-data";
 
 const validacion = (input) => {
   let errores = {};
   if (!input.name) errores.name = "Name required";
   if (input.name.length > 50)
     errores.name = "The name must contain up to 50 characters";
-  //   if (!/^[a-zA-Z\s]+$/.test(input.name))
-  //     errores.name = "Invalid name, only characters allowed";
+
   if (
     !/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/.test(
       input.email
@@ -25,11 +22,7 @@ const validacion = (input) => {
   if (!input.password) errores.password = "Password required";
   if (input.password.length < 6)
     errores.password = "The password must contain at least 6 characters";
-  //   if (!/^[a-zA-Z\s]+$/.test(input.address))
-  //     errores.address = "Invalid address, only characters allowed";
-  //   if (!input.phoneNumber) errores.phoneNumber = "Phone Number required";
-  //   if (input.phoneNumber.length < 11 || input.phoneNumber.length > 25)
-  //     errores.phoneNumber = "The phone number must contain 11 to 25 characters";
+
   return errores;
 };
 
@@ -46,7 +39,7 @@ function SignUpForm() {
     phoneNumber: 0,
   });
   const [userSession, setUserSession] = useState({ ...session });
-  //   console.log("hola papi", userSession);
+
   function encrypt(data) {
     return SHA256(data).toString();
   }
@@ -58,17 +51,7 @@ function SignUpForm() {
       setBotonOff(true);
     }
   }, [errores]);
-  useEffect(() => {
-    //  if(userSession){
-    //   setInput({
-    //     name: session.user.name,
-    //     email: session.user.email,
-    //     password: encrypt(session.user.email),
-    //   });
-    //   let encrypted = encrypt("hola");
-    //   console.log("estoy desde el useEffect", encrypted);
-    // }
-  }, []);
+
   function handleChange(e) {
     e.preventDefault();
     setInput({
@@ -86,18 +69,7 @@ function SignUpForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const formData = new FormData();
-    //     if (session) {
-    //     //   formData.append("name", session.user.name);
-    //     //   formData.append("email", session.user.email);
-    //     //   formData.append("password", encrypt(session.user.email));
-    //     } else {
-    //       formData.append("name", input.name);
-    //       formData.append("email", input.email);
-    //       formData.append("password", input.password);
-    //       formData.append("address", input.address);
-    //       formData.append("phoneNumber", input.phoneNumber);
-    //   }
+
     const userSession = session
       ? {
           name: session.user.name,
@@ -110,15 +82,33 @@ function SignUpForm() {
 
     try {
       // Send a request to the server to create a new book using the form data
-      await fetch(process.env.RUTA_BACK + "/users/signup", {
+      const response = await fetch(process.env.RUTA_BACK + "/users/signup", {
         method: "POST",
         body: JSON.stringify(userSession),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      //console.log(res, "hola soy tu res")
-      //   const data = await res.json();
+
+      if (!response.ok) {
+        if (response.status === 400) {
+          Swal.fire({
+            title: "Oops! error",
+            text: "Error user register already with that email.",
+            icon: "error",
+            timer: 3000,
+          });
+          return;
+        } else {
+          Swal.fire({
+            title: "Oops! error",
+            text: "An unexpected error occurred.",
+            icon: "error",
+            timer: 3000,
+          });
+          return;
+        }
+      }
 
       Swal.fire({
         title: "User created",
@@ -130,22 +120,14 @@ function SignUpForm() {
     } catch (err) {
       Swal.fire({
         title: "Oops! error",
-        text: "Error user register already with that email.",
+        text: "An error occurred while sending the request.",
         icon: "error",
         timer: 3000,
       });
       return;
     }
-
-    setInput({
-      name: "",
-      email: "",
-      password: "",
-      address: "",
-      phoneNumber: 0,
-    });
-    router.push("/");
   };
+
   const overSubmit = () => {
     if (session) {
       setInput({
@@ -164,7 +146,7 @@ function SignUpForm() {
       {session ? (
         <div className="text-center">
           <h4>You will create your account as</h4>
-          <img src={session.user.image} height="100px"/>
+          <img src={session.user.image} height="100px" />
           <h2>{session.user.name}</h2>
         </div>
       ) : (
@@ -250,7 +232,7 @@ function SignUpForm() {
           <button
             className={styles.buttonControl}
             onClick={handleSubmit}
-            //   type="submit"
+            type="submit"
 
             //   disabled={botonOff}
           >
@@ -261,4 +243,5 @@ function SignUpForm() {
     </form>
   );
 }
+
 export default SignUpForm;
