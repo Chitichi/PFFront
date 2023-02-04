@@ -1,12 +1,9 @@
 "use client";
 import { useState } from "react";
 import style from "./page.module.css";
-import { useState } from "react";
-import style from "./page.module.css";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { useStateContext } from "context/StateContext";
-//import { useLocation } from "react-router-dom"
 import { useSession, signIn, signOut } from "next-auth/react";
 import { SHA256 } from "crypto-js";
 
