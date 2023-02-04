@@ -13,9 +13,9 @@ function Login() {
   const [passUser, setPassUser] = useState("");
   //const [, navigation] = useLocation();
 
-  function saveLocalStorage(user) {
-    localStorage.setItem("user", JSON.stringify(user));
-  }
+   function saveLocalStorage(user) {
+     localStorage.setItem("user", JSON.stringify(user));
+   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ function Login() {
       } else if (typeof data === "object") {
         setUser(data);
         saveLocalStorage(data);
-        router.push(`/`);
+        router.push(`/`);//Posible problema de hidratacion 
       }
     } catch (err) {
       console.log(err);
@@ -56,9 +56,9 @@ function Login() {
     <div className={style.container}>
         
       <form onSubmit={handleSubmit} className={style.formulario}>
-      <h2 class="card-text text-center">Log In</h2>
+      <h2 className="card-text text-center">Log In</h2>
         <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label >Email address</label>
           <input
             type="email"
             className="form-control"
