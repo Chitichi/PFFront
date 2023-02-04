@@ -68,14 +68,16 @@ const handleBuyNow = () => {
                 {book.description}
               </p>
               <div className="quantity">
-                  <h3>Quantity:</h3>
-                  <p className="quantity-desc">
-                    <span  onClick={decQty}><i class="bi bi-dash"></i></span>
-                    <span >{qty}</span>
-                    <span  onClick={incQty}><i class="bi bi-plus"></i></span>
-                  </p>
+
+                <h3>Quantity:</h3>
+                <p className="quantity-desc">
+                  <span onClick={decQty}><i className="bi bi-dash m-3"></i></span>
+                  <span ><strong>{qty}</strong> </span>
+                  <span onClick={incQty}><i className="bi bi-plus m-3"></i></span>
+                </p>
               </div>
-              <div class="d-flex">
+              <div className="d-flex">
+
                 <button
                   className="btn btn-outline-dark flex-shrink-0"
                   type="button"
