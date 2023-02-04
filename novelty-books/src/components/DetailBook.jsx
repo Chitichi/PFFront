@@ -9,15 +9,24 @@
 //     // .catch(error => alert(error.message))
 // }
 import { useStateContext } from "context/StateContext";
-export default function DetailBook({ book }) {
-  // const {ISBN} = params
-  // const book = books.filter(b => b._id ==ISBN )
-  //const book = books[0]
-  // const pathname = usePathname().slice(12)
+import Review from "./Review.jsx";
+import styles from "./DetailBook.module.css"
+
+export default function DetailBook({book}) {
+    // const {ISBN} = params
+    // const book = books.filter(b => b._id ==ISBN )
+    //const book = books[0]
+    // const pathname = usePathname().slice(12)
+    
+    
+    // const book = await fetchBook(pathname)
 
 
-  // const book = await fetchBook(pathname)
-
+//     console.log(book)
+const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useStateContext()
+const handleBuyNow = () => {
+  onAdd(book, qty);
+}
   //     const book = {
   //         _id: "63cde73486593e4087ab7b20",
   //   publishDate: "2023-01-23",
@@ -35,27 +44,21 @@ export default function DetailBook({ book }) {
   //     // const {title,author,pageCount,price,description,image} = book
 
   //     console.log(book)
-  const { decQty, incQty, qty, onAdd } = useStateContext()
-  const handleBuyNow = () => {
-    onAdd(book, qty);
-
-  }
   return (
     <>
-      <section className="py-5">
-        <div className="container px-4 px-lg-5 my-5">
-          <div className="row gx-4 gx-lg-5 align-items-center">
-            <div className="col-md-6">
+      <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+          <div class={styles.innerWrapper}>
+            <div class={styles.a}>
               <img
                 className="card-img-top mb-5 mb-md-0"
                 src={(book.image && book.image.secure_url) || book.image}
                 alt="..."
-                style={{ height: 500, width: 400 }}
               />
             </div>
-            <div className="col-md-6">
-
-              <h1 className="display-5 fw-bolder">{book.title}</h1>
+            <div class={styles.b}>
+              
+              <h1 class="display-5 fw-bolder">{book.title}</h1>
               <h3>{book.author}</h3>
               <p>{book.pageCount} pages</p>
               <div className="fs-5 mb-5">
@@ -84,6 +87,9 @@ export default function DetailBook({ book }) {
                   Add to cart
                 </button>
               </div>
+            </div>
+            <div class={styles.c}>
+                {user.name && <Review user={user} setTotalBooks={setTotalBooks}/>}
             </div>
           </div>
         </div>

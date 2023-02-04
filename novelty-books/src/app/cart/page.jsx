@@ -23,7 +23,6 @@ function Cart() {
       },
       body: JSON.stringify(cartItems),
     });
-    console.log("Libros", cartItems);
     if (response.statusCode === 500) return;
 
     const data = await response.json();
@@ -31,7 +30,7 @@ function Cart() {
     stripe.redirectToCheckout({ sessionId: data.id });
   };
   return (
-    <>
+    <div>
       <section className="h-100">
         <div className="container h-100 py-5">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -41,14 +40,14 @@ function Cart() {
               </div>
 
               {cartItems.length < 1 && (
-                <div class="row " style={{ margin: 150 }}>
-                <h1 class="card-title text-center" style={{ marginBottom: 35 }}>
+                <div className="row " style={{ margin: 150 }}>
+                <h1 className="card-title text-center" style={{ marginBottom: 35 }}>
                   <strong>Your cart is empty</strong>
                 </h1>
-                <p  class="card-text text-center" style={{fontSize:90}}><i class="bi bi-cart"></i></p>
+                <p  className="card-text text-center" style={{fontSize:90}}><i class="bi bi-cart"></i></p>
                 
-                <div class="row mt-2" style={{ margin: 10 }}>
-                  <div class="col-lg-4 offset-lg-4">
+                <div className="row mt-2" style={{ margin: 10 }}>
+                  <div className="col-lg-4 offset-lg-4">
                     
                       <button
                         type="button"
@@ -66,18 +65,17 @@ function Cart() {
 
               {cartItems.length >= 1 &&
                 cartItems.map((item, idx) => (
-                  <div key={idx} class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                      <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-md-2 col-lg-2 col-xl-2">
+                  <div key={idx} className="card rounded-3 mb-4">
+                    <div className="card-body p-4">
+                      <div className="row d-flex justify-content-between align-items-center">
+                        <div className="col-md-2 col-lg-2 col-xl-2">
                           <img
-                            src={item.image}
+                            src={item?.image.secure_url}
                             className="img-fluid rounded-3"
-                            alt="Cotton T-shirt"
                           />
                         </div>
                         <div className="col-md-3 col-lg-3 col-xl-3">
-                          <p className="lead fw-normal mb-2">{item.title}</p>
+                          <p className="lead fw-normal mb-2">{item?.title}</p>
                         </div>
                         <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                           <button
@@ -88,7 +86,7 @@ function Cart() {
                           </button>
 
                           <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                            <h5 className="mb-0">{item.quantity}</h5>
+                            <h5 className="mb-0">{item?.quantity}</h5>
                           </div>
 
                           <button
@@ -99,13 +97,9 @@ function Cart() {
                           </button>
                         </div>
                         <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h5 className="mb-0">$ {item.price}</h5>
+                          <h5 className="mb-0">$ {item?.price}</h5>
                         </div>
-                        <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" className="text-danger">
-                            <i className="fas fa-trash fa-lg"></i>
-                          </a>
-                        </div>
+                  
                       </div>
                     </div>
                   </div>
@@ -137,7 +131,7 @@ function Cart() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
