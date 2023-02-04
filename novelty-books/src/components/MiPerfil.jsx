@@ -4,7 +4,8 @@ import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 
 function MyProfile(props) {
-    const user = !props.user ? useStateContext().user : props.user
+    let {user} = useStateContext()
+    user = !props.user ? user : props.user
     const router = useRouter();
     function back() {
         router.push("/");
