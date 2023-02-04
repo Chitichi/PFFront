@@ -15,12 +15,12 @@ function ListOrders({ listOrders }) {
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
 
-    function goDetailUser() {
-        router.push(`/admin/${orderSelected.user._id}`)
+    function goDetailOrder() {
+        router.push(`/admin/orderDetail/${orderSelected.order._id}`)
     }
 
-    function selectOrder(id, user) {
-        setOrderSelected({ id, user })
+    function selectOrder(id, order) {
+        setOrderSelected({ id, order })
         if (orderSelected.id) {
             const rowBefore = document.getElementById(orderSelected.id)
             rowBefore.className = ""
@@ -114,9 +114,9 @@ function ListOrders({ listOrders }) {
                     <option value={"false"}>Pendiente</option>
                 </select>
 
-                <button onClick={goDetailUser}>Ver Detalle</button>
+                <button onClick={goDetailOrder}>Ver Detalle</button>
 
-                <ShowListOrders listOrders={listToShow} goDetailUser={goDetailUser} selectOrder={selectOrder} />
+                <ShowListOrders listOrders={listToShow} goDetailOrder={goDetailOrder} selectOrder={selectOrder} />
             </div>
         </>
     )
