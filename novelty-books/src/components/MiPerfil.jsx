@@ -3,16 +3,8 @@ import React from "react";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 
-async function fetchUser(id){
-    const res = await fetch(process.env.RUTA_BACK+`/users/${id}`)
-    const data = await res.json()
-    return data
-}
-
 function MyProfile(props) {
-    const userID = props.userID
-    const user = !userID ? useStateContext() : fetchUser(userID)
-
+    const user = !props.user? useStateContext().user: props.user
     const router = useRouter();
     function back() {
         router.push("/");
