@@ -36,7 +36,7 @@ function SignUpForm() {
     email: "",
     password: "",
     address: "",
-    phoneNumber: 0,
+    phoneNumber: "",
   });
   const [userSession, setUserSession] = useState({ ...session });
 
