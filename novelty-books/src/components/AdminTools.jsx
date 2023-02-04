@@ -9,24 +9,42 @@ import AdminBooks from "./AdminBooks"
 function AdminTools({books, updateBooks}) {
 
     const [tool, setTool] = React.useState("")
+    const [data, setData] = React.useState([])
 
+    const mount = React.useRef(true)
+    
     function handleTool(e) {
         const {name} = e.target
         setTool(name)
     }
 
     function bringData() {
+        // fetch(process.env.RUTA_BACK+"/users")
+        //     .then(response => response.json())
+        //     .then(data => data.map(user => ({
+        //         id: user._id,
+        //         name: user.name,
+        //         rol: user.rolAdmin
+        //     })))
         fetch(process.env.RUTA_BACK+"/users")
             .then(response => response.json())
-            .then(data => data.map(user => ({
-                id: user._id,
-                name: user.name,
-                rol: user.rolAdmin
-            })))
+            .then(data => {
+                setData(data)})
+            .catch(error => console.log(error))
     }
 
     function usersManager() {
         
+    }
+
+    React.useEffect(() => {
+        if(!mount.current) {    
+            bringData()
+        }
+    },[tool])
+
+    function showData() {
+        console.log(data)
     }
 
     return (
@@ -37,8 +55,9 @@ function AdminTools({books, updateBooks}) {
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
             {
-                tool==="users" ? <ListUsers/> :
-                tool==="books" && <AdminBooks books={books} updateBooks={updateBooks}/>
+                tool==="users" && data.length ? <ListUsers listUsers={data}/> :
+                tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks}/> :
+                null
             }
             
         </>
