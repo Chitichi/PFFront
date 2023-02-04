@@ -1,6 +1,8 @@
 "use client"
 import React from "react"
 import ListUsers from "./ListUsers"
+import ListOrders from "./ListOrders"
+import {db} from "../../db"
 
 function AdminTools() {
 
@@ -10,7 +12,8 @@ function AdminTools() {
     const mount = React.useRef(true)
     
     function handleTool(e) {
-        setTool(e.target.name)
+        const newTool = e.target.name
+        setTool(newTool)
         mount.current=false
     }
 
@@ -22,11 +25,22 @@ function AdminTools() {
         //         name: user.name,
         //         rol: user.rolAdmin
         //     })))
-        fetch(process.env.RUTA_BACK+"/users")
-            .then(response => response.json())
-            .then(data => {
-                setData(data)})
-            .catch(error => console.log(error))
+        // fetch(process.env.RUTA_BACK+"/users")
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setData(data)})
+        //     .catch(error => console.log(error))
+        switch (tool) {
+            case "users": {
+                setData(db.users)
+                break
+            }
+            case "orders": {
+                setData(db.orders)
+                break
+            }
+        }
+        
     }
 
     function usersManager() {
@@ -51,7 +65,8 @@ function AdminTools() {
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
             {tool==="users" && data.length? <ListUsers listUsers={data}/>:null}
-            
+            {tool==="orders" && data.length? <ListOrders listOrders={data}/>:null}
+            {/* {tool==="orders"? <ListOrders/>:null} */}
         </>
     )
 }
