@@ -1,36 +1,28 @@
-"use client"
-import React from "react";
-import { useStateContext } from "../../../context/StateContext";
-import { useRouter } from "next/navigation";
+import Purchases from "@/components/Purchases";
 
-
-
-
-function MyPurchases() {
-    const router = useRouter();
-    const {user} = useStateContext();
-    const myBooks = user.myPurchases;
-    
-    function back(){
-        if (user.name) {
-            router.push(`/profile/${user.name}`);
-          } else {
-            router.push("/");
+const myOrders = async () => {
+        try {
+          const res = await fetch(process.env.RUTA_BACK+"/orders", {
+              method: "GET",
+              body: JSON.stringify(),
+              headers: {
+                  "Content-Type": "application/json",
+                },
+            });
+       
+            const data = await res.json();
+        
+          return data
+        } catch (err) { 
+            console.log(err)
           }
         }
-    
- //   console.log(myBooks, "somos tus libros comprados");
-   
-    return (
-        <div>
-            <h1>Hola somos tus libros</h1>
-            <button
-            onClick={back}
-            >Back</button>
-         </div>
-         
-                    )
-    }
+async function MyPurchases() {
+        const orders = await myOrders()
+            return(
+                    <Purchases orders= {orders}/>
+            )
+}
     
 
 export default MyPurchases;
