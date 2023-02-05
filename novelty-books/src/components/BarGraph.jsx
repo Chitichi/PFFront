@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from 'chart.js';
-import { Doughnut, Bar, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -46,10 +46,10 @@ export default function BarGraph() {
 
     return (
         <>
-            <figure>
-                <h5>Grafico de barra</h5>
+            <div>
+                <h5>Grafico de tipo barra</h5>
                 <Bar options={optionsBar} data={dataBar} />
-            </figure>
+            </div>
         </>
     )
 }
