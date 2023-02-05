@@ -36,7 +36,7 @@ function SignUpForm() {
     email: "",
     password: "",
     address: "",
-    phoneNumber: 0,
+    phoneNumber: "",
   });
   const [userSession, setUserSession] = useState({ ...session });
 
@@ -142,105 +142,127 @@ function SignUpForm() {
   }, []);
 
   return (
-    <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
-      {session ? (
-        <div className="text-center">
-          <h4>You will create your account as</h4>
-          <img src={session.user.image} height="100px" />
-          <h2>{session.user.name}</h2>
-        </div>
-      ) : (
-        <>
-          <div>
-            <label className={styles.formControl}>Name:</label>
-            <input
-              className={styles.formControl}
-              onChange={(e) => handleChange(e)}
-              type="text"
-              placeholder="name..."
-              value={input.name}
-              name="name"
-            />
-            {errores.name && ( //pregunto si está errors.name y si está hago un parrafo con ese error(errors.name)
-              <p>{errores.name}</p>
-            )}
-          </div>
-          <div>
-            <label className={styles.formControl}>Email:</label>
-            <input
-              className={styles.formControl}
-              onChange={(e) => handleChange(e)}
-              type="text"
-              placeholder="email..."
-              value={input.email}
-              name="email"
-            />
-            {errores.email && <p>{errores.email}</p>}
-          </div>
-          <div>
-            <label className={styles.formControl}>Password:</label>
-            <input
-              className={styles.formControl}
-              onChange={(e) => handleChange(e)}
-              type="password"
-              placeholder="password..."
-              value={input.password}
-              name="password"
-            />
-            {errores.password && <p>{errores.password}</p>}
-          </div>
-          <div>
-            <label className={styles.formControl}>Address:</label>
-            <input
-              className={styles.formControl}
-              onChange={(e) => handleChange(e)}
-              type="text"
-              placeholder="address..."
-              value={input.address}
-              name="address"
-            />
-            {errores.address && <p>{errores.address}</p>}
-          </div>
-          <div>
-            <label className={styles.formControl}>Phone Number:</label>
-            <input
-              className={styles.formControl}
-              onChange={(e) => handleChange(e)}
-              type="number"
-              placeholder="phoneNumber..."
-              value={input.phoneNumber}
-              name="phoneNumber"
-            />
-            {errores.phoneNumber && <p>{errores.phoneNumber}</p>}
-          </div>
-        </>
-      )}
-
-      <div>
+    <div className={styles.container}>
+      <form className={styles.userForm} onSubmit={(e) => handleSubmit(e)}>
         {session ? (
           <div className="text-center">
-            Signed in as {session.user.email} <br />
-            <button onClick={() => signOut()}>Sign out</button>
+            <h4>You will create your account as</h4>
+            <img
+              src={
+                session.user.image ||
+                "https://res.cloudinary.com/dzpp8s5po/image/upload/v1675519456/Images/rp8g2tcqxmx0kcmjhtfk.webp"
+              }
+              height="100px"
+            />
+            <h2>{session.user.name}</h2>
           </div>
         ) : (
-          <div className="text-center">
-            Not signed in <br />
-            <button onClick={() => signIn()}>Sign in With Google/GitHub</button>
-          </div>
+          <>
+            <div>
+              <label>
+                <strong>Name:</strong>
+              </label>
+              <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="name..."
+                value={input.name}
+                name="name"
+              />
+              {errores.name && ( //pregunto si está errors.name y si está hago un parrafo con ese error(errors.name)
+                <p>{errores.name}</p>
+              )}
+            </div>
+            <div>
+              <label>
+                <strong>Email</strong>
+              </label>
+              <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="email..."
+                value={input.email}
+                name="email"
+              />
+              {errores.email && <p>{errores.email}</p>}
+            </div>
+            <div>
+              <label>
+                {" "}
+                <strong>Password:</strong>
+              </label>
+              <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type="password"
+                placeholder="password..."
+                value={input.password}
+                name="password"
+              />
+              {errores.password && <p>{errores.password}</p>}
+            </div>
+            <div>
+              <label>
+                {" "}
+                <strong>Address:</strong>
+              </label>
+              <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="address..."
+                value={input.address}
+                name="address"
+              />
+              {errores.address && <p>{errores.address}</p>}
+            </div>
+            <div>
+              <label>
+                <strong>Phone Number:</strong>
+              </label>
+              <input
+                className={styles.formControl}
+                onChange={(e) => handleChange(e)}
+                type="number"
+                placeholder="phoneNumber..."
+                value={input.phoneNumber}
+                name="phoneNumber"
+              />
+              {errores.phoneNumber && <p>{errores.phoneNumber}</p>}
+            </div>
+          </>
         )}
-        <div className="text-center">
-          <button
-            className={styles.buttonControl}
-            onClick={handleSubmit}
-            type="submit"
 
-            //   disabled={botonOff}
-          >
-            Create User
-          </button>
+        <div>
+          {session ? (
+            <div className="text-center">
+              Signed in as {session.user.email} <br />
+              <button onClick={() => signOut()}>Sign out</button>
+            </div>
+          ) : (
+            <div className="text-center">
+              Not signed in <br />
+              <button onClick={() => signIn()}>
+                Sign in With Google/GitHub
+              </button>
+            </div>
+          )}
+          <div className="text-center">
+            <button
+              className={styles.buttonControl}
+              onClick={handleSubmit}
+              type="submit"
+
+              //   disabled={botonOff}
+            >
+              Create User
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 

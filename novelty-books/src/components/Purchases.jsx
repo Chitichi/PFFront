@@ -1,36 +1,82 @@
-"use client";
+"use client"
+import React from "react";
+import { useStateContext } from "../../context/StateContext"
+import { useRouter } from "next/navigation";
 
-import getStripe from "lib/getStripe";
-import { useStateContext } from "context/StateContext";
-import { Link } from "react-router-dom";
+const Purchases = ({orders}) => {
+    const router = useRouter();
+    const {user} = useStateContext();
+    const myBooks = user.myPurchases;
+  //  console.log(orders, "HOLAAAAAAA SOY TUS ORDENES");
+     function back(){
+            router.push("/");}
 
-function Cart() {
-  const {
-    totalPrice,
-    totalQuantities,
-    cartItems,
-    toggleCartItemQuanitity,
-    onRemove,
-  } = useStateContext();
+      const myOrder = orders.filter((order) => order.userId === user._id)
+      console.log(myOrder, "HOLA PUTO");  
 
-  const handleCheckout = async () => {
-    const stripe = await getStripe();
 
-    const response = await fetch("/api/stripe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cartItems),
-    });
-    if (response.statusCode === 500) return;
-
-    const data = await response.json();
-
-    stripe.redirectToCheckout({ sessionId: data.id });
-  };
   return (
+    
     <div>
+        {myOrder.length >= 1 &&
+                myOrder.map((item, idx) => (
+                  <div key={idx} className="card rounded-3 mb-4">
+                    <div className="card-body p-4">
+                      <div className="row d-flex justify-content-between align-items-center">
+                      {
+                        item ? item.booksBought.map((book, idx)=>
+                            <div key={idx}>
+                            <div className="col-md-2 col-lg-2 col-xl-2">
+                          <img
+                            src={book.image?.secure_url}
+                            className="img-fluid rounded-3"
+                          />
+                        </div>
+                        <div className="col-md-3 col-lg-3 col-xl-3">
+                            <h3> Title: </h3>
+                          <p className="lead fw-normal mb-2">{book.title}</p>
+                        </div>
+
+
+                        <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h3> Price: </h3>
+                          <h5 className="mb-0">$ {book.price}</h5>
+                        </div>
+                        <div className="col-md-3 col-lg-3 col-xl-3">
+                        <h3> Pages: </h3>
+                          <p className="lead fw-normal mb-2">{book.pageCount}</p>
+                        </div>
+                        <div className="col-md-3 col-lg-3 col-xl-3">
+                        <h3> Ahutor: </h3>
+                          <p className="lead fw-normal mb-2">{book.author}</p>
+                        </div>
+
+                      <div className="col-md-3 col-lg-3 col-xl-3">
+                      <h3> Description: </h3>
+                          <p className="lead fw-normal mb-2">{book.description}</p>
+                        </div>
+                        
+                        </div>
+                        ):null
+                      }
+    
+                  
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                          <button
+                          onClick={back}>
+                            Back
+                          </button>
+                        </div>
+    
+  )
+   
+ //   console.log(myBooks, "somos tus libros comprados");
+   
+   /* return (
+      <div>
       <section className="h-100">
         <div className="container h-100 py-5">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -99,40 +145,25 @@ function Cart() {
                         <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                           <h5 className="mb-0">$ {item?.price}</h5>
                         </div>
-                  
+                        <div>
+                          <button
+                          onClick={back}>
+                            Back
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 ))}
 
-              {cartItems.length >= 1 && (
-                <div className="cart-bottom">
-                  <div className="total">
-                    <h3>Subtotal:</h3>
-                    <h3>${totalPrice}</h3>
-                  </div>
-                </div>
-              )}
-
-              {cartItems.length >= 1 && (
-                <div className="card">
-                  <div className="card-body">
-                    <button
-                      type="button"
-                      className="btn btn-warning btn-block btn-lg"
-                      onClick={handleCheckout}
-                    >
-                      Proceed to Pay
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
       </section>
     </div>
-  );
-}
+    
+  );*/
 
-export default Cart;
+                }
+
+export default Purchases;
