@@ -16,7 +16,7 @@ function ListUsers({ listUsers }) {
     const router = useRouter()
 
     function goDetailUser() {
-        router.push(`/admin/${userSelected.user._id}`)
+        router.push(`/admin/userDetail/${userSelected.user._id}`)
     }
 
     function selectUser(id, user) {
