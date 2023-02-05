@@ -31,6 +31,11 @@ function sortData(type, list) {
             }
             return newList
         }
+        case "books": {
+            const books = list.map(book => book.title)
+            const booksSell = list.map(book => book.sells)
+            return [books, booksSell]
+        }
     }
 }
 
@@ -38,22 +43,24 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
 
     const [dataSold, setDataSold] = React.useState(listBooks)
 
-    const listData = sortData("genre", dataSold)
+    const listGenre = sortData("genre", dataSold)
+    const listBooksSell = sortData("books", dataSold)
+
     return (
         <>
             <div className="container">
                 {/* <h3>Contenedor de graficos</h3> */}
                 <div className='row'>
                     <div className='col-6'>
-                        <DonutsGraph listData={listData} />
+                        <DonutsGraph listData={listGenre} />
                     </div>
                     <div className='col-6'>
-                        <BarGraph listBooks={listBooks} />
+                        <BarGraph listBooks={listBooksSell} />
                     </div>
                 </div>
                 <div className='row'>
                     <div className='col-8 justify-content-center align-items-center'>
-                        <LineGraph></LineGraph>
+                        <LineGraph />
                     </div>
                 </div>
 
