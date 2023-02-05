@@ -2,7 +2,6 @@
 import React from "react"
 import ListUsers from "./ListUsers"
 import ListOrders from "./ListOrders"
-import { db } from "../../db"
 
 function AdminTools() {
 
