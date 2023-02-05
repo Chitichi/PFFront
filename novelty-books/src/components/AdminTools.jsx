@@ -1,6 +1,8 @@
 "use client"
 import React from "react"
 import ListUsers from "./ListUsers"
+import ListOrders from "./ListOrders"
+import { db } from "../../db"
 
 function AdminTools() {
 
@@ -8,10 +10,12 @@ function AdminTools() {
     const [data, setData] = React.useState([])
 
     const mount = React.useRef(true)
-    
+
     function handleTool(e) {
-        setTool(e.target.name)
-        mount.current=false
+        const newTool = e.target.name
+        setTool(newTool)
+        setData([])
+        mount.current = false
     }
 
     function bringData() {
@@ -22,22 +26,46 @@ function AdminTools() {
         //         name: user.name,
         //         rol: user.rolAdmin
         //     })))
-        fetch(process.env.RUTA_BACK+"/users")
+        // fetch(process.env.RUTA_BACK + "/users")
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setData(data)
+        //     })
+        //     .catch(error => console.log(error))
+        // switch (tool) {
+        //     case "users": {
+        //         setData(db.users)
+        //         fetch(process.env.RUTA_BACK + "/users")
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 setData(data)
+        //             })
+        //             .catch(error => console.log(error))
+        //         break
+        //     }
+        //     case "orders": {
+        //         setData(db.orders)
+        //         break
+        //     }
+        // }
+        fetch(process.env.RUTA_BACK + "/" + tool)
             .then(response => response.json())
             .then(data => {
-                setData(data)})
+                setData(data)
+            })
             .catch(error => console.log(error))
+
     }
 
     function usersManager() {
-        
+
     }
 
     React.useEffect(() => {
-        if(!mount.current) {    
+        if (!mount.current) {
             bringData()
         }
-    },[tool])
+    }, [tool])
 
     function showData() {
         console.log(data)
@@ -50,8 +78,9 @@ function AdminTools() {
             <button onClick={handleTool} name="books">Libros</button>
             <button onClick={handleTool} name="orders">Ordenes</button>
             <button onClick={handleTool} name="statistics">Estadisticas</button>
-            {tool==="users" && data.length? <ListUsers listUsers={data}/>:null}
-            
+            {tool === "users" && data.length ? <ListUsers listUsers={data} /> : null}
+            {tool === "orders" && data.length ? <ListOrders listOrders={data} /> : null}
+            {/* {tool==="orders"? <ListOrders/>:null} */}
         </>
     )
 }
