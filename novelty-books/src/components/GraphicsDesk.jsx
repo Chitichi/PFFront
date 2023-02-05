@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import DonutsGraph from './DonutsGraph';
-import BarGraph from './barGraph';
+import BarGraphics from './BarGraphics';
 import LineGraph from './LineGraph';
 
 export const genre = ['fantasy', 'sci-fiction', 'horror']
 
-export function selectColors() {
-    const matrix3x3 = genre.map(() => {
+export function selectColors(row) {
+    const matrix = row.map(() => {
         const color = [0, 0, 0].map(() => {
             return Math.floor(Math.random() * 255) + 1
         })
         return color
     })
-    const listColors = matrix3x3.map(color => {
+    const listColors = matrix.map(color => {
         return "rgba(" + color.join(", ") + ", 0.2)"
     })
     const listBorderColors = listColors.map(color => {
@@ -32,9 +32,14 @@ function sortData(type, list) {
             return newList
         }
         case "books": {
-            const books = list.map(book => book.title)
-            const booksSell = list.map(book => book.sells)
-            return [books, booksSell]
+            let listSells = genre.map(() => 0)
+            let listStock = genre.map(() => 0)
+            for (const book of list) {
+                const index = genre.indexOf(book.genre[0].toLowerCase())
+                listSells[index] = index >= 0 ? listSells[index] + book.sells : listSells[index] + 0
+                listStock[index] = index >= 0 ? listStock[index] + book.stock : listStock[index] + 0
+            }
+            return [listSells, listStock]
         }
     }
 }
@@ -55,7 +60,7 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
                         <DonutsGraph listData={listGenre} />
                     </div>
                     <div className='col-6'>
-                        <BarGraph listBooks={listBooksSell} />
+                        <BarGraphics listBooks={listBooksSell} />
                     </div>
                 </div>
                 <div className='row'>
