@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from 'chart.js';
-import { Doughnut, Bar, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -28,10 +28,10 @@ export default function DoughnutGraph() {
 
     return (
         <>
-            <figure>
-                <h5>Grafico de dona</h5>
+            <div>
+                <h5>Grafico de tipo dona</h5>
                 <Doughnut data={dataDoughnut} />
-            </figure>
+            </div>
         </>
     )
 } 
