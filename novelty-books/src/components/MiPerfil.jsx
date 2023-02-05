@@ -3,15 +3,21 @@ import React from "react";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 
+
 function MyProfile(props) {
+
     let {user} = useStateContext()
     user = !props.user ? user : props.user
     const router = useRouter();
+   
     function back() {
         router.push("/");
     }
+    function editar(){
+        router.push("/FormEdit")
+    }
     return (
-        <div className="row " style={{ margin: 100 }}>
+    <div className="row " style={{ margin: 100 }}>
             {
                 user ?
                     <div className="col-lg-4 offset-lg-4">
@@ -36,15 +42,18 @@ function MyProfile(props) {
                             <p className="mt-2"><strong>Phone Number:</strong> {user.phoneNumber}</p>
                         </div>
 
-                        <div className="row mt-2" style={{ margin: 10 }}>
+                        <div className="row mt-2" style={{margin: 10 }}>
                             <div className="col-lg-4 offset-lg-4">
                                 <button className="btn btn-outline-dark" onClick={back}>
                                     Back
                                 </button>
-                            </div>
+                                <button className="btn btn-outline-dark" onClick= {editar}>
+                                    Edit
+                                </button>
+                            </div> 
                         </div>
                     </div>
-                    : null
+                   : null
             }
 
         </div>
