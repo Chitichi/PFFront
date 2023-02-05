@@ -24,8 +24,8 @@ const Purchases = ({orders}) => {
                     <div className="card-body p-4">
                       <div className="row d-flex justify-content-between align-items-center">
                       {
-                        item ? item.booksBought.map((book)=>
-                            <div>
+                        item ? item.booksBought.map((book, idx)=>
+                            <div key={idx}>
                             <div className="col-md-2 col-lg-2 col-xl-2">
                           <img
                             src={book.image?.secure_url}
