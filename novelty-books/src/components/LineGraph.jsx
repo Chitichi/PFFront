@@ -46,10 +46,10 @@ export default function LineGraph() {
     };
     return (
         <>
-            <figure>
-                <h5>Grafico de linea</h5>
+            <div>
+                <h5>Grafico de tipo linea</h5>
                 <Line options={optionsLine} data={dataLine} />
-            </figure>
+            </div>
         </>
     )
 }
