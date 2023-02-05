@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function DonutsGraph({listData}) {
 
-    const [color, border] = selectColors()
+    const [color, border] = selectColors(genre)
 
     const dataDoughnut = {
         labels: genre,
