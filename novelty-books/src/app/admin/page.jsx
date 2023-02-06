@@ -7,7 +7,7 @@ import AdminTools from "@/components/AdminTools"
 
 const Page = () => {
 
-    const { first, fetchBooksUpdate, fetchBooks } = useUpdateBooks()
+    const { first, fetchBooksUpdate, fetchBooks, fetchBooksByTitle } = useUpdateBooks()
     const { users, fetchUsers } = useUpdateUsers()
     const { orders, fetchOrders } = useUpdateOrders()
 
@@ -20,7 +20,13 @@ const Page = () => {
 
   return (
     <div>
-        <AdminTools orders={orders} users={users} books={first} updateBooks={fetchBooksUpdate}/>
+        <AdminTools 
+            orders={orders} 
+            users={users} 
+            books={first} 
+            updateBooks={fetchBooksUpdate} 
+            filterByTitle={fetchBooksByTitle}
+        />
     </div>
   )
 }
