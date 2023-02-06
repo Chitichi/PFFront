@@ -2,8 +2,9 @@
 import React from "react"
 import ListUsers from "./ListUsers"
 import AdminBooks from "./AdminBooks"
+import ListOrders from "./ListOrders"
 
-function AdminTools({users, books, updateBooks}) {
+function AdminTools({orders, users, books, updateBooks}) {
 
     const [tool, setTool] = React.useState("")
     
@@ -22,6 +23,7 @@ function AdminTools({users, books, updateBooks}) {
             {
                 tool==="users" ? <ListUsers listUsers={users}/> :
                 tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks}/> :
+                tool === "orders" ? <ListOrders listOrders={orders} /> :
                 null
             }
             
