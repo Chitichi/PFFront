@@ -32,11 +32,11 @@ export default function DetailBook({book}) {
               </p>
     
               </div>
+            </div>
               <button
                           onClick={back}>
                             Back
                           </button>
-            </div>
            
           </div>
       
