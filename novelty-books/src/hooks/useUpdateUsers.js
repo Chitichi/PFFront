@@ -16,20 +16,9 @@ const fetchUsers = async () => {
     }
 }
 
-/* const fetchUsersUpdate = async (id, requestOptions) => {
-    try{
-        const res = await fetch(process.env.RUTA_BACK+"/books/"+id, requestOptions);
-        fetchBooks()
-          return await res.json();
-    }catch(error){
-         return error.message
-    }
-} */
-
 return {
     users,
     fetchUsers,
-    //fetchBooksUpdate,
 }
 }
 
