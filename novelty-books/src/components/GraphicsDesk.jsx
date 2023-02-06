@@ -23,7 +23,7 @@ export function selectColors(row) {
 
 function sortData(type, list) {
     switch (type) {
-        case "genre": {
+        case "dona": {
             let newList = genre.map(() => 0)
             for (const book of list) {
                 const index = genre.indexOf(book.genre[0].toLowerCase())
@@ -31,7 +31,7 @@ function sortData(type, list) {
             }
             return newList
         }
-        case "books": {
+        case "barra": {
             let listSells = genre.map(() => 0)
             let listStock = genre.map(() => 0)
             for (const book of list) {
@@ -41,6 +41,16 @@ function sortData(type, list) {
             }
             return [listSells, listStock]
         }
+        case "line": {
+            let totalSell = []
+            let dates = []
+            for (const order of list) {
+                if (order.date) {
+                    const date = order.date.slice(0,10)
+                    totalSell.push(order.date.slice(0,10))}
+            }
+            return
+        }
     }
 }
 
@@ -48,8 +58,8 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
 
     const [dataSold, setDataSold] = React.useState(listBooks)
 
-    const listGenre = sortData("genre", dataSold)
-    const listBooksSell = sortData("books", dataSold)
+    const listGenre = sortData("dona", dataSold)
+    const listBooksSell = sortData("barra", dataSold)
 
     return (
         <>
@@ -63,11 +73,11 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
                         <BarGraphics listBooks={listBooksSell} />
                     </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                     <div className='col-8 justify-content-center align-items-center'>
                         <LineGraph />
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </>
