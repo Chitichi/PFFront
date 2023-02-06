@@ -3,6 +3,7 @@ import React from "react"
 import ListUsers from "./ListUsers"
 import AdminBooks from "./AdminBooks"
 import ListOrders from "./ListOrders"
+import GraphicsDesk from "./GraphicsDesk"
 
 function AdminTools({orders, users, books, updateBooks}) {
 
@@ -19,14 +20,15 @@ function AdminTools({orders, users, books, updateBooks}) {
             <button onClick={handleTool} name="users">Usuarios</button>
             <button onClick={handleTool} name="books">Libros</button>
             <button onClick={handleTool} name="orders">Ordenes</button>
-            <button onClick={handleTool} name="statistics">Estadisticas</button>
+            <button onClick={handleTool} name="graphics">Estadisticas</button>
             {
                 tool==="users" ? <ListUsers listUsers={users}/> :
                 tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks}/> :
                 tool === "orders" ? <ListOrders listOrders={orders} /> :
+                tool === "graphics" ? <GraphicsDesk listOrders={orders} listUsers={users} listBooks={books}/> :
                 null
             }
-            
+          
         </>
     )
 }
