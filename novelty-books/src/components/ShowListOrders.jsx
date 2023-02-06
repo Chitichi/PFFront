@@ -7,7 +7,7 @@ function ShowListOrders({ listOrders, selectOrder, goDetailOrder }) {
                 <div style={{ "overflow": "auto", "height": "450px" }}>
                     <table className="table table-striped table-hover table-bordered table-responsive overflow-y-scroll" >
 
-                        <thead className="table-dark">
+                        <thead className="table-dark" style={{"position":"sticky", "top":"0"}}>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">id</th>
