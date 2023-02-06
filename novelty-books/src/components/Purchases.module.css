@@ -1,0 +1,10 @@
+.a {
+    grid-area: a;
+    width: 400px;
+    padding: 40px;
+}
+
+.a > img {
+    height: 100%;
+}
+
