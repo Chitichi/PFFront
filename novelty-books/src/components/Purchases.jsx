@@ -2,6 +2,8 @@
 import React from "react";
 import { useStateContext } from "../../context/StateContext"
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 
 const Purchases = ({orders}) => {
     const router = useRouter();
@@ -27,10 +29,12 @@ const Purchases = ({orders}) => {
                         item ? item.booksBought.map((book, idx)=>
                             <div key={idx}>
                             <div className="col-md-2 col-lg-2 col-xl-2">
+                            <Link href={`/detailMyPurchases/${book._id}`}>
                           <img
                             src={book.image?.secure_url}
                             className="img-fluid rounded-3"
                           />
+                          </Link>
                         </div>
                         <div className="col-md-3 col-lg-3 col-xl-3">
                             <h3> Title: </h3>
@@ -51,10 +55,7 @@ const Purchases = ({orders}) => {
                           <p className="lead fw-normal mb-2">{book.author}</p>
                         </div>
 
-                      <div className="col-md-3 col-lg-3 col-xl-3">
-                      <h3> Description: </h3>
-                          <p className="lead fw-normal mb-2">{book.description}</p>
-                        </div>
+      
                         
                         </div>
                         ):null
