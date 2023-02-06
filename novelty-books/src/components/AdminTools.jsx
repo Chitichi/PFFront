@@ -25,7 +25,7 @@ function AdminTools({orders, users, books, updateBooks}) {
                 tool==="users" ? <ListUsers listUsers={users}/> :
                 tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks}/> :
                 tool === "orders" ? <ListOrders listOrders={orders} /> :
-                tool === "graphics" ? <GraphicsDesk listOrders={orders} listUsers={users} books={books}/> :
+                tool === "graphics" ? <GraphicsDesk listOrders={orders} listUsers={users} listBooks={books}/> :
                 null
             }
           
