@@ -15,8 +15,8 @@ function ListUsers({ listUsers }) {
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
 
-    function goDetailUser() {
-        router.push(`/admin/${userSelected.user._id}`)
+    function goDetailUser(id) {
+        router.push(`/admin/userDetail/${id}`)
     }
 
     function selectUser(id, user) {
@@ -109,7 +109,7 @@ function ListUsers({ listUsers }) {
                     <option value={"false"}>False</option>
                 </select>
 
-                <button onClick={goDetailUser}>Ver Detalle</button>
+                <button onClick={() => {goDetailUser(userSelected.user._id)}}>Ver Detalle</button>
 
                 <ShowListUsers listUsers={listToShow} goDetailUser={goDetailUser} selectUser={selectUser} />
             </div>

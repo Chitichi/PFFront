@@ -1,15 +1,12 @@
 "use client";
-import { useStateContext } from "context/StateContext";
 import styles from "./DetailBook.module.css"
+import { useRouter } from "next/navigation";
 
 export default function DetailBook({book}) {
-
-const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useStateContext()
-
-  const handleBuyNow = () => {
-    onAdd(book, qty);
-  }
-  
+    const router = useRouter();
+    function back(){
+        router.push("/myPurchases");}
+ 
   return (
     <>
       <section class="py-5">
@@ -33,29 +30,16 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
               <p className="lead">
                 {book.description}
               </p>
-              <div className="quantity">
-
-                <h3>Quantity:</h3>
-                <p className="quantity-desc">
-                  <span onClick={decQty}><i className="bi bi-dash m-3"></i></span>
-                  <span ><strong>{qty}</strong> </span>
-                  <span onClick={incQty}><i className="bi bi-plus m-3"></i></span>
-                </p>
-              </div>
-              <div className="d-flex">
-
-                <button
-                  className="btn btn-outline-dark flex-shrink-0"
-                  type="button"
-                  onClick={() => onAdd(book, qty)}
-                >
-                  <i className="bi-cart-fill me-1"></i>
-                  Add to cart
-                </button>
+    
               </div>
             </div>
+              <button
+                          onClick={back}>
+                            Back
+                          </button>
+           
           </div>
-        </div>
+      
       </section>
 
     </>
