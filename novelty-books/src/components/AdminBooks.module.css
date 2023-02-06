@@ -1,0 +1,92 @@
+.wrapper {
+    width: 80%;
+    height: fit-content;
+    margin: 10px auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.bookWrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-areas: "title  title  title"
+                          "img  stock  options"
+                          "img  stock  options"
+                          "img  stock  options";
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 0;
+    height: 200px;
+}
+
+.bookWrapper > *{
+    margin: 0;
+}
+.bookWrapper > div:last-child {
+    grid-area: options;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.bookWrapper > div:last-child > * {
+    text-align: center;
+    border-radius: 5px;
+}
+
+.bookWrapper > div:last-child > button {
+    color: white;
+    background-color: #212529;
+}
+
+.bookWrapper > div:last-child > button:hover {
+    color: white;
+    background-color: rgba(0, 128, 0, 0.567);
+    transform: scale(1.05);
+}
+
+.bookWrapper > div:first-child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: img;
+}
+
+.bookWrapper > div > img {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.bookWrapper > h4{
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212529;
+    color: white;
+    border-radius: 3px 3px 0 0;
+    height: 35px;
+}
+
+.bookWrapper > h5:nth-child(3){
+    grid-area: stock;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #212529;
+    color: white;
+    margin: auto 0;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.bookWrapper > h5:nth-child(3) > span{
+    font-size: 30px;
+}
