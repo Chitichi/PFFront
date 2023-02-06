@@ -1,6 +1,6 @@
 import styles from './ShowListOrders.module.css'
 
-function ShowListOrders({ listOrders, selectOrder }) {
+function ShowListOrders({ listOrders, selectOrder, goDetailOrder }) {
     return (
         <>
             <div className="container px-4 px-lg-5 my-5">
@@ -17,7 +17,9 @@ function ShowListOrders({ listOrders, selectOrder }) {
                     </thead>
                     <tbody className="table-group-divider">
                         {listOrders.map((order, index) => (
-                            <tr key={index} id={index + 1} onClick={(e) => { selectOrder(index + 1, order) }} scope="row" className={""}>
+                            <tr key={index} id={index + 1} scope="row" className={""}
+                            onClick={(e) => { selectOrder(index + 1, order) }}
+                            onDoubleClick={() => { goDetailOrder(order._id) }}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{order._id}</td>
                                 <td>{order.userId}</td>
