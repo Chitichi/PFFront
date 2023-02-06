@@ -6,11 +6,16 @@ import { useStateContext } from "context/StateContext";
 const Success = () => {
   const { cartItems, user,setCartItems } = useStateContext();
 
+  const totalPrice = cartItems.map(book => book.price * book.quantity).reduce((prev,current) => prev + current,0);
+  console.log("Precio Total: ",totalPrice);
+
   const orders = {
     userId: user._id,
     email: user.email,
     booksBought: cartItems,
+    total: totalPrice
   };
+  console.log(orders)
   const sentOrder= async() => {
 
     const response= await fetch(process.env.RUTA_BACK +'/orders',{
