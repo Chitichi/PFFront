@@ -5,7 +5,7 @@ function ShowListUsers({ listUsers, selectUser, goDetailUser }) {
                 <div style={{ "overflow": "auto", "height": "450px" }}>
                     <table className="table table-striped table-hover table-bordered" >
 
-                        <thead className="table-dark">
+                        <thead className="table-dark" style={{"position":"sticky", "top":"0"}}>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">id</th>
