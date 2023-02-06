@@ -1,6 +1,5 @@
 "use client";
 import { useStateContext } from "context/StateContext";
-import Review from "./Review.jsx";
 import styles from "./DetailBook.module.css"
 
 export default function DetailBook({book}) {
@@ -54,9 +53,6 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
                   Add to cart
                 </button>
               </div>
-            </div>
-            <div class={styles.c}>
-                {user.name && <Review user={user} setTotalBooks={setTotalBooks}/>}
             </div>
           </div>
         </div>
