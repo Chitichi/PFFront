@@ -1,11 +1,7 @@
 
-import ForgetPassword from "@/components/ForgetPassword";
+const pass = () => (
+    <>
     
-function ForgetPass() {
-            return(
-             <ForgetPassword/>
-            )
-}
-    
-
-export default ForgetPass;
+    </>
+  )
+  export default pass;
