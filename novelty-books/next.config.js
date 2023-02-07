@@ -4,8 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   env: {
-    RUTA_BACK: "https://backendnoveltybooks.onrender.com",
-    // RUTA_BACK: "https://localhost:3001",
+    // RUTA_BACK: "https://backendnoveltybooks.onrender.com",
+    RUTA_BACK: "http://localhost:3001",
     
   },
 };
