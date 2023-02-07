@@ -34,7 +34,10 @@ export default function DetailBook({book}) {
               </div>
             </div>
               <button
-                          onClick={back}>
+                          onClick={back}
+                          className="btn btn-outline-dark flex-shrink-0"
+                          type="button">
+                            
                             Back
                           </button>
            
