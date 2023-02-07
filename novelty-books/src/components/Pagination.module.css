@@ -1,0 +1,13 @@
+
+.ul {
+  list-style: none;
+  text-align: center;
+}
+
+.ul p {
+  display: inline-block;
+  margin-right: 35px;
+  cursor: pointer;
+}
+
+
