@@ -5,7 +5,7 @@ import AdminBooks from "./AdminBooks"
 import ListOrders from "./ListOrders"
 import GraphicsDesk from "./GraphicsDesk"
 
-function AdminTools({orders, users, books, updateBooks}) {
+function AdminTools({orders, users, books, updateBooks, filterByTitle}) {
 
     const [tool, setTool] = React.useState("users")
     
@@ -23,7 +23,7 @@ function AdminTools({orders, users, books, updateBooks}) {
             <button onClick={handleTool} name="graphics">Estadisticas</button>
             {
                 tool==="users" ? <ListUsers listUsers={users}/> :
-                tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks}/> :
+                tool==="books" ? <AdminBooks books={books} updateBooks={updateBooks} filterByTitle={filterByTitle}/> :
                 tool === "orders" ? <ListOrders listOrders={orders} /> :
                 tool === "graphics" ? <GraphicsDesk listOrders={orders} listUsers={users} listBooks={books}/> :
                 null

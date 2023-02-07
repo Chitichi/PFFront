@@ -7,6 +7,7 @@ import PaginateListItems from "./PaginateListItems";
 const propertiesToShow = ["userId", "_id", "total"];
 
 function ListOrders({ listOrders }) {
+
   const list = listOrders;
   const [listToShow, setListToShow] = React.useState(list);
   const [typeFilter, setTypeFilter] = React.useState("todos");
@@ -28,6 +29,7 @@ function ListOrders({ listOrders }) {
     if (orderSelected.id) {
       const rowBefore = document.getElementById(orderSelected.id);
       rowBefore.className = "";
+
     }
     const rowCurrent = document.getElementById(id);
     rowCurrent.className = "bg-warning";
@@ -81,6 +83,7 @@ function ListOrders({ listOrders }) {
         }
       }
     }
+
     return list;
   }
 
@@ -158,6 +161,7 @@ function ListOrders({ listOrders }) {
       </div>
     </>
   );
+
 }
 
 export default ListOrders;

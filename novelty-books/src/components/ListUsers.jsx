@@ -12,11 +12,13 @@ function ListUsers({ listUsers }) {
 
   const [current, setCurrent] = React.useState(0);
 
+
   const [typeFilter, setTypeFilter] = React.useState("todos");
   const [typeFilterAdmin, setTypeFilterAdmin] = React.useState("all");
   const [userSelected, setUserSelected] = React.useState({});
   const [inputSearch, setInputSearch] = React.useState("");
   const router = useRouter();
+
 
   const itemPerPage = 10;
   const listToShowPaginate = listToShow.slice(current, current + itemPerPage);
@@ -83,6 +85,7 @@ function ListUsers({ listUsers }) {
     } else {
       return list;
     }
+
   }
 
   function filterUsers(input, type, value) {
@@ -148,6 +151,7 @@ function ListUsers({ listUsers }) {
       </div>
     </>
   );
+
 }
 
 export default ListUsers;
