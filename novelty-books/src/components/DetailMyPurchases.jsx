@@ -1,5 +1,5 @@
 "use client";
-import styles from "./DetailBook.module.css"
+import styles from "./DetailBook/DetailBook.module.css"
 import { useRouter } from "next/navigation";
 
 export default function DetailBook({book}) {

@@ -1,7 +1,7 @@
 "use client";
 import { useStateContext } from "context/StateContext";
 import styles from "./DetailBook.module.css"
-import Review from "./Review.jsx";
+import Review from "../ReviewFolder/Review";
 
 export default function DetailBook({book}) {
 

@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import ShowListOrders from "./ShowListOrders";
+import ShowListOrders from "./ShowListOrders/ShowListOrders";
 import { useRouter } from "next/navigation";
 import PaginateListItems from "./PaginateListItems";
+
 
 const propertiesToShow = ["userId", "_id", "total"];
 

@@ -1,4 +1,4 @@
-import Purchases from "@/components/Purchases";
+import Purchases from "@/components/Purchases/Purchases";
 
 const myOrders = async () => {
         try {

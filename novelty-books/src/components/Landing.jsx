@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Card from "./Card";
+import Card from "./Card/Card";
 import Link from "next/link";
-import styles from "./Home.module.css";
+import styles from './HomeFolder/Home.module.css'
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
