@@ -21,7 +21,7 @@ function ShowListUsers({ listUsers, selectUser, goDetailUser, current}) {
                                 <tr key={index} id={index + 1} scope="row" className={""}
                                     onClick={(e) => { selectUser(index + 1, user) }}
                                     onDoubleClick={() => { goDetailUser(user._id) }}>
-
+                                    
                                     <th scope="row">{current + index + 1}</th>
 
                                     <td>{user._id}</td>

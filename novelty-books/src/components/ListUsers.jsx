@@ -12,13 +12,11 @@ function ListUsers({ listUsers }) {
 
   const [current, setCurrent] = React.useState(0);
 
-
   const [typeFilter, setTypeFilter] = React.useState("todos");
   const [typeFilterAdmin, setTypeFilterAdmin] = React.useState("all");
   const [userSelected, setUserSelected] = React.useState({});
   const [inputSearch, setInputSearch] = React.useState("");
   const router = useRouter();
-
 
   const itemPerPage = 10;
   const listToShowPaginate = listToShow.slice(current, current + itemPerPage);
@@ -60,11 +58,13 @@ function ListUsers({ listUsers }) {
             return arrayTrue.includes(true) ? true : false;
           });
           return newList;
+
         }
         case "id": {
           const newList = list.filter((user) => user._id.includes(input));
           return newList;
         }
+        
         case "nombre": {
           const newList = list.filter((user) => user.name.includes(input));
           return newList;
@@ -74,6 +74,7 @@ function ListUsers({ listUsers }) {
           return newList;
         }
       }
+
     }
     return list;
   }

@@ -60,11 +60,13 @@ function ListOrders({ listOrders }) {
             return arrayTrue.includes(true) ? true : false;
           });
           return newList;
+
         }
         case "id": {
           const newList = list.filter((order) => order._id.includes(input));
           return newList;
         }
+        
         case "userID": {
           const newList = list.filter((order) => order.userId.includes(input));
           return newList;

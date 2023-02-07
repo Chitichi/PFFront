@@ -1,7 +1,7 @@
 import styles from "./ShowListOrders.module.css";
 
+function ShowListOrders({ listOrders, selectOrder, current, goDetailOrder }) {
 
-function ShowListOrders({ listOrders, selectOrder, current }) {
   return (
     <>
       <div className="container px-4 px-lg-5 my-5 overflow-y-scroll">
