@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathName = usePathname();
-  const { totalQuantities, user, setUser } = useStateContext();
+  const { cartItems,totalQuantities,setTotalQuantities, user, setUser } = useStateContext();
   //const router = useRouter();
 
   function updateUser() {
@@ -17,8 +17,14 @@ const Navbar = () => {
     }
   }
 
+  const subQuantities = cartItems
+      .map((q) => q?.quantity)
+      .reduce((prev, current) => prev + current, 0);
+      
+
   React.useEffect(() => {
     updateUser()
+    setTotalQuantities(subQuantities);
   }, [updateUser])
 
   function logout() {
@@ -99,29 +105,10 @@ const Navbar = () => {
               <button className="btn btn-outline-dark" type="submit">
                 <i className="bi-cart-fill me-1"></i>
                 Cart
-                <span className="badge bg-dark text-white ms-1 rounded-pill">{totalQuantities}</span>
+                <span className="badge bg-dark text-white ms-1 rounded-pill">{subQuantities}</span>
               </button>
             </Link>
-            {
-              user.name ?
-                <Link href="/">
-                  <button
-                    onClick={logout}
-                    style={{ marginLeft: 10 }}
-                    className="btn btn-outline-dark"
-                    type="submit">
-                    Logout
-                  </button>
-                </Link> :
-                <Link href="/login">
-                  <button
-                    style={{ marginLeft: 10 }}
-                    className="btn btn-outline-dark"
-                    type="submit">
-                    Login
-                  </button>
-                </Link>
-            }
+            
             {
               user.name ?
                 <Link href="/MyProfile">
@@ -151,6 +138,26 @@ const Navbar = () => {
                   Create Book
                 </button>
               </Link> : null
+            }
+            {
+              user.name ?
+                <Link href="/">
+                  <button
+                    onClick={logout}
+                    style={{ marginLeft: 10 }}
+                    className="btn btn-outline-dark"
+                    type="submit">
+                    Logout
+                  </button>
+                </Link> :
+                <Link href="/login">
+                  <button
+                    style={{ marginLeft: 10 }}
+                    className="btn btn-outline-dark"
+                    type="submit">
+                    Login
+                  </button>
+                </Link>
             }
           </div>
         </div>
