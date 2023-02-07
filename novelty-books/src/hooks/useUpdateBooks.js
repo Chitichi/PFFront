@@ -16,6 +16,16 @@ const fetchBooks = async () => {
     }
 }
 
+const fetchBooksByTitle = async (title) => {
+    try{
+        const res = await axios(process.env.RUTA_BACK+"/books/search/title?q="+title);
+        setfirst(res.data)
+        return first;
+    }catch(error){
+        return error.message
+    }
+}
+
 const fetchBooksUpdate = async (id, requestOptions) => {
     try{
         const res = await fetch(process.env.RUTA_BACK+"/books/"+id, requestOptions);
@@ -29,6 +39,7 @@ const fetchBooksUpdate = async (id, requestOptions) => {
 return {
     first,
     fetchBooks,
+    fetchBooksByTitle,
     fetchBooksUpdate,
 }
 }
