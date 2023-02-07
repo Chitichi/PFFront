@@ -20,13 +20,16 @@ const Page = () => {
 
   return (
     <div>
+      {
+        orders.length && users.length && first.length?
         <AdminTools 
             orders={orders} 
             users={users} 
             books={first} 
             updateBooks={fetchBooksUpdate} 
             filterByTitle={fetchBooksByTitle}
-        />
+        />: null
+      }
     </div>
   )
 }
