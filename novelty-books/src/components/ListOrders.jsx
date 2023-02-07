@@ -15,8 +15,8 @@ function ListOrders({ listOrders }) {
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
 
-    function goDetailOrder() {
-        router.push(`/admin/orderDetail/${orderSelected.order._id}`)
+    function goDetailOrder(id) {
+        router.push(`/admin/orderDetail/${id}`)
     }
 
     function selectOrder(id, order) {
@@ -114,7 +114,7 @@ function ListOrders({ listOrders }) {
                     <option value={"false"}>Pendiente</option>
                 </select>
 
-                <button onClick={goDetailOrder}>Ver Detalle</button>
+                <button onClick={() => {goDetailOrder(orderSelected.order._id)}}>Ver Detalle</button>
 
                 <ShowListOrders listOrders={listToShow} goDetailOrder={goDetailOrder} selectOrder={selectOrder} />
             </div>
