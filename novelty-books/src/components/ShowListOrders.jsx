@@ -1,6 +1,6 @@
 import styles from './ShowListOrders.module.css'
 
-function ShowListOrders({ listOrders, selectOrder, goDetailOrder }) {
+function ShowListOrders({ listOrders, selectOrder, current }) {
     return (
         <>
             <div className="container px-4 px-lg-5 my-5 overflow-y-scroll" >
@@ -21,7 +21,7 @@ function ShowListOrders({ listOrders, selectOrder, goDetailOrder }) {
                                 <tr key={index} id={index + 1} scope="row" className={""}
                                     onClick={(e) => { selectOrder(index + 1, order) }}
                                     onDoubleClick={() => { goDetailOrder(order._id) }}>
-                                    <th scope="row">{index + 1}</th>
+                                    <th scope="row">{current + index + 1}</th>
                                     <td>{order._id}</td>
                                     <td>{order.userId}</td>
                                     <td>

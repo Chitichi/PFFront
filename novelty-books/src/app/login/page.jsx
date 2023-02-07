@@ -129,7 +129,7 @@ function Login() {
         ) : (
           <div className="text-center">
             Not signed in <br />
-            <button onClick={() => signIn()}>Sign in with Google/GitHub</button>
+            <button onClick={() => signIn()}>Sign in with Google</button>
           </div>
         )}
         <div className="text-center">

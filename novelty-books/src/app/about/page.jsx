@@ -5,3 +5,14 @@ function About() {
 }
 
 export default About
+
+// import React from 'react';
+
+// const About = () => (
+//   <div>
+//     <h1>About Page</h1>
+//     <p>Información sobre la página y la empresa.</p>
+//   </div>
+// );
+
+// export default About;

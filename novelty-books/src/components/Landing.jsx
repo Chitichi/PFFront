@@ -6,6 +6,8 @@ import styles from './Home.module.css'
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import Paginate from "./Paginate"
+
 
 function Landing({ books }) {
   const { user, setUser } = useStateContext();
@@ -34,6 +36,19 @@ function Landing({ books }) {
       userLocalStorage ? setUser(userLocalStorage) : null
     }
   }
+
+  const [order, setOrder] = useState("");
+  const [booksPerPage, setBooksPerPage] = useState(6);
+  const [currentpage, setCurrentPage] = useState(1)
+
+
+  const indexOfLastBook = currentpage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = home.arrayBooks.slice(indexOfFirstBook, indexOfLastBook);
+
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   function changePrice(e) {
     const name = e.target.name;
@@ -116,8 +131,8 @@ function Landing({ books }) {
         <div className="container px-4 px-lg-5 my-5">
           <div className="text-center text-white">
             <h1 className="display-4 fw-bolder">{
-              user.name?
-                `Welcome ${user.name[0].toUpperCase()+user.name.slice(1).toLowerCase()}`:
+              user.name ?
+                `Welcome ${user.name[0].toUpperCase() + user.name.slice(1).toLowerCase()}` :
                 "Novelty Books"
             }</h1>
           </div>
@@ -133,23 +148,23 @@ function Landing({ books }) {
               <div className="container-fluid">
                 <form className="d-flex" role="search">
 
-                    <div className={styles.searchDiv}>
-                      <input
-                        className="form-control me-2"
-                        type="search"
-                        name="searchInput"
-                        placeholder="Search"
-                        aria-label="Search"
-                        onChange={handleChanges}
-                      ></input>
+                  <div className={styles.searchDiv}>
+                    <input
+                      className="form-control me-2"
+                      type="search"
+                      name="searchInput"
+                      placeholder="Search"
+                      aria-label="Search"
+                      onChange={handleChanges}
+                    ></input>
 
-                      <select name="typeSearch" onChange={handleChanges}>
-                        <option value="title">Title</option>
-                        <option value="author">Author</option>
-                      </select>
-                    </div>
-                  
-                  <hr/>
+                    <select name="typeSearch" onChange={handleChanges}>
+                      <option value="title">Title</option>
+                      <option value="author">Author</option>
+                    </select>
+                  </div>
+
+                  <hr />
 
                   <label className={styles.labelPrices}>Rango de precios:
 
@@ -174,7 +189,7 @@ function Landing({ books }) {
                     </div>
                   </label>
 
-                  <hr/>
+                  <hr />
 
                   <div className={styles.genreOrderSence}>
                     <select name="genreState" onChange={handleChanges}>
@@ -191,35 +206,41 @@ function Landing({ books }) {
                       )}
                     </select>
                   </div>
-                    <ul className={`${styles["nested-dropdowns"]}`}>
-                      <li>
-                        <div >
-                          Ordenar por: 
-                          {orderSence[0]==="abc" && orderSence[1]==="as"?" A-Z":null}
-                          {orderSence[0]==="abc" && orderSence[1]==="des"?" Z-A":null}
-                          {orderSence[0]==="price" && orderSence[1]==="as"?" Menor precio":null}
-                          {orderSence[0]==="price" && orderSence[1]==="des"?" Mayor precio":null}
-                          <i className="bi bi-caret-down-square-fill" style={{position:"absolute",right: 5}}></i>
-                        </div>
-                        <ul>
-                          <li onClick={handleOrder} id="abc,as" className="typeSence">A-Z</li>
-                          <li onClick={handleOrder} id="abc,des" className="typeSence">Z-A</li>
+                  <ul className={`${styles["nested-dropdowns"]}`}>
+                    <li>
+                      <div >
+                        Ordenar por:
+                        {orderSence[0] === "abc" && orderSence[1] === "as" ? " A-Z" : null}
+                        {orderSence[0] === "abc" && orderSence[1] === "des" ? " Z-A" : null}
+                        {orderSence[0] === "price" && orderSence[1] === "as" ? " Menor precio" : null}
+                        {orderSence[0] === "price" && orderSence[1] === "des" ? " Mayor precio" : null}
+                        <i className="bi bi-caret-down-square-fill" style={{ position: "absolute", right: 5 }}></i>
+                      </div>
+                      <ul>
+                        <li onClick={handleOrder} id="abc,as" className="typeSence">A-Z</li>
+                        <li onClick={handleOrder} id="abc,des" className="typeSence">Z-A</li>
 
-                          <li onClick={handleOrder} id="price,as" className="typeSence">Menor precio</li>
-                          <li onClick={handleOrder} id="price,des" className="typeSence">Mayor precio</li>
-                        </ul>
-                      </li>
-                    </ul>
+                        <li onClick={handleOrder} id="price,as" className="typeSence">Menor precio</li>
+                        <li onClick={handleOrder} id="price,des" className="typeSence">Mayor precio</li>
+                      </ul>
+                    </li>
+                  </ul>
 
                 </form>
               </div>
             </nav>
           </div>
-
+          <div>
+            <Paginate
+              booksPerPage={booksPerPage
+              } allBooks={home.arrayBooks} pagination={paginado}
+            />
+          
           <div
             className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
           >
-            {home.arrayBooks
+
+            {currentBooks
               .filter((item) => {
                 return home.searchInput.toLowerCase() === ""
                   ? item
@@ -242,6 +263,7 @@ function Landing({ books }) {
                 );
               })}
 
+          </div>
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 import React from "react"
 import ShowListUsers from "./ShowListUsers"
 import { useRouter } from "next/navigation"
+import PaginateListItems from "./PaginateListItems"
 
 const propertiesToShow = ["email", "name", "_id"]
 
@@ -9,16 +10,22 @@ function ListUsers({ listUsers }) {
 
     const [list, setList] = React.useState(listUsers)
     const [listToShow, setListToShow] = React.useState(list)
+  
+    const [current, setCurrent] = React.useState(0)
+   
     const [typeFilter, setTypeFilter] = React.useState("todos")
     const [typeFilterAdmin, setTypeFilterAdmin] = React.useState("all")
     const [userSelected, setUserSelected] = React.useState({})
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
 
+    const itemPerPage=50
+    const listToShowPaginate=listToShow.slice(current, current+itemPerPage)
+
     function goDetailUser(id) {
         router.push(`/admin/userDetail/${id}`)
     }
-
+    
     function selectUser(id, user) {
         setUserSelected({ id, user })
         if (userSelected.id) {
@@ -91,6 +98,13 @@ function ListUsers({ listUsers }) {
         filterUsers(inputSearch, value, typeFilter)
     }
 
+    function move(event) {
+        const moved = event.target.value
+        moved === ">"?
+        setCurrent(current => current+itemPerPage):
+        setCurrent(current => current-itemPerPage)
+    }
+
     return (
         <>
             <div className="container px-4 px-lg-5 my-5">
@@ -110,8 +124,8 @@ function ListUsers({ listUsers }) {
                 </select>
 
                 <button onClick={() => {goDetailUser(userSelected.user._id)}}>Ver Detalle</button>
-
-                <ShowListUsers listUsers={listToShow} goDetailUser={goDetailUser} selectUser={selectUser} />
+                <PaginateListItems current={current} itemPerPage={itemPerPage} allItems={listToShow.length} move={move}/>
+                <ShowListUsers listUsers={listToShowPaginate} goDetailUser={goDetailUser} selectUser={selectUser} current={current} />
             </div>
         </>
     )
