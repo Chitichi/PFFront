@@ -9,6 +9,7 @@ const propertiesToShow = ["email", "name", "_id"];
 function ListUsers({ listUsers }) {
   const [list, setList] = React.useState(listUsers);
   const [listToShow, setListToShow] = React.useState(list);
+  const [isDeleted, setIsDeleted] = React.useState(false)
 
   const [current, setCurrent] = React.useState(0);
 
@@ -133,6 +134,11 @@ function ListUsers({ listUsers }) {
         >
           Ver Detalle
         </button>
+
+        <div className="form-check form-switch">
+        <input className={`form-check-input ${isDeleted?"bg-danger":"bg-success"}`} type={"checkbox"} role={"switch"} id={"flexSwitchCheckDefault"} value={isDeleted} onClick={(e) => {setIsDeleted((isDeleted) => (!isDeleted))}}></input>
+        </div>
+        
         <PaginateListItems
           current={current}
           itemPerPage={itemPerPage}
