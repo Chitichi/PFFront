@@ -1,7 +1,7 @@
 "use client"
 import React from "react"
 import ListUsers from "./ListUsers"
-import AdminBooks from "./AdminBooks"
+import AdminBooks from "./AdminBooks/AdminBooks"
 import ListOrders from "./ListOrders"
 import GraphicsDesk from "./GraphicsDesk"
 

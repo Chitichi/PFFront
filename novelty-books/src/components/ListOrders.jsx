@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import ShowListOrders from "./ShowListOrders"
+import ShowListOrders from "./ShowListOrders/ShowListOrders"
 import { useRouter } from "next/navigation"
 
 const propertiesToShow = ["booksBought", "userId", "_id", "total"]
