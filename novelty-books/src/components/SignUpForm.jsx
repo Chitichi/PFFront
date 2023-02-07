@@ -245,7 +245,7 @@ function SignUpForm() {
             <div className="text-center">
               Not signed in <br />
               <button onClick={() => signIn()}>
-                Sign in With Google/GitHub
+                Sign in With Google
               </button>
             </div>
           )}
