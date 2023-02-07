@@ -7,8 +7,11 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [cartItems, setCartItems] = useLocalstorage("cartItems", []);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalQuantities, setTotalQuantities] = useState(0);
+  const [totalPrice, setTotalPrice] = useLocalstorage("totalPrice", 0);
+  const [totalQuantities, setTotalQuantities] = useLocalstorage(
+    "totalQuantities",
+    0
+  );
   const [qty, setQty] = useState(1);
   const [user, setUser] = useState({});
   const [totalBooks, setTotalBooks] = useState({});
@@ -20,11 +23,6 @@ export const StateContext = ({ children }) => {
     const checkProductInCart = cartItems.find(
       (item) => item?._id === product?._id
     );
-
-    setTotalPrice(
-      (prevTotalPrice) => prevTotalPrice + product.price * quantity
-    );
-    setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
     if (checkProductInCart) {
       const updateCartItems = cartItems.map((cartProduct) => {
