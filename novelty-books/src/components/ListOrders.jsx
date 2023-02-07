@@ -2,8 +2,9 @@
 import React from "react"
 import ShowListOrders from "./ShowListOrders"
 import { useRouter } from "next/navigation"
+import PaginateListItems from "./PaginateListItems"
 
-const propertiesToShow = ["booksBought", "userId", "_id", "total"]
+const propertiesToShow = ["userId", "_id", "total"]
 
 function ListOrders({ listOrders }) {
 
@@ -14,6 +15,10 @@ function ListOrders({ listOrders }) {
     const [orderSelected, setOrderSelected] = React.useState({})
     const [inputSearch, setInputSearch] = React.useState("")
     const router = useRouter()
+    const [current, setCurrent] = React.useState(0)
+
+    const itemPerPage=50
+    const listToShowPaginate=listToShow.slice(current, current+itemPerPage)
 
     function goDetailOrder(id) {
         router.push(`/admin/orderDetail/${id}`)
@@ -46,7 +51,7 @@ function ListOrders({ listOrders }) {
             switch (value) {
                 case "todos": {
                     const newList = list.filter(order => {
-                        const arrayTrue = propertiesToShow.map(prop => order[prop].toString().includes(input) ? true : false)
+                        const arrayTrue = propertiesToShow.map(prop => order[prop] && order[prop].toString().includes(input) ? true : false)
                         return arrayTrue.includes(true) ? true : false
                     })
                     return newList
@@ -95,6 +100,13 @@ function ListOrders({ listOrders }) {
         filterOrders(inputSearch, value, typeFilter)
     }
 
+    function move(event) {
+        const moved = event.target.value
+        moved === ">"?
+        setCurrent(current => current+itemPerPage):
+        setCurrent(current => current-itemPerPage)
+    }
+
     return (
         <>
             <div className="container px-4 px-lg-5 my-5">
@@ -115,8 +127,8 @@ function ListOrders({ listOrders }) {
                 </select>
 
                 <button onClick={() => {goDetailOrder(orderSelected.order._id)}}>Ver Detalle</button>
-
-                <ShowListOrders listOrders={listToShow} goDetailOrder={goDetailOrder} selectOrder={selectOrder} />
+                <PaginateListItems current={current} itemPerPage={itemPerPage} allItems={listToShow.length} move={move}/>
+                <ShowListOrders listOrders={listToShowPaginate} goDetailOrder={goDetailOrder} selectOrder={selectOrder} current={current}/>
             </div>
         </>
     )
