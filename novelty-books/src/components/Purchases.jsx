@@ -3,6 +3,7 @@ import React from "react";
 import { useStateContext } from "../../context/StateContext"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import styles from "./Purchases.module.css"
 
 
 const Purchases = ({orders}) => {
@@ -16,13 +17,15 @@ const Purchases = ({orders}) => {
             router.push("/");}
 
       const myOrder = orders.filter((order) => order.userId === user._id)
-      console.log(myOrder, "HOLA PUTO");  
+
 
 
   return (
-    
-    <div>
-        {myOrder.length >= 1 &&
+       <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+          
+            <div class={styles.a}></div>
+               {myOrder.length >= 1 &&
                 myOrder.map((item, idx) => (
                   <div key={idx} className="card rounded-3 mb-4">
                     <div className="card-body p-4">
@@ -69,9 +72,14 @@ const Purchases = ({orders}) => {
                            className="btn btn-outline-dark flex-shrink-0"
                            type="button"
                           onClick={back}>
+                            
                             Back
                           </button>
-                        </div>
+                          </div>
+          
+        
+      </section>
+      
     
   )
 

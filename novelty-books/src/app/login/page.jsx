@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useStateContext } from "context/StateContext";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { SHA256 } from "crypto-js";
+import Link from "next/link";
 
 function Login() {
   const { user, setUser } = useStateContext();
@@ -103,8 +104,6 @@ function Login() {
                 name="email"
                 onChange={handleChange}
               />
-              {/* <small id="emailHelp" 
-                       className="form-text text-muted">We'll never share your email with anyone else.</small>*/}
             </div>
             <div className="form-group">
               <label>Password</label>
@@ -136,6 +135,11 @@ function Login() {
           <button className={style.button} type="submit" onClick={handleSubmit}>
             Login
           </button>
+        </div>
+        <div>
+          <Link href={"/enterEmail"}>
+            <h5> Did you forget your password?</h5>
+          </Link>
         </div>
       </form>
     </div>
