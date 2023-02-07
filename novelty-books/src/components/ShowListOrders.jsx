@@ -1,6 +1,7 @@
 import styles from "./ShowListOrders.module.css";
 
 function ShowListOrders({ listOrders, selectOrder, current, goDetailOrder }) {
+
   return (
     <>
       <div className="container px-4 px-lg-5 my-5 overflow-y-scroll">
@@ -60,6 +61,7 @@ function ShowListOrders({ listOrders, selectOrder, current, goDetailOrder }) {
       </div>
     </>
   );
+
 }
 
 export default ShowListOrders;

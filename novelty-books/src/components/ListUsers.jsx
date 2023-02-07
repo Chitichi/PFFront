@@ -58,11 +58,13 @@ function ListUsers({ listUsers }) {
             return arrayTrue.includes(true) ? true : false;
           });
           return newList;
+
         }
         case "id": {
           const newList = list.filter((user) => user._id.includes(input));
           return newList;
         }
+        
         case "nombre": {
           const newList = list.filter((user) => user.name.includes(input));
           return newList;
@@ -72,6 +74,7 @@ function ListUsers({ listUsers }) {
           return newList;
         }
       }
+
     }
     return list;
   }
@@ -83,6 +86,7 @@ function ListUsers({ listUsers }) {
     } else {
       return list;
     }
+
   }
 
   function filterUsers(input, type, value) {
@@ -148,6 +152,7 @@ function ListUsers({ listUsers }) {
       </div>
     </>
   );
+
 }
 
 export default ListUsers;
