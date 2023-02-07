@@ -1,9 +1,11 @@
-const Footer = ()=> (
-    <>
-       <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Novelty Books 2023</p></div>
-        </footer>
-    </>
-)
+const Footer = () => (
+  <footer className="sticky-footer py-5 bg-dark">
+    <div className="container">
+      <p className="m-0 text-center text-white">
+        Copyright &copy; Novelty Books 2023
+      </p>
+    </div>
+  </footer>
+);
 
 export default Footer;

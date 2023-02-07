@@ -1,0 +1,71 @@
+.nested-dropdowns {
+    /* Border */
+    /* border: 1px solid #d1d5db; */
+    display: flex;
+
+    /* Reset list styles */
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.nested-dropdowns li {
+    /* cursor: pointer; */
+
+    /* Spacing */
+    padding: 0.25rem;
+
+    /* Used to position the sub nested-dropdowns */
+    position: relative;
+    width: 100%;
+}
+
+/* The sub nested-dropdowns */
+.nested-dropdowns ul {
+    /* border: 1px solid #d1d5db; */
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+    /* background-color: rgb(194, 189, 189); */
+}
+
+.nested-dropdowns ul li {
+    height: 45px;
+    /* border-radius: 5px; */
+}
+
+/* The second level sub nested-dropdowns */
+.nested-dropdowns ul ul {
+    left: 0;
+    position: absolute;
+    top: 30px;
+    width: 235px;
+    height: 60px;
+    background-color: #212529;
+}
+
+.nested-dropdowns ul ul li {
+    height: 30px;
+    text-align: center;
+}
+
+/* Change background color of list item when being hovered */
+.nested-dropdowns li:hover {
+    background-color: rgba(0, 0, 0, 0.442);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Show the direct sub nested-dropdowns when hovering the list item */
+.nested-dropdowns li:hover > ul {
+    display: block;
+}

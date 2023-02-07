@@ -3,6 +3,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  env: {
+    RUTA_BACK: "https://backendnoveltybooks.onrender.com",
+    // RUTA_BACK: "https://localhost:3001",
+    
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
