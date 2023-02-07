@@ -7,7 +7,7 @@ import GraphicsDesk from "./GraphicsDesk"
 
 function AdminTools({orders, users, books, updateBooks, filterByTitle}) {
 
-    const [tool, setTool] = React.useState("")
+    const [tool, setTool] = React.useState("users")
     
     function handleTool(e) {
         const {name} = e.target
