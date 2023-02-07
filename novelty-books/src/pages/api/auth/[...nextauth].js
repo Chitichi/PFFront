@@ -10,7 +10,6 @@ export const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       //callbackUrl: "https://novelty-books.vercel.app/api/auth/callback/google",
-      // callbackUrl: "https://localhost:3000/api/auth/callback/google",
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
