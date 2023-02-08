@@ -3,6 +3,7 @@ import React from "react";
 import ShowListUsers from "./ShowListUsers";
 import { useRouter } from "next/navigation";
 import PaginateListItems from "./PaginateListItems";
+import Swal from "sweetalert2";
 
 const propertiesToShow = ["email", "name", "_id"];
 
@@ -10,6 +11,7 @@ function ListUsers({ listUsers }) {
   const [list, setList] = React.useState(listUsers);
   const [listToShow, setListToShow] = React.useState(list);
   const [isDeleted, setIsDeleted] = React.useState(false)
+  const [user, setUser] = React.useState({})
 
   const [current, setCurrent] = React.useState(0);
 
@@ -18,6 +20,7 @@ function ListUsers({ listUsers }) {
   const [userSelected, setUserSelected] = React.useState({});
   const [inputSearch, setInputSearch] = React.useState("");
   const router = useRouter();
+  const [inputSwitch, setInputSwitch] = React.useState(true)
 
   const itemPerPage = 10;
   const listToShowPaginate = listToShow.slice(current, current + itemPerPage);
@@ -27,13 +30,18 @@ function ListUsers({ listUsers }) {
   }
 
   function selectUser(id, user) {
+    setUser(user)
     setUserSelected({ id, user });
+    setIsDeleted(user.isDeleted)
+    setInputSwitch(false)
     if (userSelected.id) {
       const rowBefore = document.getElementById(userSelected.id);
       rowBefore.className = "";
     }
     const rowCurrent = document.getElementById(id);
     rowCurrent.className = "bg-warning";
+    
+    
   }
 
   function handleSearch(event) {
@@ -105,6 +113,38 @@ function ListUsers({ listUsers }) {
       : setCurrent((current) => current - itemPerPage);
   }
 
+  async function handleEnabled() {
+    setIsDeleted((isDeleted) => (!isDeleted))
+    const formData = new FormData();
+    formData.append("userId", user._id);
+    formData.append("isDeleted", !isDeleted);
+    try {
+      const response = await fetch(process.env.RUTA_BACK + `/users/${user._id}`, {
+        method: "PUT",
+        body: formData,
+      });
+      const data = await response.json()
+      Swal.fire({
+        title: "Successful change!",
+        text: `The user is now ${!isDeleted? "disabled": "enabled"}`,
+        icon: "success",
+        timer: 3000,
+      })
+
+      const res = await fetch(process.env.RUTA_BACK + "/users")
+      const updateUsers = await res.json()
+      setList(updateUsers)
+
+    } catch(error) {
+      Swal.fire({
+        title: "Error",
+        text: "Ooops something is wrong!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }
+
   return (
     <>
       <div className="container px-4 px-lg-5 my-5">
@@ -135,10 +175,13 @@ function ListUsers({ listUsers }) {
           Ver Detalle
         </button>
 
-        <div className="form-check form-switch">
-        <input className={`form-check-input ${isDeleted?"bg-danger":"bg-success"}`} type={"checkbox"} role={"switch"} id={"flexSwitchCheckDefault"} value={isDeleted} onClick={(e) => {setIsDeleted((isDeleted) => (!isDeleted))}}></input>
+        <div className="form-check form-check-inline form-switch">
+          <input className={`form-check-input ${isDeleted ? "bg-danger" : "bg-success"}`} type={"checkbox"} role={"switch"} id={"flexSwitchCheckDefault"} value={isDeleted} onClick={handleEnabled} checked={isDeleted} disabled={inputSwitch}/>          
+          <label for={"flexSwitchCheckDefault"}>{isDeleted? "Disabled":"Enabled"}</label>
+
+          
         </div>
-        
+
         <PaginateListItems
           current={current}
           itemPerPage={itemPerPage}
