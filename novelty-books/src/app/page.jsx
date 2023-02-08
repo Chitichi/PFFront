@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic";
 
-import Landing from "@/components/Landing";
+const Landing = dynamic(()=>import("@/components/Landing"),{ssr:false})
+//import Landing from "@/components/Landing";
 
 const fetchBooks = async () => {
-  const res = await fetch(process.env.RUTA_BACK+"/books");
+  const res = await fetch(process.env.RUTA_BACK+"/books",{cache:'no-store',});
     return await res.json();
    // .catch(error => alert(error.message))
 }

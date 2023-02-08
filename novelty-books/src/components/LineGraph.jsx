@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from 'chart.js';
-import { Doughnut, Bar, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, Tooltip, Legend, CategoryScale, LinearScale, Title, PointElement, LineElement } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -12,9 +12,10 @@ ChartJS.register(
     Legend
 );
 
-export default function LineGraph() {
-    const genders = ['Fantasy', 'Sci-Fiction', 'Horror']
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export default function LineGraph({listSells, handleData}) {
+    // console.log(listSells)
+    const dates = listSells.data[0]
+    const totalSell = listSells.data[1]
     const optionsLine = {
         responsive: true,
         plugins: {
@@ -28,26 +29,30 @@ export default function LineGraph() {
         },
     };
     const dataLine = {
-        labels: months,
+        labels: dates,
         datasets: [
             {
-                label: 'Dataset 1',
-                data: months.map(() => Math.random() * 10 + 1),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                label: `dates/${listSells.type.split("-")[1]}`,
+                data: totalSell,
+                borderColor: listSells.colors[0],
+                backgroundColor: listSells.colors[1],
             },
-            {
-                label: 'Dataset 2',
-                data: months.map(() => Math.random() * 10 + 1),
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
+            // {
+            //     label: 'Dataset 2',
+            //     data: months.map(() => Math.random() * 10 + 1),
+            //     borderColor: 'rgb(53, 162, 235)',
+            //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            // },
         ],
     };
     return (
         <>
             <div>
                 <h5>Grafico de tipo linea</h5>
+                <select onChange={(e) => {handleData(e)}}>
+                    <option value={"line-sell"}>Sells</option>
+                    <option value={"line-user"}>Users</option>
+                </select>
                 <Line options={optionsLine} data={dataLine} />
             </div>
         </>

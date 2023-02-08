@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useStateContext } from "context/StateContext";
 import Swal from "sweetalert2";
 import styles from './FormEditUser.module.css'
+import Link from "next/link";
 
 const FormEditUser = () => {
   const { user, setUser } = useStateContext();
@@ -137,8 +138,14 @@ const FormEditUser = () => {
             name="phoneNumber"
           />
         </div>
+        
         <div>
-          <button type="submit">Edit</button>
+          <button type="submit">Accept changes</button>
+        </div>
+        <div>
+          <Link href = "/MyProfile">
+          <button>Cancel</button>
+          </Link>
         </div>
       </form>
     </div>
