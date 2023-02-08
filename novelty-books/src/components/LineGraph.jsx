@@ -12,9 +12,10 @@ ChartJS.register(
     Legend
 );
 
-export default function LineGraph({listSells}) {
-    const dates = listSells[0]
-    const totalSell = listSells[1]
+export default function LineGraph({listSells, handleData}) {
+    // console.log(listSells)
+    const dates = listSells.data[0]
+    const totalSell = listSells.data[1]
     const optionsLine = {
         responsive: true,
         plugins: {
@@ -31,10 +32,10 @@ export default function LineGraph({listSells}) {
         labels: dates,
         datasets: [
             {
-                label: 'dates/Sells',
+                label: `dates/${listSells.type.split("-")[1]}`,
                 data: totalSell,
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: listSells.colors[0],
+                backgroundColor: listSells.colors[1],
             },
             // {
             //     label: 'Dataset 2',
@@ -48,6 +49,10 @@ export default function LineGraph({listSells}) {
         <>
             <div>
                 <h5>Grafico de tipo linea</h5>
+                <select onChange={(e) => {handleData(e)}}>
+                    <option value={"line-sell"}>Sells</option>
+                    <option value={"line-user"}>Users</option>
+                </select>
                 <Line options={optionsLine} data={dataLine} />
             </div>
         </>
