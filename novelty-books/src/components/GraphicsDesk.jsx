@@ -24,7 +24,7 @@ export function selectColors(row) {
 
 function sortData(type, list) {
     switch (type) {
-        case "dona": {
+        case "dona-genre": {
             let newList = genre.map(() => 0)
             for (const book of list) {
                 const index = genre.indexOf(book.genre[0].toLowerCase())
@@ -32,6 +32,10 @@ function sortData(type, list) {
             }
             return newList
         }
+        case "dona-book": {
+            return list.map(book => book.sells)
+        }
+
         case "barra": {
             let listSells = genre.map(() => 0)
             let listStock = genre.map(() => 0)
@@ -59,7 +63,7 @@ function sortData(type, list) {
 
             }
             return [Object.keys(dateSellObject), Object.values(dateSellObject)]
-            
+
         }
     }
 }
@@ -67,13 +71,37 @@ function sortData(type, list) {
 export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
 
     const [dataSold, setDataSold] = React.useState(listBooks)
-    // const [donuts, setDonuts] = React.useState({})
-    const donuts = sortData("dona", dataSold)
+    const [donut, setDonuts] = React.useState({
+        type: "dona-genre",
+        labels: genre,
+        data: sortData("dona-genre", dataSold),
+        colors: selectColors(genre)
+    })
+
     const bar = sortData("barra", dataSold)
     const line = sortData("line", listOrders)
 
     function handleData(event) {
-        console.log(event.target.value)
+        const type = event.target.value
+        if (type.includes("dona")) {
+            setDonuts({
+                type,
+                labels: labels(type.split("-")[1]),
+                data: sortData(type, listBooks),
+                colors: selectColors(listBooks)
+            })
+        }
+    }
+
+    function labels(type) {
+        switch (type) {
+            case "genre": {
+                return genre
+            }
+            case "book": {
+                return listBooks.map(book => book.title)
+            }
+        }
     }
 
     return (
@@ -82,7 +110,7 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
                 {/* <h3>Contenedor de graficos</h3> */}
                 <div className='row'>
                     <div className='col-6'>
-                        <DonutsGraph listData={donuts} handleData={handleData}/>
+                        <DonutsGraph listData={donut} handleData={handleData} />
                     </div>
                     <div className='col-6'>
                         <BarGraphics listBooks={bar} />
