@@ -135,7 +135,7 @@ function ListUsers({ listUsers }) {
         timer: 3000,
       })
 
-      const res = await fetch(process.env.RUTA_BACK + "/users")
+      const res = await fetch(process.env.RUTA_BACK + "/users", {cache: 'no-store'})
       const updateUsers = await res.json()
       setListToShow(updateUsers)
 
