@@ -104,7 +104,7 @@ export default function CreateBookForm() {
         placeholder="Title..."
       />
       <br />
-      <label ><strong>Title:</strong> </label>
+      <label ><strong>Author:</strong> </label>
       <input
         className="form-control"
         type="text"
