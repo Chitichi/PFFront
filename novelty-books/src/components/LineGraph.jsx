@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from 'chart.js';
-import { Doughnut, Bar, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, Tooltip, Legend, CategoryScale, LinearScale, Title, PointElement, LineElement } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -12,9 +12,9 @@ ChartJS.register(
     Legend
 );
 
-export default function LineGraph() {
-    const genders = ['Fantasy', 'Sci-Fiction', 'Horror']
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export default function LineGraph({listSells}) {
+    const dates = listSells[0]
+    const totalSell = listSells[1]
     const optionsLine = {
         responsive: true,
         plugins: {
@@ -28,20 +28,20 @@ export default function LineGraph() {
         },
     };
     const dataLine = {
-        labels: months,
+        labels: dates,
         datasets: [
             {
-                label: 'Dataset 1',
-                data: months.map(() => Math.random() * 10 + 1),
+                label: 'dates/Sells',
+                data: totalSell,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
-            {
-                label: 'Dataset 2',
-                data: months.map(() => Math.random() * 10 + 1),
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
+            // {
+            //     label: 'Dataset 2',
+            //     data: months.map(() => Math.random() * 10 + 1),
+            //     borderColor: 'rgb(53, 162, 235)',
+            //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            // },
         ],
     };
     return (
