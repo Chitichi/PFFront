@@ -2,6 +2,7 @@
 import { useStateContext } from "context/StateContext";
 import styles from "./DetailBook.module.css"
 import Review from "../ReviewFolder/Review";
+import ReviewsList from "../ReviewsList/ReviewsList";
 
 export default function DetailBook({book}) {
 
@@ -57,6 +58,9 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
             </div>
             <div className={styles.c}>
                 {user.name && <Review idBook={book._id} user={user} setTotalBooks={setTotalBooks}/>}
+            </div>
+            <div className={styles.d}>
+                <ReviewsList/>
             </div>
           </div>
         </div>
