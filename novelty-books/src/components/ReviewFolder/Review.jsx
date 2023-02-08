@@ -35,6 +35,7 @@ export default function Review({idBook, user, setTotalBooks}) {
             }))
         }
     }
+    
     const sendReview = () => {
         postRatings(reviewObj, idBookState)
         const textareaList = document.getElementsByTagName('textarea')
