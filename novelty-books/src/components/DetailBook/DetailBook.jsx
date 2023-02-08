@@ -56,7 +56,7 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
               </div>
             </div>
             <div className={styles.c}>
-                {user.name && <Review user={user} setTotalBooks={setTotalBooks}/>}
+                {user.name && <Review idBook={book._id} user={user} setTotalBooks={setTotalBooks}/>}
             </div>
           </div>
         </div>
