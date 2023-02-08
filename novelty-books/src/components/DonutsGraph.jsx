@@ -5,7 +5,7 @@ import {genre, selectColors} from "./GraphicsDesk"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function DonutsGraph({listData}) {
+export default function DonutsGraph({listData, handleData}) {
 
     const [color, border] = selectColors(genre)
 
@@ -26,6 +26,10 @@ export default function DonutsGraph({listData}) {
         <>
             <div>
                 <h5>Grafico de tipo dona</h5>
+                <select onChange={(e) => {handleData(e)}}>
+                    <option value={"genre"}>Genres</option>
+                    <option value={"book"}>Books</option>
+                </select>
                 <Doughnut data={dataDoughnut} />
             </div>
         </>
