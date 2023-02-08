@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import DonutsGraph from './DonutsGraph';
 import BarGraphics from './BarGraphics';
 import LineGraph from './LineGraph';
+import OrderDetail from './OrderDetail';
 
 export const genre = ['fantasy', 'sci-fiction', 'horror']
 
@@ -42,14 +43,23 @@ function sortData(type, list) {
             return [listSells, listStock]
         }
         case "line": {
-            let totalSell = []
-            let dates = []
-            for (const order of list) {
-                if (order.date) {
-                    const date = order.date.slice(0,10)
-                    totalSell.push(order.date.slice(0,10))}
+            let dateSellObject = {}
+            const newList = []
+            list.sort((a, b) => a.date <= b.date ? -1 : 1)
+            list.forEach(order => order.total && order.total < 200 ? newList.push(order) : null)
+
+            for (const order of newList) {
+                const dateOrder = order.date.slice(0, 10)
+
+                if (dateSellObject.hasOwnProperty(dateOrder)) {
+                    dateSellObject[dateOrder] = dateSellObject[dateOrder] + order.total
+                } else {
+                    dateSellObject[dateOrder] = order.total
+                }
+
             }
-            return
+            return [Object.keys(dateSellObject), Object.values(dateSellObject)]
+            
         }
     }
 }
@@ -60,6 +70,7 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
 
     const listGenre = sortData("dona", dataSold)
     const listBooksSell = sortData("barra", dataSold)
+    const listSells = sortData("line", listOrders)
 
     return (
         <>
@@ -73,11 +84,11 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
                         <BarGraphics listBooks={listBooksSell} />
                     </div>
                 </div>
-                {/* <div className='row'>
+                <div className='row'>
                     <div className='col-8 justify-content-center align-items-center'>
-                        <LineGraph />
+                        <LineGraph listSells={listSells} />
                     </div>
-                </div> */}
+                </div>
 
             </div>
         </>
