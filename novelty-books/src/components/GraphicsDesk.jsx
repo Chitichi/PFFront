@@ -46,7 +46,7 @@ function sortData(type, list) {
             }
             return [listSells, listStock]
         }
-        case "line": {
+        case "line-sell": {
             let dateSellObject = {}
             const newList = []
             list.sort((a, b) => a.date <= b.date ? -1 : 1)
@@ -63,7 +63,23 @@ function sortData(type, list) {
 
             }
             return [Object.keys(dateSellObject), Object.values(dateSellObject)]
+        }
+        case "line-user": {
+            let dateUserObject = {}
+            const newList = []
+            list.sort((a, b) => a.date <= b.date ? -1 : 1)
+            list.forEach(user => {console.log(user.date)})
+            for (const user of list) {
+                const dateOrder = user.date.slice(0, 10)
 
+                if (dateUserObject.hasOwnProperty(dateOrder)) {
+                    dateUserObject[dateOrder] ++
+                } else {
+                    dateUserObject[dateOrder] = 1
+                }
+
+            }
+            return [Object.keys(dateUserObject), Object.values(dateUserObject)]
         }
     }
 }
@@ -77,9 +93,13 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
         data: sortData("dona-genre", dataSold),
         colors: selectColors(genre)
     })
+    const [line,setLine] = React.useState({
+        type: "line-sell",
+        data: sortData("line-sell", listOrders),
+        colors: selectColors([1])  
+    })
 
     const bar = sortData("barra", dataSold)
-    const line = sortData("line", listOrders)
 
     function handleData(event) {
         const type = event.target.value
@@ -89,6 +109,15 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
                 labels: labels(type.split("-")[1]),
                 data: sortData(type, listBooks),
                 colors: selectColors(listBooks)
+            })
+        }
+        if (type.includes("line")) {
+            if (type.includes("sell")) {var list = listOrders}
+            if (type.includes("user")) {var list = listUsers}
+            setLine({
+                type,
+                data: sortData(type, list),
+                colors: selectColors([1])
             })
         }
     }
@@ -107,7 +136,6 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
     return (
         <>
             <div className="container">
-                {/* <h3>Contenedor de graficos</h3> */}
                 <div className='row'>
                     <div className='col-6'>
                         <DonutsGraph listData={donut} handleData={handleData} />
@@ -118,7 +146,7 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
                 </div>
                 <div className='row'>
                     <div className='col-8 justify-content-center align-items-center'>
-                        <LineGraph listSells={line} />
+                        <LineGraph listSells={line} handleData={handleData}/>
                     </div>
                 </div>
 
