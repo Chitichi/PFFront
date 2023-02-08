@@ -91,11 +91,12 @@ export default function CreateBookForm() {
   };
 
   return (
-    
+    <div className={styles.container}>
     <form className={styles.bookForm} onSubmit={handleSubmit}>
-      <label className={styles.formControl}>Title:</label>
+      <h2 className={styles.h2}>Create Book</h2>
+      <label ><strong>Title:</strong></label>
       <input
-        className={styles.formControl}
+        className="form-control"
         type="text"
         name="title"
         onChange={handleChange}
@@ -103,9 +104,9 @@ export default function CreateBookForm() {
         placeholder="Title..."
       />
       <br />
-      <label className={styles.formControl}>Author:</label>
+      <label ><strong>Title:</strong> </label>
       <input
-        className={styles.formControl}
+        className="form-control"
         type="text"
         name="author"
         onChange={handleChange}
@@ -113,9 +114,9 @@ export default function CreateBookForm() {
         placeholder="Author..."
       />
       <br />
-      <label className={styles.formControl}>Publish Date:</label>
+      <label ><strong>Publish Date:</strong></label>
       <input
-        className={styles.formControl}
+        className="form-control"
         type="date"
         name="publishDate"
         onChange={handleChange}
@@ -123,7 +124,8 @@ export default function CreateBookForm() {
         placeholder="Publish Date..."
       />
       <br />
-      <label className={styles.formControl}>Genres:</label>
+      <label ><strong>Genres:</strong></label>
+      <br />
       {genres.map((genre) => (
         <label
           className={styles.formControl}
@@ -131,7 +133,7 @@ export default function CreateBookForm() {
           style={{ margin: "5px" }}
         >
           <input
-            className={styles.formControl}
+            className="form-check-inpu"
             type="checkbox"
             name="genre"
             value={genre}
@@ -141,10 +143,10 @@ export default function CreateBookForm() {
         </label>
       ))}
       <br />
-      <label className={styles.formControl}>Description:</label>
+      <label><strong>Description:</strong></label>
       <br style={{ lineHeight: 0.5 }} />
       <textarea
-        className={styles.formControl}
+        className="form-control"
         type="text"
         name="description"
         onChange={handleChange}
@@ -153,9 +155,9 @@ export default function CreateBookForm() {
         style={{ height: "100px", width: "400px" }}
       />
       <br />
-      <label className={styles.formControl}>Page Count:</label>
+      <label><strong>Page Count:</strong></label>
       <input
-        className={styles.formControl}
+        className="form-control"
         type="number"
         name="pageCount"
         onChange={handleChange}
@@ -164,9 +166,9 @@ export default function CreateBookForm() {
         min="1"
       />
       <br />
-      <label className={styles.formControl}>Price:</label>
+      <label><strong>Price:</strong></label>
       <input
-        className={styles.formControl}
+        className="form-control"
         type="number"
         name="price"
         onChange={handleChange}
@@ -175,9 +177,9 @@ export default function CreateBookForm() {
         min="1"
       />
       <br />
-      <label className={styles.formControl}>Stock:</label>
+      <label><strong>Stock:</strong></label>
       <input
-        className={styles.formControl}
+        className="form-control"
         type="number"
         name="stock"
         onChange={handleChange}
@@ -186,8 +188,9 @@ export default function CreateBookForm() {
         min="1"
       />
       <br />
-      <label>Image:</label>
+      <label><strong>Image:</strong></label>
       <input
+        style={{margin: 10}}
         type="file"
         onChange={(event) => {
           setFormImage(event.target.files[0]);
@@ -195,7 +198,10 @@ export default function CreateBookForm() {
         accept="image/*"
       />
       <br />
-      <input className={styles.formControl} type="submit" value="Create Book" />
+        <div className="text-center">
+          <button className={styles.buttonControl} type="submit" value="Create Book" >Create Book</button>
+        </div>
     </form>
+    </div>
   );
 }
