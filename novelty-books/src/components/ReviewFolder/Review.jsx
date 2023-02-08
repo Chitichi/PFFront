@@ -2,13 +2,23 @@
 
 import React from "react"
 import styles from './Review.module.css'
+import useUpdateBooks from "@/hooks/useUpdateBooks"
 
-export default function Review({user, setTotalBooks}) {
+export default function Review({idBook, user, setTotalBooks}) {
+
+    const {postRatings} = useUpdateBooks()
+
+    const [idBookState, setIdBook] = React.useState("")
+
+    React.useEffect(() => {
+        setIdBook(idBook)
+    })
 
     const [reviewObj, setReviewObj] = React.useState({
-        user: user.name,
-        rating: "",
-        comment: ""
+        name: user.name,
+        rate: 0,
+        comment: "",
+        userId: user._id
     })
 
     const handleChange = (e) => {
@@ -21,27 +31,39 @@ export default function Review({user, setTotalBooks}) {
         }else{
             setReviewObj(prev => ({
                 ...prev,
-                rating: parseFloat(id).toFixed(1)
+                rate: parseFloat(parseFloat(id).toFixed(1))
             }))
         }
     }
-
-    function sendComent() {
-        //envía esta reseña a la base de datos
+    const sendReview = () => {
+        postRatings(reviewObj, idBookState)
+        const textareaList = document.getElementsByTagName('textarea')
+        textareaList[0].value = ''
+        setReviewObj({
+            name: user.name,
+            rate: 0,
+            comment: "",
+            userId: user._id
+        })
     }
 
     return(
         <div className={styles.wrapper}>
-            <h6>{JSON.stringify(reviewObj)}</h6>
             <div className={styles.userCard}>
                 <i className="bi bi-person-circle"></i><span>{user.name}</span>
             </div>
             <div className={styles.starsDiv}>
-                <i onClick={handleChange} id="1.0" className="bi-star-fill"></i>
-                <i onClick={handleChange} id="2.0" className="bi-star-fill"></i>
-                <i onClick={handleChange} id="3.0" className="bi-star-fill"></i>
-                <i onClick={handleChange} id="4.0" className="bi-star-fill"></i>
-                <i onClick={handleChange} id="5.0" className="bi-star-fill"></i>
+                {
+                    [1, 2, 3, 4, 5].map((star, idx) => (
+                        <span 
+                            key={star} 
+                            className={`${reviewObj.rate >= star ? styles.selected : ""}`}
+                            id={idx + 1}
+                            onClick={handleChange}
+                        >
+                        </span>
+                    ))
+                }
             </div>
             <div className={styles.commentDiv}>
                 <textarea
@@ -51,7 +73,7 @@ export default function Review({user, setTotalBooks}) {
                     name="comment"
                 />
             </div>
-            <button onClick={sendComent} className={styles.button}>Comment <i className="bi bi-chat-left-dots-fill"></i></button>
+            <button onClick={sendReview} className={styles.button}>Comment <i className="bi bi-chat-left-dots-fill"></i></button>
         </div>
     )
 }
