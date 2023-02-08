@@ -124,12 +124,12 @@ function Login() {
           {session ? (
             <div className="text-center">
               Signed in as {session.user.email} <br />
-              <button onClick={() => signOut()}>Sign out</button>
+              <button className={style.button} onClick={() => signOut()}>Sign out</button>
             </div>
           ) : (
             <div className="text-center">
               Not signed in <br />
-              <button className={style.button2} onClick={() => signIn()}>Sign in with Google</button>
+              <button className={style.button} onClick={() => signIn()}>Sign in with Google</button>
             </div>
           )}
           <div className="text-center">
