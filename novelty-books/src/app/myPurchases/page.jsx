@@ -11,6 +11,7 @@ const myOrders = async () => {
             });
        
             const data = await res.json();
+            console.log(data, "HOLA SOY TU DATA");
         
           return data
         } catch (err) { 
