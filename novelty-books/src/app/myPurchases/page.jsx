@@ -1,4 +1,4 @@
-import Purchases from "@/components/Purchases/Purchases";
+import Purchases from "@/components/Purchases";
 
 const myOrders = async () => {
         try {
@@ -11,17 +11,17 @@ const myOrders = async () => {
             });
        
             const data = await res.json();
-            console.log(data, "HOLA SOY TU DATA");
-        
-          return data
-        } catch (err) { 
+            
+            return data
+          } catch (err) { 
             console.log(err)
           }
         }
-async function MyPurchases() {
-        const orders = await myOrders()
+        async function MyPurchases() {
+          const orders = await myOrders()
+          console.log(orders, "HOLA SOY TU DATA");
             return(
-                    <Purchases orders= {orders}/>
+                  <Purchases orders= {orders}/>
             )
 }
     
