@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { useStateContext } from "../../context/StateContext"
+import { useStateContext } from "../../../context/StateContext"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./Purchases.module.css"
@@ -18,7 +18,7 @@ const Purchases = ({orders}) => {
 
       const myOrder = orders.filter((order) => order.userId === user._id)
 
-
+      console.log(myOrder, "hola somos tus ordenes")
 
   return (
        <section class="py-5">
@@ -56,8 +56,12 @@ const Purchases = ({orders}) => {
                           <p className="lead fw-normal mb-2">{book.pageCount}</p>
                         </div>
                         <div className="col-md-3 col-lg-3 col-xl-3">
-                        <h3> Ahutor: </h3>
+                        <h3> Author: </h3>
                           <p className="lead fw-normal mb-2">{book.author}</p>
+                        </div>
+                        <div className="col-md-3 col-lg-3 col-xl-3">
+                        <h3> Quantity: </h3>
+                          <p className="lead fw-normal mb-2">{book.quantity}</p>
                         </div>
                        
                         </div>

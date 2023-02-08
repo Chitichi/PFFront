@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Card from "./Card";
+import Card from "../Card/Card";
 import Link from "next/link";
 import styles from './Home.module.css'
 

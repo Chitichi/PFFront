@@ -1,19 +1,36 @@
 "use client"
 import { useState } from "react";
-import Link from "next/link";
 import { useStateContext } from "context/StateContext";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
     
-function EnterYourEmail() {
+ function EnterYourEmail() {
     const { user, setUser,  } = useStateContext();
     const [input, setInput] = useState({
         email: ""
       });
       const router = useRouter();
-
-    function click (){
-      Swal.fire({
+      
+   const click = async ()=> {
+    try {
+        const res = await fetch(process.env.RUTA_BACK+"/users", {
+          method: "GET",
+          body: JSON.stringify(),
+          headers: {
+              "Content-Type": "application/json",
+            },
+        });
+        const data = await res.json();
+        const completoUser = data.find((e) => e.email === input.email );
+        const emailId = completoUser._id;
+       
+        const postId = await fetch(process.env.RUTA_BACK+`/users/forgotPassword/${emailId}`, {
+          method: "POST",
+        });
+        const data2 = await postId.json();
+      
+      
+       Swal.fire({
         position: 'top',
         icon: 'success',
         title: 'Check your email',
@@ -21,8 +38,18 @@ function EnterYourEmail() {
         timer: 3000
       })
       router.push("/")
-
+    } catch {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Invalid Email',
+        showConfirmButton: false,
+        timer: 3000
+      })
+      setInput({email:""})
     }
+  }
+    
     function handleChange(e) {
       e.preventDefault();
       setInput({

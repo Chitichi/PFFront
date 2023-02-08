@@ -1,12 +1,14 @@
 "use client";
 import React from "react";
-import ShowListOrders from "./ShowListOrders";
+import ShowListOrders from "./ShowListOrders/ShowListOrders";
 import { useRouter } from "next/navigation";
 import PaginateListItems from "./PaginateListItems";
+
 
 const propertiesToShow = ["userId", "_id", "total"];
 
 function ListOrders({ listOrders }) {
+
   const list = listOrders;
   const [listToShow, setListToShow] = React.useState(list);
   const [typeFilter, setTypeFilter] = React.useState("todos");
@@ -28,6 +30,7 @@ function ListOrders({ listOrders }) {
     if (orderSelected.id) {
       const rowBefore = document.getElementById(orderSelected.id);
       rowBefore.className = "";
+
     }
     const rowCurrent = document.getElementById(id);
     rowCurrent.className = "bg-warning";
@@ -58,11 +61,13 @@ function ListOrders({ listOrders }) {
             return arrayTrue.includes(true) ? true : false;
           });
           return newList;
+
         }
         case "id": {
           const newList = list.filter((order) => order._id.includes(input));
           return newList;
         }
+        
         case "userID": {
           const newList = list.filter((order) => order.userId.includes(input));
           return newList;
@@ -81,6 +86,7 @@ function ListOrders({ listOrders }) {
         }
       }
     }
+
     return list;
   }
 
@@ -158,6 +164,7 @@ function ListOrders({ listOrders }) {
       </div>
     </>
   );
+
 }
 
 export default ListOrders;
