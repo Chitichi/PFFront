@@ -114,10 +114,10 @@ function ListUsers({ listUsers }) {
   }
 
   async function handleEnabled() {
-    setIsDeleted((isDeleted) => (!isDeleted))
     const formData = new FormData();
     formData.append("userId", user._id);
     formData.append("isDeleted", !isDeleted);
+    setIsDeleted((isDeleted) => (!isDeleted))
     try {
       const response = await fetch(process.env.RUTA_BACK + `/users/${user._id}`, {
         method: "PUT",
@@ -133,7 +133,7 @@ function ListUsers({ listUsers }) {
 
       const res = await fetch(process.env.RUTA_BACK + "/users")
       const updateUsers = await res.json()
-      setList(updateUsers)
+      setListToShow(updateUsers)
 
     } catch(error) {
       Swal.fire({
