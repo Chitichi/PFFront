@@ -12,7 +12,6 @@ const validacion = (input) => {
   if (!input.name) errores.name = "Name required";
   if (input.name.length > 50)
     errores.name = "The name must contain up to 50 characters";
-
   if (
     !/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/.test(
       input.email
@@ -22,7 +21,7 @@ const validacion = (input) => {
   if (!input.password) errores.password = "Password required";
   if (input.password.length < 6)
     errores.password = "The password must contain at least 6 characters";
-
+ if(input.password !== input.confirmPassword) errores.confirmPassword = "Password must match!"
   return errores;
 };
 
@@ -37,8 +36,10 @@ function SignUpForm() {
     password: "",
     address: "",
     phoneNumber: "",
+    confirmPassword: ""
   });
   const [userSession, setUserSession] = useState({ ...session });
+  
 
   function encrypt(data) {
     return SHA256(data).toString();
@@ -69,7 +70,7 @@ function SignUpForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const userSession = session
       ? {
           name: session.user.name,
@@ -159,11 +160,12 @@ function SignUpForm() {
         ) : (
           <>
             <div>
+             <h2 className={styles.h2}>Sign Up</h2>
               <label>
                 <strong>Name:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="name..."
@@ -179,7 +181,7 @@ function SignUpForm() {
                 <strong>Email</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="email..."
@@ -194,7 +196,7 @@ function SignUpForm() {
                 <strong>Password:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="password"
                 placeholder="password..."
@@ -206,10 +208,25 @@ function SignUpForm() {
             <div>
               <label>
                 {" "}
+                <strong>Confirm Password:</strong>
+              </label>
+              <input
+                className="form-control"
+                onChange={(e) => handleChange(e)}
+                type="password"
+                placeholder="confirm password..."
+                value={input.confirmPassword}
+                name="confirmPassword"
+              />
+              {errores.confirmPassword && <p>{errores.confirmPassword}</p>}
+            </div>
+            <div>
+              <label>
+                {" "}
                 <strong>Address:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="address..."
@@ -218,12 +235,12 @@ function SignUpForm() {
               />
               {errores.address && <p>{errores.address}</p>}
             </div>
-            <div>
+            <div >
               <label>
                 <strong>Phone Number:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="number"
                 placeholder="phoneNumber..."
@@ -244,8 +261,8 @@ function SignUpForm() {
           ) : (
             <div className="text-center">
               Not signed in <br />
-              <button onClick={() => signIn()}>
-                Sign in With Google/GitHub
+              <button className={styles.buttonControl} onClick={() => signIn()}>
+                Sign in With Google
               </button>
             </div>
           )}

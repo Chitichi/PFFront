@@ -29,6 +29,14 @@
     margin: 10px auto;
     padding: 2px 10px;
     border: 1px solild #212529;
-    
+    width: 120px;
+    height: fit-content;
   } 
-  
+  .buttonControl:hover{
+    background-color: #212529;
+    color: #f8f9fa
+}
+  .h2{
+    text-align: center;
+    color: #455d7a;
+}

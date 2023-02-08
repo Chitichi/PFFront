@@ -2,6 +2,7 @@ function OrderDetail(props) {
     return (
         <>
             <h1>Order: {props.order && props.order._id? props.order._id :null}</h1>
+            <h2>User: {props.user && props.user.name && props.user._id? props.user.name + ` (ID ${props.user._id})`: null}</h2>
             <div>
                 <section className="h-100">
                     <div className="container h-100 py-5">

@@ -1,6 +1,6 @@
-import Card from "@/components/Card";
+import Card from "@/components/Card/Card";
 import { usePathname } from "next/navigation";
-import DetailBook from "../../../components/DetailBook"
+import DetailBook from "../../../components/DetailBook/DetailBook"
 
 const fetchBook = (id) => {
   return fetch(process.env.RUTA_BACK+`/books/${id}`)

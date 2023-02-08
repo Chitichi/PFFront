@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useStateContext } from "context/StateContext";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 const FormEditUser = () => {
   const { user, setUser } = useStateContext();
@@ -136,12 +137,27 @@ const FormEditUser = () => {
             name="phoneNumber"
           />
         </div>
+<<<<<<< HEAD
         <div>
           <button type="submit">Edit</button>
+=======
+        
+        <div>
+          <button type="submit">Accept changes</button>
+        </div>
+        <div>
+          <Link href = "/MyProfile">
+          <button>Cancel</button>
+          </Link>
+>>>>>>> 6bf6d4664fc9acf67a506bf850e6efd747b3808a
         </div>
       </form>
     </div>
   );
 };
 
+<<<<<<< HEAD
 export default FormEditUser;
+=======
+export default FormEditUser;
+>>>>>>> 6bf6d4664fc9acf67a506bf850e6efd747b3808a
