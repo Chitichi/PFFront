@@ -2,7 +2,7 @@
     border: 1px solid black;
     display: grid;
     grid-template-areas: "a b"
-                         "c b";
+                         "c d";
     border-radius: 10px;
 }
 
@@ -26,6 +26,14 @@
 
 .c {
     grid-area: c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.d {
+    grid-area: d;
     display: flex;
     justify-content: center;
     align-items: center;
