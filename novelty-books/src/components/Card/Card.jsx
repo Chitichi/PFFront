@@ -16,7 +16,7 @@ const Card = ({title, image, price, author}) => (
                         <p>{author}</p>
                         
                         
-                        <span >$ {price.toFixed(2)}</span>
+                        <span >€ {price.toFixed(2)}</span>
                         
                     </div>
                 </div>
