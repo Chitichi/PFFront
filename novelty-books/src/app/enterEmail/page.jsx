@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useStateContext } from "context/StateContext";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-    
+import styles from "./Page.module.css";
+
  function EnterYourEmail() {
     const { user, setUser,  } = useStateContext();
     const [input, setInput] = useState({
@@ -61,27 +62,32 @@ import Swal from "sweetalert2";
 
  return(
                 
-                <div className="form-group">
-                  <label>Email address</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                    value={input.email}
-                    name="email"
-                    onChange={handleChange}
-                  />
+              <div className={styles.container}>
+                <div className={styles.userForm}>
+                  <div className="col-12">
+                    <h2 className={styles.h2}>Introduce your Email</h2>
+                    <label className=" m-2"><strong>Email address</strong></label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                      value={input.email}
+                      name="email"
+                      onChange={handleChange}
+                    />
+                  </div>
                    <div className="text-center">
           
-          <button type="submit"
-                  onClick={click}>
-            Enter
-          </button>
+                      <button type="submit"
+                      className="btn btn-outline-dark btn-lg m-4"
+                              onClick={click}>
+                        Enter
+                      </button>
           
-        </div>
-  
+                    </div>
+                </div>
               </div>
             )
 }
