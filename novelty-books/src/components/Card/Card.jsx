@@ -1,6 +1,6 @@
 import styles from './Card.module.css'
 
-const Card = ({title, image, price,author}) => (
+const Card = ({title, image, price, author}) => (
     <>
         <div className="col mb-5">
             <div className={`card h-100 ${styles.wrapper}`}>
@@ -15,14 +15,8 @@ const Card = ({title, image, price,author}) => (
                         <h5 className="fw-bolder">{title}</h5>
                         <p>{author}</p>
                         
-                        <div className="d-flex justify-content-center small text-warning mb-2">
-                            <div className="bi-star-fill"></div>
-                            <div className="bi-star-fill"></div>
-                            
-                            
-                        </div>
                         
-                        <span >$ {price}</span>
+                        <span >$ {price.toFixed(2)}</span>
                         
                     </div>
                 </div>
