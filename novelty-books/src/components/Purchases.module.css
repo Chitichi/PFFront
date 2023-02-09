@@ -1,10 +1,40 @@
-.a {
-    grid-area: a;
-    width: 400px;
-    padding: 40px;
+
+.compras {
+    border: 1px solid black;
+    width: 70%;
+    margin: 30px auto;
+    background-color:#233142 ; 
+    border-radius: 10px;
+
+
 }
 
-.a > img {
-    height: 100%;
+.libro{
+    border: 1px solid black;
+    width: 80%;
+    display: flex;
+    margin: 10px auto;
+    background-color:#e3e3e3;
+    border-radius: 10px;
+}
+
+.img {
+    width: 180px;
+    border-radius: 10px 0 0 10px;
+
+}
+
+.detalles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 20px;
+}
+.h1 {
+    text-align: center;
+    color: white ;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    
 }
 

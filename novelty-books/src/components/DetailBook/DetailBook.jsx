@@ -44,8 +44,8 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
               <p className="lead">
                 {book.description}
               </p>
+              {book.stock >= 1 && (
               <div className="quantity">
-
                 <h3>Quantity:</h3>
                 <p className="quantity-desc">
                   <span onClick={decQty}><i className="bi bi-dash m-3"></i></span>
@@ -53,16 +53,23 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
                   <span onClick={incQty}><i className="bi bi-plus m-3"></i></span>
                 </p>
               </div>
+              )}
               <div className="d-flex">
-
-                <button
+                {book.stock >= 1 && (  
+              
+               <button
                   className="btn btn-outline-dark flex-shrink-0"
                   type="button"
-                  onClick={() => onAdd(book, qty)}
-                >
+                  onClick={() => onAdd(book, qty)}>
                   <i className="bi-cart-fill me-1"></i>
                   Add to cart
-                </button>
+              </button>)}
+              
+              {book.stock <= 0 && (  
+              
+              <h2>
+                  No stock available
+                 </h2>)}
               </div>
             </div>
             <div className={styles.c}>
