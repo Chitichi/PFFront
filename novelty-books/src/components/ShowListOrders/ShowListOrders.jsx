@@ -4,9 +4,9 @@ function ShowListOrders({ listOrders, selectOrder, current, goDetailOrder }) {
 
   return (
     <>
-      <div className="container px-4 px-lg-5 my-5 overflow-y-scroll">
+      <div className="container px-4 px-lg-5 my-5">
         <div style={{ overflow: "auto", height: "450px" }}>
-          <table className="table table-striped table-hover table-bordered table-responsive overflow-y-scroll">
+          <table className="table table-striped table-hover table-bordered table-responsive">
             <thead
               className="table-dark"
               style={{ position: "sticky", top: "0" }}

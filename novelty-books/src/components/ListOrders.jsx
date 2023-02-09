@@ -122,7 +122,7 @@ function ListOrders({ listOrders }) {
   return (
     <>
       <div className="container ">
-        <h3 className="text-center m-2 ">Lista de ordenes</h3>
+        <h3 className="text-center m-2 ">Orders list</h3>
         <div className="row justify-content-end">  
         
             <div className="col-3">
@@ -148,8 +148,8 @@ function ListOrders({ listOrders }) {
             <div className="col-2">
               <select className="form-control" onChange={handleFilterStatus}>
                 <option value={"all"}>All</option>
-                <option value={"true"}>Entregado</option>
-                <option value={"false"}>Pendiente</option>
+                <option value={"true"}>Delivered</option>
+                <option value={"false"}>Pending</option>
               </select>
             </div>  
       
@@ -160,7 +160,7 @@ function ListOrders({ listOrders }) {
                 goDetailOrder(orderSelected.order._id);
               }}
             >
-              Ver Detalle
+              Detail
             </button>
           </div>
         </div>
