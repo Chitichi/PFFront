@@ -1,0 +1,19 @@
+.wrapper {
+    border-radius: 1px solid black;
+    width: 600px;
+    margin: 10px auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: brown;
+}
+
+.formWrapper {
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

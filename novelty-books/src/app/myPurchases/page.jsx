@@ -24,7 +24,7 @@ const myOrders = async () => {
         }
         async function MyPurchases() {
           const orders = await myOrders()
-          console.log(orders, "HOLA SOY TU DATA");
+          
             return(
                   <Purchases orders= {orders}/>
             )
