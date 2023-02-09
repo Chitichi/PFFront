@@ -4,6 +4,7 @@ import axios from "axios";
 const useUpdateBooks = () =>{
 
 const [first, setfirst] = useState([])
+const [book, setBook] = useState([])
 
 
 const fetchBooks = async () => {
@@ -16,11 +17,21 @@ const fetchBooks = async () => {
     }
 }
 
+const fetchSingleBook = async (id) => {
+    try{
+        const res = await axios(process.env.RUTA_BACK+`/books/${id}`)
+        setBook(res.data)
+        return book
+    }catch(error){
+        return error.message
+    }
+  }
+
 
 const postRatings = async (reviewObj, idBook) => {
     try{
         const res = await axios.post(process.env.RUTA_BACK+"/books/rating/"+idBook, reviewObj)
-        return res
+        return book
     }catch(error){
         return alert(error.response.data)
     }
@@ -49,10 +60,12 @@ const fetchBooksUpdate = async (id, requestOptions) => {
 
 return {
     first,
+    book,
     fetchBooks,
     fetchBooksByTitle,
     fetchBooksUpdate,
-    postRatings
+    postRatings,
+    fetchSingleBook
 }
 }
 
