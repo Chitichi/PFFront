@@ -1,0 +1,21 @@
+.container{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userForm {
+    margin: 20px auto;
+    padding: 20px;
+    width: 40%;
+    background-color: #f8f9fa;
+    border: 1px solid #212529;
+    border-radius: 20px;
+    justify-content: center;
+    margin: 150px
+}
+.h2{
+    text-align: center;
+    color: #455d7a;
+}
