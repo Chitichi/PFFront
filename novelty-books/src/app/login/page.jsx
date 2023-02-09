@@ -30,12 +30,12 @@ function Login() {
     e.preventDefault();
     const userSession = session
       ? {
-          email: session.user.email,
-          password: encrypt(session.user.email),
-        }
+        email: session.user.email,
+        password: encrypt(session.user.email),
+      }
       : {
-          ...input,
-        };
+        ...input,
+      };
     try {
       // Send a request to the server to create a new book using the form data
 
@@ -48,7 +48,7 @@ function Login() {
       });
       //console.log(res, "hola soy tu res")
       const data = await res.json();
-
+      console.log(data)
       if (data === "User not found") {
         Swal.fire({
           title: "Email not found!",
@@ -56,23 +56,34 @@ function Login() {
           icon: "error",
           timer: 3000,
         });
-      } else if (typeof data === "object") {
+      } else if (data === "Invalid credentials") {
+        Swal.fire({
+          title: "error!",
+          text: "invalid email or password",
+          icon: "error",
+          timer: 3000,
+        });
+      } else if (data.name) {
+        console.log("entre en el else if", data)
         setUser(data);
         saveLocalStorage(data);
         router.push(`/`);
+      } else if(data.msg === "Error this user has been banned") {
+        Swal.fire({
+          title: "Error",
+          text: "This user has been banned",
+          icon: "error",
+          timer: 3000,
+        });
       }
-    } catch (err) {
+    } catch (e) {
       Swal.fire({
         title: "error",
         text: "invalid email or password",
         icon: "error",
         timer: 3000,
       });
-      console.log(err);
     }
-
-    // navigation("/");
-    //alert ( `${emailUser}, ${passUser}`)
   };
   function handleChange(e) {
     e.preventDefault();
