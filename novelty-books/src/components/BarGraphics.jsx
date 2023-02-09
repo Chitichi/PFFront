@@ -24,7 +24,7 @@ export default function BarGraphics({ listBooks }) {
             },
             title: {
                 display: true,
-                text: 'Books Sell-Stock',
+                
             },
         },
     };
@@ -47,8 +47,8 @@ export default function BarGraphics({ listBooks }) {
 
     return (
         <>
-            <div>
-                <h5>Grafico de tipo barra</h5>
+            <div  className="container  m-4">
+                <h5>Books Sell-Stock</h5>
                 <Bar options={optionsBar} data={dataBar} />
             </div>
         </>
