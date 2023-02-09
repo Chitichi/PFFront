@@ -48,7 +48,7 @@ function Login() {
       });
       //console.log(res, "hola soy tu res")
       const data = await res.json();
-
+      console.log(data)
       if (data === "User not found") {
         Swal.fire({
           title: "Email not found!",
@@ -79,8 +79,8 @@ function Login() {
     } catch (e) {
       Swal.fire({
         title: "error",
-        text: err.msg,
-        icon: "Ooops something is wrong",
+        text: "invalid email or password",
+        icon: "error",
         timer: 3000,
       });
     }
