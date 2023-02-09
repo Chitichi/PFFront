@@ -4,7 +4,7 @@ import React from "react"
 import styles from './Review.module.css'
 import useUpdateBooks from "@/hooks/useUpdateBooks"
 
-export default function Review({idBook, user, setTotalBooks}) {
+export default function Review({idBook, user, updateBook, setComment}) {
 
     const {postRatings} = useUpdateBooks()
 
@@ -46,6 +46,7 @@ export default function Review({idBook, user, setTotalBooks}) {
             comment: "",
             userId: user._id
         })
+        setComment({reviewObj, idBookState})
     }
 
     return(
