@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 
 function Cart() {
-  const { cartItems, totalPrice ,setTotalPrice} = useStateContext();
+  const { cartItems, totalPrice ,setTotalPrice, user} = useStateContext();
 
   const subtotal = cartItems
     ?.map((book) => book.price * book.quantity)
@@ -107,7 +107,7 @@ function Cart() {
                 </div>
               )}
 
-              {cartItems.length >= 1 && (
+              {cartItems.length >= 1 && user.name&& (
                 <div className="card">
                   <div className="card-body">
                     <button
@@ -120,6 +120,15 @@ function Cart() {
                   </div>
                 </div>
               )}
+             {
+              !user.name && (
+                <div className="card">
+                <div className="card-body">
+                  <h2 className="text-center">You must be log to pay!</h2>
+                </div>
+              </div>
+              )
+             }
             </div>
           </div>
         </div>
