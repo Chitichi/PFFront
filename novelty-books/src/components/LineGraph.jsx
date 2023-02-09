@@ -24,7 +24,7 @@ export default function LineGraph({listSells, handleData}) {
             },
             title: {
                 display: true,
-                text: 'sell for time',
+                
             },
         },
     };
@@ -47,8 +47,8 @@ export default function LineGraph({listSells, handleData}) {
     };
     return (
         <>
-            <div>
-                <h5>Grafico de tipo linea</h5>
+            <div className="container m-2">
+                <h5>Sell through time</h5>
                 <select onChange={(e) => {handleData(e)}}>
                     <option value={"line-sell"}>Sells</option>
                     <option value={"line-user"}>Users</option>

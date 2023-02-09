@@ -135,21 +135,20 @@ export default function GraphicsDesk({ listOrders, listUsers, listBooks }) {
 
     return (
         <>
-            <div className="container">
+            <div className="container text-center m-4">
                 <div className='row'>
-                    <div className='col-6'>
-                        <DonutsGraph listData={donut} handleData={handleData} />
-                    </div>
-                    <div className='col-6'>
+                     <div className='col-6 justify-content-center align-items-center' >
                         <BarGraphics listBooks={bar} />
                     </div>
-                </div>
-                <div className='row'>
-                    <div className='col-8 justify-content-center align-items-center'>
+                    <div className='col-6 justify-content-center align-items-center' >
+                        <DonutsGraph listData={donut} handleData={handleData} />
+                    </div>
+                   
+                    <div className='col-6 justify-content-center align-items-center' >
                         <LineGraph listSells={line} handleData={handleData}/>
                     </div>
                 </div>
-
+                
             </div>
         </>
     )

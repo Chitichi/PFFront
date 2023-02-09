@@ -127,14 +127,14 @@ const Navbar = () => {
                   className="btn btn-outline-dark" 
                   type="submit"
                   style={{ marginLeft: 10 }}>
-                    Mi Purchases
+                    My Purchases
                   </button>
                 </Link> : null
             }
             {
               user.rolAdmin ?
               <Link href= "/createBookForm">
-                <button  className="btn btn-outline-dark" type="submit">
+                <button  className="btn btn-outline-dark" type="submit" style={{ marginLeft: 10 }}>
                   Create Book
                 </button>
               </Link> : null

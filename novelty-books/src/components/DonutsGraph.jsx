@@ -22,8 +22,8 @@ export default function DonutsGraph({listData, handleData}) {
 
     return (
         <>
-            <div>
-                <h5>Grafico de tipo dona</h5>
+            <div className="container m-2">
+                <h5>Sales by Genre</h5>
                 <select onChange={(e) => {handleData(e)}}>
                     <option value={"dona-genre"}>Genres</option>
                     <option value={"dona-book"}>Books</option>
