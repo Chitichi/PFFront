@@ -152,7 +152,7 @@ function ListUsers({ listUsers }) {
   return (
     <>
       <div className="container ">
-        <h3 className="text-center m-2 ">Lista de usuarios</h3>
+        <h3 className="text-center m-2 ">Users list</h3>
         <div className="row justify-content-end">
           <div className="col-2">
             <input
@@ -187,7 +187,7 @@ function ListUsers({ listUsers }) {
                 goDetailUser(userSelected.user._id);
               }}
             >
-              Ver Detalle
+              Detail
             </button>
           </div>    
             <div className="col-2 form-check form-check-inline form-switch">

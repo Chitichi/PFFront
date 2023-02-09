@@ -22,7 +22,7 @@ const Card = ({title, image, price,author}) => (
                             
                         </div>
                         
-                        <span >$ {price}</span>
+                        <span >€ {price}</span>
                         
                     </div>
                 </div>

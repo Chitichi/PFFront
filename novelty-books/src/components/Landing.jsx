@@ -16,7 +16,7 @@ function Landing({ books }) {
   const [home, setHome] = useState({
     searchInput: "",
     typeSearch: "title",
-    genreState: "Todos",
+    genreState: "All",
     arrayBooks: books,
   });
 
@@ -27,7 +27,7 @@ function Landing({ books }) {
 
   const [orderSence, setOrderSence] = useState("");
 
-  const listGenre = ["Genero", "Todos", "Fantasy", "Sci-Fiction", "Horror"];
+  const listGenre = ["Genre", "All", "Fantasy", "Sci-Fiction", "Horror"];
 
   function updateUser() {
     if (typeof window !== "undefined" && !user.name) {
@@ -96,7 +96,7 @@ function Landing({ books }) {
   }
 
   function filterGenre(genre, books) {
-    if (genre === "Todos") {
+    if (genre === "All") {
       return books;
     } else {
       return books.filter((book) => book.genre.includes(genre));
@@ -192,7 +192,7 @@ function Landing({ books }) {
                   <div className={styles.genreOrderSence}>
                     <select name="genreState" onChange={handleChanges}>
                       {listGenre.map((genre, index) =>
-                        genre !== "Genero" ? (
+                        genre !== "Genre" ? (
                           <option key={index} value={genre}>
                             {genre}
                           </option>
