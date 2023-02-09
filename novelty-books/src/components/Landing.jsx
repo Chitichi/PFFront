@@ -15,7 +15,7 @@ function Landing({ books }) {
 
   const [home, setHome] = useState({
     searchInput: "",
-    typeSearch: "title",
+    typeSearch: "all",
     genreState: "Todos",
     arrayBooks: books,
   });
@@ -58,11 +58,14 @@ function Landing({ books }) {
 
   const handleChanges = (e) => {
     const { value, name } = e.target;
-
     switch (name) {
       case "genreState":
         setHome((prev) => ({ ...prev, [name]: value }));
         filterBooks(prices, value);
+      case "searchInput": {
+        setHome((prev) => ({ ...prev, [name]: value }))
+        filterBooks(prices, home.genreState, value)
+      }
       default:
         setHome((prev) => ({ ...prev, [name]: value }));
     }
@@ -110,12 +113,31 @@ function Landing({ books }) {
     return booksFiltered;
   }
 
-  function filterBooks(priceToFilter, genreToFilter) {
+  function filterSearchBar(inputSearch,list){
+    const newBookList = inputSearch!==""?list.filter(book => {
+      switch (home.typeSearch) {
+        case "all": {
+          return book.title.toLowerCase().includes(inputSearch.toLowerCase()) || book.author.toLowerCase().includes(inputSearch.toLowerCase())? true: false
+        }
+        case "title": {
+          return book.title.toLowerCase().includes(inputSearch.toLowerCase())? true: false
+        }
+        case "author": {
+          return book.author.toLowerCase().includes(inputSearch.toLowerCase())? true: false
+        }
+      }
+    }):list
+    return newBookList
+  }
+
+  function filterBooks(priceToFilter, genreToFilter, inputSearch) {
     const price = priceToFilter || prices;
     const genre = genreToFilter === undefined ? home.genreState : genreToFilter;
+    const searchInput = inputSearch!==undefined? inputSearch: home.searchInput
     const filter1 = filterPrice(price, books);
     const filter2 = filterGenre(genre, filter1);
-    setHome({ ...home, arrayBooks: filter2 });
+    const filter3 = filterSearchBar(searchInput,filter2)
+    setHome({ ...home, arrayBooks: filter3 });
   }
 
   React.useEffect(() => {
@@ -157,6 +179,7 @@ function Landing({ books }) {
                     ></input>
 
                     <select name="typeSearch" onChange={handleChanges}>
+                    <option value="all">All</option>
                       <option value="title">Title</option>
                       <option value="author">Author</option>
                     </select>
@@ -271,16 +294,7 @@ function Landing({ books }) {
             <div
               className={`row gx-3 gx-lg-5 row-cols-xl-3 justify-content-center" ${styles.gridCards}`}
             >
-              {currentBooks
-                .filter((item) => {
-                  return home.searchInput.toLowerCase() === ""
-                    ? item
-                    : item[home.typeSearch]
-                        .toLowerCase()
-                        .includes(home.searchInput);
-                })
-
-                .map((book, key) => {
+              {currentBooks.map((book, key) => {
                   return (
                     <Link
                       href={`/detailBook/${book._id}`}
