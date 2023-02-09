@@ -30,7 +30,7 @@ const FormEditUser = () => {
     });
   }
 
-  //  console.log(input, "soy el input de handle change");
+  
   const handleSubmit = async (e) => {
     console.log("el user", user);
     e.preventDefault();
@@ -42,7 +42,7 @@ const FormEditUser = () => {
     formData.append("image", profileImage);
     try {
       const id = user._id;
-      // console.log(id, "hola soy tu id"); hasta aca todo ok.
+ 
       await fetch(process.env.RUTA_BACK + `/users/${id}`, {
         method: "PUT",
         body: formData,
@@ -89,7 +89,12 @@ const FormEditUser = () => {
     return;
   };
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.container}>
+    <div className={styles.userForm}>
+      <div className="text-center">
+      <h2 className={styles.h2}>
+        Edit Profile
+        </h2>
       <img
         src={
           user.image?.secure_url ||
@@ -97,9 +102,16 @@ const FormEditUser = () => {
         }
         width={100}
       />
+      </div>
       <br />
-      <label>Image:</label>
+
+      <label>
+        <strong>
+        Image:
+        </strong>
+      </label>
       <input
+        style={{margin: 10}}
         name="image"
         type="file"
         onChange={(event) => {
@@ -109,8 +121,13 @@ const FormEditUser = () => {
       />
       <form onSubmit={(e) => handleSubmit(e)} className={styles.formWrapper}>
         <div>
-          <label>Name:</label>
+          <label>
+            <strong>
+            Name:
+            </strong>
+          </label>
           <input
+            className="form-control"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="name..."
@@ -119,8 +136,13 @@ const FormEditUser = () => {
           />
         </div>
         <div>
-          <label>Address:</label>
+          <label>
+            <strong>
+            Address:
+            </strong>
+          </label>
           <input
+            className="form-control"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="address..."
@@ -129,8 +151,13 @@ const FormEditUser = () => {
           />
         </div>
         <div>
-          <label>Phone Number:</label>
+          <label>
+            <strong>
+              Phone Number:
+            </strong>
+          </label>
           <input
+            className="form-control"
             onChange={(e) => handleChange(e)}
             type="number"
             placeholder="phoneNumber..."
@@ -139,15 +166,20 @@ const FormEditUser = () => {
           />
         </div>
         
-        <div>
-          <button type="submit">Accept changes</button>
+        <div className="text-center">
+          <button 
+          className="btn btn-outline-dark btn-lg m-4"
+          type="submit">Accept changes</button>
         </div>
-        <div>
+        <div className="text-center">
           <Link href = "/MyProfile">
-          <button>Cancel</button>
+          <button
+          className="btn btn-outline-dark btn-lg m-4"
+          >Cancel</button>
           </Link>
         </div>
       </form>
+    </div>
     </div>
   );
 };
