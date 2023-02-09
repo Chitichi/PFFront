@@ -1,15 +1,25 @@
 "use client";
 import { useStateContext } from "context/StateContext";
+import React from "react";
 import styles from "./DetailBook.module.css"
 import Review from "../ReviewFolder/Review";
-import Swal from "sweetalert2";
-export default function DetailBook({book}) {
+import ReviewsList from "../ReviewsList/ReviewsList";
+
+export default function DetailBook({isbn, book, updateBook}) {
 
 const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useStateContext()
 
   const handleBuyNow = () => {
     onAdd(book, qty);
   }
+
+  const [comment, setComment] = React.useState({
+
+  })
+
+  React.useEffect(() => {
+    updateBook(isbn)
+  }, [])
   
   return (
     <>
@@ -63,7 +73,10 @@ const { decQty, incQty, qty, onAdd, user, totalBooks, setTotalBooks } = useState
               </div>
             </div>
             <div className={styles.c}>
-                {user.name && <Review idBook={book._id} user={user} setTotalBooks={setTotalBooks}/>}
+                {user.name && <Review idBook={book._id} user={user} updateBook={updateBook} setComment={setComment}/>}
+            </div>
+            <div className={styles.d}>
+                <ReviewsList ratings={book} comment={comment}/>
             </div>
           </div>
         </div>
