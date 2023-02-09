@@ -121,34 +121,50 @@ function ListOrders({ listOrders }) {
 
   return (
     <>
-      <div className="container px-4 px-lg-5 my-5">
-        <h3>Lista de ordenes</h3>
-        <input
-          type="search"
-          placeholder="Search"
-          onChange={handleSearch}
-        ></input>
-        <select onChange={handleTypeFilter}>
-          <option value={"todos"}>todos</option>
-          <option value={"id"}>id</option>
-          <option value={"userID"}>userID</option>
-          <option value={"books"}>books</option>
-          <option value={"total"}>total</option>
-        </select>
-        <label>Status: </label>
-        <select onChange={handleFilterStatus}>
-          <option value={"all"}>All</option>
-          <option value={"true"}>Entregado</option>
-          <option value={"false"}>Pendiente</option>
-        </select>
-
-        <button
-          onClick={() => {
-            goDetailOrder(orderSelected.order._id);
-          }}
-        >
-          Ver Detalle
-        </button>
+      <div className="container ">
+        <h3 className="text-center m-2 ">Lista de ordenes</h3>
+        <div className="row justify-content-end">  
+        
+            <div className="col-3">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search"
+                onChange={handleSearch}
+              ></input>
+            </div>
+            <div className="col-2">
+              <select  className="form-control" onChange={handleTypeFilter}>
+                <option value={"todos"}>All</option>
+                <option value={"id"}>Id</option>
+                <option value={"userID"}>UserID</option>
+                <option value={"books"}>Books</option>
+                <option value={"total"}>Total</option>
+              </select>
+            </div>
+            <div className="col-1">
+              <label >Status: </label>
+            </div>
+            <div className="col-2">
+              <select className="form-control" onChange={handleFilterStatus}>
+                <option value={"all"}>All</option>
+                <option value={"true"}>Entregado</option>
+                <option value={"false"}>Pendiente</option>
+              </select>
+            </div>  
+      
+          <div className="col-2">
+            <button
+              className="btn btn-outline-dark "
+              onClick={() => {
+                goDetailOrder(orderSelected.order._id);
+              }}
+            >
+              Ver Detalle
+            </button>
+          </div>
+        </div>
+      
         <PaginateListItems
           current={current}
           itemPerPage={itemPerPage}

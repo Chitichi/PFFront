@@ -31,21 +31,33 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 300px;
+    width: fit-content;
     height: 25px;
     border-radius: 5px;
     width: 33%;
 }
 
-
-.starsDiv:hover > i:before {
-    color: goldenrod;
-    cursor: pointer;
+.starsDiv > span {
+    font-size: 10px
 }
 
-.starsDiv > i:hover ~ i:before  {
+.starsDiv > span:before {
+    content: '★';
     color: inherit;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .starsDiv>span:hover,
+  .starsDiv span:hover ~ span:before {
+    color: inherit;
+  }
+
+.selected {
+    color: goldenrod;
+    font-size: 20px;
 }
+
 
 .commentDiv > textarea {
     width: 333px;

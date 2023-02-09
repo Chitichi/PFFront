@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useStateContext } from "context/StateContext";
 import Swal from "sweetalert2";
+import styles from './FormEditUser.module.css'
 import Link from "next/link";
 
 const FormEditUser = () => {
@@ -88,7 +89,7 @@ const FormEditUser = () => {
     return;
   };
   return (
-    <div>
+    <div className={styles.wrapper}>
       <img
         src={
           user.image?.secure_url ||
@@ -106,7 +107,7 @@ const FormEditUser = () => {
         }}
         accept="image/*"
       />
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.formWrapper}>
         <div>
           <label>Name:</label>
           <input

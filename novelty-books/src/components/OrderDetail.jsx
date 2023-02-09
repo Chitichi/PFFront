@@ -25,24 +25,12 @@ function OrderDetail(props) {
                                                 <div className="col-md-3 col-lg-3 col-xl-3">
                                                     <p className="lead fw-normal mb-2">{book.title ? book.title : null}</p>
                                                 </div>
-                                                <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                    {/* <button
-                                                        className="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                    >
-                                                        <i className="fas fa-minus"></i>
-                                                    </button> */}
+                                                <div className="col-md-3 col-lg-3 col-xl-2 d-flex">                                            
 
                                                     <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                         <h5 className="mb-0">{book.quantity ? book.quantity : null}</h5>
                                                     </div>
 
-                                                    {/* <button
-                                                        className="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                    >
-                                                        <i className="fas fa-plus"></i>
-                                                    </button> */}
                                                 </div>
                                                 <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                     <h5 className="mb-0">$ {book.price ? book.price : null}</h5>

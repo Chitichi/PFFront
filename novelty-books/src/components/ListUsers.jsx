@@ -135,7 +135,7 @@ function ListUsers({ listUsers }) {
         timer: 3000,
       })
 
-      const res = await fetch(process.env.RUTA_BACK + "/users", {cache: 'no-store'})
+      const res = await fetch(process.env.RUTA_BACK + "/users",{cache: "no-store"})
       const updateUsers = await res.json()
       setListToShow(updateUsers)
 
@@ -151,41 +151,52 @@ function ListUsers({ listUsers }) {
 
   return (
     <>
-      <div className="container px-4 px-lg-5 my-5">
-        <h3>Lista de usuarios</h3>
-        <input
-          type="search"
-          placeholder="Search"
-          onChange={handleSearch}
-        ></input>
-        <select onChange={handleTypeFilter}>
-          <option value={"todos"}>todos</option>
-          <option value={"id"}>id</option>
-          <option value={"nombre"}>nombre</option>
-          <option value={"correo"}>correo</option>
-        </select>
-        <label>Admin: </label>
-        <select onChange={handleFilterAdmin}>
-          <option value={"all"}>All</option>
-          <option value={"true"}>True</option>
-          <option value={"false"}>False</option>
-        </select>
+      <div className="container ">
+        <h3 className="text-center m-2 ">Lista de usuarios</h3>
+        <div className="row justify-content-end">
+          <div className="col-2">
+            <input
+              className="form-control"
+              type="search"
+              placeholder="Search"
+              onChange={handleSearch}
+            ></input>
+          </div>  
+          <div className="col-2">
+            <select className="form-control" onChange={handleTypeFilter}>
+              <option value={"todos"}>All</option>
+              <option value={"id"}>Id</option>
+              <option value={"nombre"}>Email</option>
+              <option value={"correo"}>Email</option>
+            </select>
+          </div>  
+          <div className="col-1">
+            <label>Admin: </label>
+          </div>
+          <div className="col-2">  
+            <select className="form-control" onChange={handleFilterAdmin}>
+              <option value={"all"}>All</option>
+              <option value={"true"}>True</option>
+              <option value={"false"}>False</option>
+            </select>
+          </div>
+          <div className="col-2">
+            <button
+              className="btn btn-outline-dark "
+              onClick={() => {
+                goDetailUser(userSelected.user._id);
+              }}
+            >
+              Ver Detalle
+            </button>
+          </div>    
+            <div className="col-2 form-check form-check-inline form-switch">
+              <input className={`form-check-input ${isDeleted ? "bg-danger" : "bg-success"}`} type={"checkbox"} role={"switch"} id={"flexSwitchCheckDefault"} value={isDeleted} onClick={handleEnabled} checked={isDeleted} disabled={inputSwitch}/>          
+              <label for={"flexSwitchCheckDefault"}>{isDeleted? "Disabled":"Enabled"}</label>
 
-        <button
-          onClick={() => {
-            goDetailUser(userSelected.user._id);
-          }}
-        >
-          Ver Detalle
-        </button>
-
-        <div className="form-check form-check-inline form-switch">
-          <input className={`form-check-input ${isDeleted ? "bg-danger" : "bg-success"}`} type={"checkbox"} role={"switch"} id={"flexSwitchCheckDefault"} value={isDeleted} onClick={handleEnabled} checked={isDeleted} disabled={inputSwitch}/>          
-          <label for={"flexSwitchCheckDefault"}>{isDeleted? "Disabled":"Enabled"}</label>
-
-          
-        </div>
-
+              
+            </div>
+        </div>      
         <PaginateListItems
           current={current}
           itemPerPage={itemPerPage}

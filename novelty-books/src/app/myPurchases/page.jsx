@@ -1,4 +1,8 @@
-import Purchases from "@/components/Purchases/Purchases";
+import dynamic from "next/dynamic";
+
+const Purchases = dynamic(()=>import("@/components/Purchases"),{ssr:false})
+
+
 
 const myOrders = async () => {
         try {
@@ -8,19 +12,21 @@ const myOrders = async () => {
               headers: {
                   "Content-Type": "application/json",
                 },
+                cache:'no-store',
             });
        
             const data = await res.json();
-        
-          return data
-        } catch (err) { 
+            
+            return data
+          } catch (err) { 
             console.log(err)
           }
         }
-async function MyPurchases() {
-        const orders = await myOrders()
+        async function MyPurchases() {
+          const orders = await myOrders()
+          
             return(
-                    <Purchases orders= {orders}/>
+                  <Purchases orders= {orders}/>
             )
 }
     

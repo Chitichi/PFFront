@@ -160,11 +160,12 @@ function SignUpForm() {
         ) : (
           <>
             <div>
+             <h2 className={styles.h2}>Sign Up</h2>
               <label>
                 <strong>Name:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="name..."
@@ -180,7 +181,7 @@ function SignUpForm() {
                 <strong>Email</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="email..."
@@ -195,7 +196,7 @@ function SignUpForm() {
                 <strong>Password:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="password"
                 placeholder="password..."
@@ -210,7 +211,7 @@ function SignUpForm() {
                 <strong>Confirm Password:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="password"
                 placeholder="confirm password..."
@@ -225,7 +226,7 @@ function SignUpForm() {
                 <strong>Address:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="address..."
@@ -234,12 +235,12 @@ function SignUpForm() {
               />
               {errores.address && <p>{errores.address}</p>}
             </div>
-            <div>
+            <div >
               <label>
                 <strong>Phone Number:</strong>
               </label>
               <input
-                className={styles.formControl}
+                className="form-control"
                 onChange={(e) => handleChange(e)}
                 type="number"
                 placeholder="phoneNumber..."
@@ -260,8 +261,8 @@ function SignUpForm() {
           ) : (
             <div className="text-center">
               Not signed in <br />
-              <button onClick={() => signIn()}>
-                Sign in With Google/GitHub
+              <button className={styles.buttonControl} onClick={() => signIn()}>
+                Sign in With Google
               </button>
             </div>
           )}

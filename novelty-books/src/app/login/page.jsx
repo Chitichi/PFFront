@@ -104,7 +104,8 @@ function Login() {
         ) : (
           <>
             <div className="form-group">
-              <label>Email address</label>
+              <h2 className={style.h2}>Log In</h2>
+              <label><strong>Email address</strong></label>
               <input
                 type="email"
                 className="form-control"
@@ -117,7 +118,7 @@ function Login() {
               />
             </div>
             <div className="form-group">
-              <label>Password</label>
+              <label><strong>Password</strong></label>
               <input
                 type="password"
                 className="form-control"
@@ -130,26 +131,27 @@ function Login() {
             </div>
           </>
         )}
-
-        {session ? (
+        
+          {session ? (
+            <div className="text-center">
+              Signed in as {session.user.email} <br />
+              <button className={style.button} onClick={() => signOut()}>Sign out</button>
+            </div>
+          ) : (
+            <div className="text-center">
+              Not signed in <br />
+              <button className={style.button} onClick={() => signIn()}>Sign in with Google</button>
+            </div>
+          )}
           <div className="text-center">
-            Signed in as {session.user.email} <br />
-            <button onClick={() => signOut()}>Sign out</button>
+            <button className={style.button} type="submit" onClick={handleSubmit}>
+              Login
+            </button>
           </div>
-        ) : (
-          <div className="text-center">
-            Not signed in <br />
-            <button onClick={() => signIn()}>Sign in with Google/GitHub</button>
-          </div>
-        )}
-        <div className="text-center">
-          <button className={style.button} type="submit" onClick={handleSubmit}>
-            Login
-          </button>
-        </div>
+        
         <div>
-          <Link href={"/enterEmail"}>
-            <h5> Did you forget your password?</h5>
+          <Link className={style.h5} href={"/enterEmail"}>
+            <h5 style={{fontSize: 15}}> Did you forget your password?</h5>
           </Link>
         </div>
       </form>
